@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff'.
  *
- * Model version                  : 2.4
+ * Model version                  : 2.7
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Mon Jan 23 19:10:10 2023
+ * C/C++ source code generated on : Tue Jan 24 12:55:43 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -22,69 +22,84 @@
 /* Block parameters (default storage) */
 P_wednesday_stuff_T wednesday_stuff_P = {
   /* Variable: A_d
-   * Referenced by: '<S1>/System Matrix'
+   * Referenced by: '<S2>/System Matrix'
    */
-  { 1.0, 0.0, 0.000996792215877889, 0.99359129902113907 },
+  { 1.0, 0.0, 0.073763824168706471, 0.52574841112881621 },
 
   /* Variable: B_d
-   * Referenced by: '<S1>/Input Matrix'
+   * Referenced by: '<S2>/Input Matrix'
    */
-  { 0.0014301370877746109, 2.8572125197421783 },
+  { 11.696961724785037, 211.43716670506942 },
 
   /* Variable: C_d
-   * Referenced by: '<S1>/Output Matrix'
+   * Referenced by: '<S2>/Output Matrix'
    */
   { 1.0, 0.0 },
 
   /* Variable: K_SF
    * Referenced by: '<Root>/Feedback Gain3'
    */
-  { 0.44520354374441606, 0.010766278677044369 },
+  { 0.063124163388838, 0.0051924598593751517 },
 
   /* Variable: L_Pred
-   * Referenced by: '<S1>/Observer Gain'
+   * Referenced by: '<S2>/Observer Gain'
    */
-  { 0.92661511683893238, 212.37621901076648 },
+  { 1.5257484111288162, 3.7472486672096834 },
 
   /* Variable: N
    * Referenced by: '<Root>/Feedback Gain4'
    */
-  0.4452035437444164,
+  0.063124163388837987,
 
   /* Variable: Stepsize
    * Referenced by: '<Root>/r'
    */
   1.0,
 
-  /* Expression: 1
-   * Referenced by: '<Root>/r'
-   */
-  1.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/r'
+  /* Mask Parameter: DiscreteDerivative_ICPrevScaled
+   * Referenced by: '<S1>/UD'
    */
   0.0,
 
-  /* Expression: 0
-   * Referenced by: '<S1>/Unit Delay'
+  /* Expression: 958.0466360856269
+   * Referenced by: '<Root>/Constant'
    */
-  0.0,
-
-  /* Expression: -100000
-   * Referenced by: '<Root>/Constant3'
-   */
-  -100000.0,
+  958.04663608562691,
 
   /* Expression: 1
    * Referenced by: '<Root>/Constant1'
    */
   1.0,
 
+  /* Expression: -100000
+   * Referenced by: '<Root>/Constant3'
+   */
+  -100000.0,
+
   /* Expression: 3.14159/400
    * Referenced by: '<Root>/Gain'
    */
   0.007853975,
+
+  /* Computed Parameter: TSamp_WtEt
+   * Referenced by: '<S1>/TSamp'
+   */
+  1000.0,
+
+  /* Expression: 1
+   * Referenced by: '<Root>/r'
+   */
+  1.0,
+
+  /* Expression: 0
+   * Referenced by: '<Root>/r'
+   */
+  0.0,
+
+  /* Expression: 0
+   * Referenced by: '<S2>/Unit Delay'
+   */
+  0.0,
 
   /* Expression: 0
    * Referenced by: '<Root>/Discrete FIR Filter2'
@@ -96,11 +111,6 @@ P_wednesday_stuff_T wednesday_stuff_P = {
    */
   1.0,
 
-  /* Expression: 1000
-   * Referenced by: '<Root>/Constant2'
-   */
-  1000.0,
-
   /* Expression: 10.7
    * Referenced by: '<Root>/Output voltage to PWM1'
    */
@@ -111,10 +121,10 @@ P_wednesday_stuff_T wednesday_stuff_P = {
    */
   93.45794392523365,
 
-  /* Expression: 958.0466360856269
-   * Referenced by: '<Root>/Constant'
+  /* Expression: 1000
+   * Referenced by: '<Root>/Constant2'
    */
-  958.04663608562691
+  1000.0
 };
 
 /*

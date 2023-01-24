@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff'.
  *
- * Model version                  : 2.4
+ * Model version                  : 2.7
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Mon Jan 23 19:10:10 2023
+ * C/C++ source code generated on : Tue Jan 24 12:55:43 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -33,50 +33,63 @@ DW_wednesday_stuff_T wednesday_stuff_DW;
 /* Real-time model */
 static RT_MODEL_wednesday_stuff_T wednesday_stuff_M_;
 RT_MODEL_wednesday_stuff_T *const wednesday_stuff_M = &wednesday_stuff_M_;
+static void rate_monotonic_scheduler(void);
 
-/* Model step function */
-void wednesday_stuff_step(void)
+/*
+ * Set which subrates need to run this base step (base rate always runs).
+ * This function must be called prior to calling the model step function
+ * in order to remember which rates need to run this base step.  The
+ * buffering of events allows for overlapping preemption.
+ */
+void wednesday_stuff_SetEventsForThisBaseStep(boolean_T *eventFlags)
+{
+  /* Task runs when its counter is zero, computed via rtmStepTask macro */
+  eventFlags[1] = ((boolean_T)rtmStepTask(wednesday_stuff_M, 1));
+}
+
+/*
+ *         This function updates active task flag for each subrate
+ *         and rate transition flags for tasks that exchange data.
+ *         The function assumes rate-monotonic multitasking scheduler.
+ *         The function must be called at model base rate so that
+ *         the generated code self-manages all its subrates and rate
+ *         transition flags.
+ */
+static void rate_monotonic_scheduler(void)
+{
+  /* To ensure a deterministic data transfer between two rates,
+   * data is transferred at the priority of a fast task and the frequency
+   * of the slow task.  The following flags indicate when the data transfer
+   * happens.  That is, a rate interaction flag is set true when both rates
+   * will run, and false otherwise.
+   */
+
+  /* tid 0 shares data with slower tid rate: 1 */
+  wednesday_stuff_M->Timing.RateInteraction.TID0_1 =
+    (wednesday_stuff_M->Timing.TaskCounters.TID[1] == 0);
+
+  /* Compute which subrates run during the next base time step.  Subrates
+   * are an integer multiple of the base rate counter.  Therefore, the subtask
+   * counter is reset when it reaches its limit (zero means run).
+   */
+  (wednesday_stuff_M->Timing.TaskCounters.TID[1])++;
+  if ((wednesday_stuff_M->Timing.TaskCounters.TID[1]) > 99) {/* Sample time: [0.1s, 0.0s] */
+    wednesday_stuff_M->Timing.TaskCounters.TID[1] = 0;
+  }
+}
+
+/* Model step function for TID0 */
+void wednesday_stuff_step0(void)       /* Sample time: [0.001s, 0.0s] */
 {
   real_T rtb_Sum;
-  real_T rtb_SystemMatrix_g;
-  real_T rtb_SystemMatrix_i;
   real_T yTemp;
 
-  /* Step: '<Root>/r' */
-  if (wednesday_stuff_M->Timing.taskTime0 < wednesday_stuff_P.r_Time) {
-    /* Step: '<Root>/r' */
-    wednesday_stuff_B.r = wednesday_stuff_P.r_Y0;
-  } else {
-    /* Step: '<Root>/r' */
-    wednesday_stuff_B.r = wednesday_stuff_P.Stepsize;
+  {                                    /* Sample time: [0.001s, 0.0s] */
+    rate_monotonic_scheduler();
   }
 
-  /* End of Step: '<Root>/r' */
-
-  /* SignalConversion generated from: '<Root>/Mux1' */
-  wednesday_stuff_B.TmpSignalConversionAtTAQSigLogg[0] = 0.0;
-  wednesday_stuff_B.TmpSignalConversionAtTAQSigLogg[1] = 0.0;
-  wednesday_stuff_B.TmpSignalConversionAtTAQSigLogg[2] = wednesday_stuff_B.r;
-  wednesday_stuff_B.TmpSignalConversionAtTAQSigLogg[3] = 0.0;
-
-  /* Gain: '<S1>/System Matrix' incorporates:
-   *  UnitDelay: '<S1>/Unit Delay'
-   */
-  rtb_SystemMatrix_g = wednesday_stuff_P.A_d[0] *
-    wednesday_stuff_DW.UnitDelay_DSTATE[0] +
-    wednesday_stuff_DW.UnitDelay_DSTATE[1] * wednesday_stuff_P.A_d[2];
-  rtb_SystemMatrix_i = wednesday_stuff_DW.UnitDelay_DSTATE[0] *
-    wednesday_stuff_P.A_d[1] + wednesday_stuff_DW.UnitDelay_DSTATE[1] *
-    wednesday_stuff_P.A_d[3];
-
-  /* Sum: '<Root>/Sum3' incorporates:
-   *  Gain: '<Root>/Feedback Gain3'
-   *  Gain: '<Root>/Feedback Gain4'
-   *  UnitDelay: '<S1>/Unit Delay'
-   */
-  wednesday_stuff_B.Sum3 = wednesday_stuff_P.N * wednesday_stuff_B.r -
-    (wednesday_stuff_P.K_SF[0] * wednesday_stuff_DW.UnitDelay_DSTATE[0] +
-     wednesday_stuff_P.K_SF[1] * wednesday_stuff_DW.UnitDelay_DSTATE[1]);
+  /* Constant: '<Root>/Constant' */
+  wednesday_stuff_B.Constant = wednesday_stuff_P.Constant_Value;
 
   /* S-Function (c280xgpio_do): '<Root>/Digital Output' incorporates:
    *  Constant: '<Root>/Constant1'
@@ -133,39 +146,133 @@ void wednesday_stuff_step(void)
    */
   wednesday_stuff_B.Gain = wednesday_stuff_P.Gain_Gain * yTemp;
 
-  /* DiscreteFir: '<Root>/Discrete FIR Filter2' */
-  wednesday_stuff_B.DiscreteFIRFilter2 = wednesday_stuff_B.Gain *
+  /* SampleTimeMath: '<S1>/TSamp'
+   *
+   * About '<S1>/TSamp':
+   *  y = u * K where K = 1 / ( w * Ts )
+   */
+  rtb_Sum = wednesday_stuff_B.Gain * wednesday_stuff_P.TSamp_WtEt;
+
+  /* Sum: '<S1>/Diff' incorporates:
+   *  UnitDelay: '<S1>/UD'
+   *
+   * Block description for '<S1>/Diff':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S1>/UD':
+   *
+   *  Store in Global RAM
+   */
+  wednesday_stuff_B.Diff = rtb_Sum - wednesday_stuff_DW.UD_DSTATE;
+
+  /* RateTransition generated from: '<Root>/Discrete FIR Filter2' */
+  if (wednesday_stuff_M->Timing.RateInteraction.TID0_1) {
+    wednesday_stuff_DW.TmpRTBAtDiscreteFIRFilter2Inpor = wednesday_stuff_B.Gain;
+  }
+
+  /* End of RateTransition generated from: '<Root>/Discrete FIR Filter2' */
+  /* Update for UnitDelay: '<S1>/UD'
+   *
+   * Block description for '<S1>/UD':
+   *
+   *  Store in Global RAM
+   */
+  wednesday_stuff_DW.UD_DSTATE = rtb_Sum;
+
+  /* Update absolute time */
+  /* The "clockTick0" counts the number of times the code of this task has
+   * been executed. The absolute time is the multiplication of "clockTick0"
+   * and "Timing.stepSize0". Size of "clockTick0" ensures timer will not
+   * overflow during the application lifespan selected.
+   */
+  wednesday_stuff_M->Timing.taskTime0 =
+    ((time_T)(++wednesday_stuff_M->Timing.clockTick0)) *
+    wednesday_stuff_M->Timing.stepSize0;
+}
+
+/* Model step function for TID1 */
+void wednesday_stuff_step1(void)       /* Sample time: [0.1s, 0.0s] */
+{
+  real_T rtb_Sum1;
+  real_T rtb_SystemMatrix_g;
+  real_T rtb_SystemMatrix_i;
+
+  /* Step: '<Root>/r' */
+  if (((wednesday_stuff_M->Timing.clockTick1) * 0.1) < wednesday_stuff_P.r_Time)
+  {
+    /* Step: '<Root>/r' */
+    wednesday_stuff_B.r = wednesday_stuff_P.r_Y0;
+  } else {
+    /* Step: '<Root>/r' */
+    wednesday_stuff_B.r = wednesday_stuff_P.Stepsize;
+  }
+
+  /* End of Step: '<Root>/r' */
+
+  /* SignalConversion generated from: '<Root>/Mux1' */
+  wednesday_stuff_B.TmpSignalConversionAtTAQSigLogg[0] = 0.0;
+  wednesday_stuff_B.TmpSignalConversionAtTAQSigLogg[1] = 0.0;
+  wednesday_stuff_B.TmpSignalConversionAtTAQSigLogg[2] = wednesday_stuff_B.r;
+  wednesday_stuff_B.TmpSignalConversionAtTAQSigLogg[3] = 0.0;
+
+  /* DiscreteFir: '<Root>/Discrete FIR Filter2' incorporates:
+   *  RateTransition generated from: '<Root>/Discrete FIR Filter2'
+   */
+  wednesday_stuff_B.DiscreteFIRFilter2 =
+    wednesday_stuff_DW.TmpRTBAtDiscreteFIRFilter2Inpor *
     wednesday_stuff_P.DiscreteFIRFilter2_Coefficients;
 
-  /* Sum: '<S1>/Sum1' incorporates:
-   *  Gain: '<S1>/Output Matrix'
-   *  UnitDelay: '<S1>/Unit Delay'
+  /* Gain: '<S2>/System Matrix' incorporates:
+   *  UnitDelay: '<S2>/Unit Delay'
    */
-  rtb_Sum = wednesday_stuff_B.DiscreteFIRFilter2 - (wednesday_stuff_P.C_d[0] *
+  rtb_SystemMatrix_g = wednesday_stuff_P.A_d[0] *
+    wednesday_stuff_DW.UnitDelay_DSTATE[0] +
+    wednesday_stuff_DW.UnitDelay_DSTATE[1] * wednesday_stuff_P.A_d[2];
+  rtb_SystemMatrix_i = wednesday_stuff_DW.UnitDelay_DSTATE[0] *
+    wednesday_stuff_P.A_d[1] + wednesday_stuff_DW.UnitDelay_DSTATE[1] *
+    wednesday_stuff_P.A_d[3];
+
+  /* Sum: '<Root>/Sum3' incorporates:
+   *  Gain: '<Root>/Feedback Gain3'
+   *  Gain: '<Root>/Feedback Gain4'
+   *  UnitDelay: '<S2>/Unit Delay'
+   */
+  wednesday_stuff_B.Sum3 = wednesday_stuff_P.N * wednesday_stuff_B.r -
+    (wednesday_stuff_P.K_SF[0] * wednesday_stuff_DW.UnitDelay_DSTATE[0] +
+     wednesday_stuff_P.K_SF[1] * wednesday_stuff_DW.UnitDelay_DSTATE[1]);
+
+  /* Sum: '<S2>/Sum1' incorporates:
+   *  Gain: '<S2>/Output Matrix'
+   *  UnitDelay: '<S2>/Unit Delay'
+   */
+  rtb_Sum1 = wednesday_stuff_B.DiscreteFIRFilter2 - (wednesday_stuff_P.C_d[0] *
     wednesday_stuff_DW.UnitDelay_DSTATE[0] + wednesday_stuff_P.C_d[1] *
     wednesday_stuff_DW.UnitDelay_DSTATE[1]);
 
-  /* Gain: '<S1>/Observer Gain' incorporates:
-   *  UnitDelay: '<S1>/Unit Delay'
+  /* Gain: '<S2>/Observer Gain' incorporates:
+   *  UnitDelay: '<S2>/Unit Delay'
    */
-  wednesday_stuff_DW.UnitDelay_DSTATE[0] = wednesday_stuff_P.L_Pred[0] * rtb_Sum;
+  wednesday_stuff_DW.UnitDelay_DSTATE[0] = wednesday_stuff_P.L_Pred[0] *
+    rtb_Sum1;
 
-  /* Sum: '<S1>/Sum2' incorporates:
-   *  Gain: '<S1>/Input Matrix'
-   *  UnitDelay: '<S1>/Unit Delay'
+  /* Sum: '<S2>/Sum2' incorporates:
+   *  Gain: '<S2>/Input Matrix'
+   *  UnitDelay: '<S2>/Unit Delay'
    */
   wednesday_stuff_DW.UnitDelay_DSTATE[0] = (wednesday_stuff_P.B_d[0] *
     wednesday_stuff_B.Sum3 + wednesday_stuff_DW.UnitDelay_DSTATE[0]) +
     rtb_SystemMatrix_g;
 
-  /* Gain: '<S1>/Observer Gain' incorporates:
-   *  UnitDelay: '<S1>/Unit Delay'
+  /* Gain: '<S2>/Observer Gain' incorporates:
+   *  UnitDelay: '<S2>/Unit Delay'
    */
-  wednesday_stuff_DW.UnitDelay_DSTATE[1] = wednesday_stuff_P.L_Pred[1] * rtb_Sum;
+  wednesday_stuff_DW.UnitDelay_DSTATE[1] = wednesday_stuff_P.L_Pred[1] *
+    rtb_Sum1;
 
-  /* Sum: '<S1>/Sum2' incorporates:
-   *  Gain: '<S1>/Input Matrix'
-   *  UnitDelay: '<S1>/Unit Delay'
+  /* Sum: '<S2>/Sum2' incorporates:
+   *  Gain: '<S2>/Input Matrix'
+   *  UnitDelay: '<S2>/Unit Delay'
    */
   wednesday_stuff_DW.UnitDelay_DSTATE[1] = (wednesday_stuff_P.B_d[1] *
     wednesday_stuff_B.Sum3 + wednesday_stuff_DW.UnitDelay_DSTATE[1]) +
@@ -198,21 +305,13 @@ void wednesday_stuff_step(void)
     EPwm1Regs.CMPA.bit.CMPA = (uint16_T)(wednesday_stuff_B.Sum1);
   }
 
-  /* Constant: '<Root>/Constant' */
-  wednesday_stuff_B.Constant = wednesday_stuff_P.Constant_Value;
-
-  {                                    /* Sample time: [0.001s, 0.0s] */
-  }
-
-  /* Update absolute time for base rate */
-  /* The "clockTick0" counts the number of times the code of this task has
-   * been executed. The absolute time is the multiplication of "clockTick0"
-   * and "Timing.stepSize0". Size of "clockTick0" ensures timer will not
-   * overflow during the application lifespan selected.
+  /* Update absolute time */
+  /* The "clockTick1" counts the number of times the code of this task has
+   * been executed. The resolution of this integer timer is 0.1, which is the step size
+   * of the task. Size of "clockTick1" ensures timer will not overflow during the
+   * application lifespan selected.
    */
-  wednesday_stuff_M->Timing.taskTime0 =
-    ((time_T)(++wednesday_stuff_M->Timing.clockTick0)) *
-    wednesday_stuff_M->Timing.stepSize0;
+  wednesday_stuff_M->Timing.clockTick1++;
 }
 
 /* Model initialize function */
@@ -230,10 +329,10 @@ void wednesday_stuff_initialize(void)
   wednesday_stuff_M->Timing.stepSize0 = 0.001;
 
   /* External mode info */
-  wednesday_stuff_M->Sizes.checksums[0] = (573981002U);
-  wednesday_stuff_M->Sizes.checksums[1] = (2430837229U);
-  wednesday_stuff_M->Sizes.checksums[2] = (4158659281U);
-  wednesday_stuff_M->Sizes.checksums[3] = (2002511567U);
+  wednesday_stuff_M->Sizes.checksums[0] = (604789835U);
+  wednesday_stuff_M->Sizes.checksums[1] = (1215812590U);
+  wednesday_stuff_M->Sizes.checksums[2] = (2432191133U);
+  wednesday_stuff_M->Sizes.checksums[3] = (2683621215U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -493,7 +592,16 @@ void wednesday_stuff_initialize(void)
     EDIS;
   }
 
-  /* InitializeConditions for UnitDelay: '<S1>/Unit Delay' */
+  /* InitializeConditions for UnitDelay: '<S1>/UD'
+   *
+   * Block description for '<S1>/UD':
+   *
+   *  Store in Global RAM
+   */
+  wednesday_stuff_DW.UD_DSTATE =
+    wednesday_stuff_P.DiscreteDerivative_ICPrevScaled;
+
+  /* InitializeConditions for UnitDelay: '<S2>/Unit Delay' */
   wednesday_stuff_DW.UnitDelay_DSTATE[0] =
     wednesday_stuff_P.UnitDelay_InitialCondition;
   wednesday_stuff_DW.UnitDelay_DSTATE[1] =
