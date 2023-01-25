@@ -9,7 +9,7 @@
  *
  * Model version                  : 2.7
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Tue Jan 24 12:55:43 2023
+ * C/C++ source code generated on : Wed Jan 25 14:34:34 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -53,10 +53,6 @@
 #define rtmSetErrorStatus(rtm, val)    ((rtm)->errorStatus = (val))
 #endif
 
-#ifndef rtmStepTask
-#define rtmStepTask(rtm, idx)          ((rtm)->Timing.TaskCounters.TID[(idx)] == 0)
-#endif
-
 #ifndef rtmGetStopRequested
 #define rtmGetStopRequested(rtm)       ((rtm)->Timing.stopRequestedFlag)
 #endif
@@ -81,10 +77,6 @@
 #define rtmGetTPtr(rtm)                (&(rtm)->Timing.taskTime0)
 #endif
 
-#ifndef rtmTaskCounter
-#define rtmTaskCounter(rtm, idx)       ((rtm)->Timing.TaskCounters.TID[(idx)])
-#endif
-
 extern void config_ePWMSyncSource(void);
 extern void config_ePWMSyncSource(void);
 extern void config_ePWM_GPIO (void);
@@ -95,41 +87,28 @@ extern void config_ePWM_TBSync(void);
 
 /* Block signals (default storage) */
 typedef struct {
-  real_T Constant;                     /* '<Root>/Constant' */
-  real_T eQEP_o1;                      /* '<Root>/eQEP' */
-  real_T Gain;                         /* '<Root>/Gain' */
-  real_T Diff;                         /* '<S1>/Diff' */
   real_T r;                            /* '<Root>/r' */
   real_T TmpSignalConversionAtTAQSigLogg[4];
   /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux1_at_outport_0Inport1' */
   real_T Sum3;                         /* '<Root>/Sum3' */
+  real_T eQEP_o1;                      /* '<Root>/eQEP' */
+  real_T Gain;                         /* '<Root>/Gain' */
   real_T DiscreteFIRFilter2;           /* '<Root>/Discrete FIR Filter2' */
   real_T TmpSignalConversionAtTAQSigLo_d[2];
   /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux5_at_outport_0Inport1' */
   real_T TmpSignalConversionAtTAQSigLo_n[2];
   /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux3_at_outport_0Inport1' */
+  real_T Diff;                         /* '<S1>/Diff' */
   real_T Constant2;                    /* '<Root>/Constant2' */
   real_T Sum1;                         /* '<Root>/Sum1' */
+  real_T Constant;                     /* '<Root>/Constant' */
   real32_T eQEP_o2;                    /* '<Root>/eQEP' */
 } B_wednesday_stuff_T;
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
-  real_T UD_DSTATE;                    /* '<S1>/UD' */
   real_T UnitDelay_DSTATE[2];          /* '<S2>/Unit Delay' */
-  real_T TmpRTBAtDiscreteFIRFilter2Inpor;/* synthesized block */
-  struct {
-    void *LoggedData;
-  } Scope_PWORK;                       /* '<Root>/Scope' */
-
-  struct {
-    void *LoggedData;
-  } Scope3_PWORK;                      /* '<Root>/Scope3' */
-
-  struct {
-    void *LoggedData;
-  } Scope1_PWORK;                      /* '<Root>/Scope1' */
-
+  real_T UD_DSTATE;                    /* '<S1>/UD' */
   struct {
     void *LoggedData;
   } y_PWORK;                           /* '<Root>/y' */
@@ -145,6 +124,18 @@ typedef struct {
   struct {
     void *LoggedData;
   } ToWorkspace6_PWORK;                /* '<Root>/To Workspace6' */
+
+  struct {
+    void *LoggedData;
+  } Scope_PWORK;                       /* '<Root>/Scope' */
+
+  struct {
+    void *LoggedData;
+  } Scope3_PWORK;                      /* '<Root>/Scope3' */
+
+  struct {
+    void *LoggedData;
+  } Scope1_PWORK;                      /* '<Root>/Scope1' */
 
   struct {
     void *LoggedData;
@@ -186,21 +177,6 @@ struct P_wednesday_stuff_T_ {
                               /* Mask Parameter: DiscreteDerivative_ICPrevScaled
                                * Referenced by: '<S1>/UD'
                                */
-  real_T Constant_Value;               /* Expression: 958.0466360856269
-                                        * Referenced by: '<Root>/Constant'
-                                        */
-  real_T Constant1_Value;              /* Expression: 1
-                                        * Referenced by: '<Root>/Constant1'
-                                        */
-  real_T Constant3_Value;              /* Expression: -100000
-                                        * Referenced by: '<Root>/Constant3'
-                                        */
-  real_T Gain_Gain;                    /* Expression: 3.14159/400
-                                        * Referenced by: '<Root>/Gain'
-                                        */
-  real_T TSamp_WtEt;                   /* Computed Parameter: TSamp_WtEt
-                                        * Referenced by: '<S1>/TSamp'
-                                        */
   real_T r_Time;                       /* Expression: 1
                                         * Referenced by: '<Root>/r'
                                         */
@@ -210,20 +186,35 @@ struct P_wednesday_stuff_T_ {
   real_T UnitDelay_InitialCondition;   /* Expression: 0
                                         * Referenced by: '<S2>/Unit Delay'
                                         */
+  real_T Constant3_Value;              /* Expression: -100000
+                                        * Referenced by: '<Root>/Constant3'
+                                        */
+  real_T Constant1_Value;              /* Expression: 1
+                                        * Referenced by: '<Root>/Constant1'
+                                        */
+  real_T Gain_Gain;                    /* Expression: 3.14159/400
+                                        * Referenced by: '<Root>/Gain'
+                                        */
   real_T DiscreteFIRFilter2_InitialState;/* Expression: 0
                                           * Referenced by: '<Root>/Discrete FIR Filter2'
                                           */
   real_T DiscreteFIRFilter2_Coefficients;/* Expression: [1]
                                           * Referenced by: '<Root>/Discrete FIR Filter2'
                                           */
+  real_T TSamp_WtEt;                   /* Computed Parameter: TSamp_WtEt
+                                        * Referenced by: '<S1>/TSamp'
+                                        */
+  real_T Constant2_Value;              /* Expression: 1000
+                                        * Referenced by: '<Root>/Constant2'
+                                        */
   real_T OutputvoltagetoPWM1_Gain;     /* Expression: 10.7
                                         * Referenced by: '<Root>/Output voltage to PWM1'
                                         */
   real_T OutputvoltagetoPWM_Gain;      /* Expression: 1000/10.7
                                         * Referenced by: '<Root>/Output voltage to PWM'
                                         */
-  real_T Constant2_Value;              /* Expression: 1000
-                                        * Referenced by: '<Root>/Constant2'
+  real_T Constant_Value;               /* Expression: 958.0466360856269
+                                        * Referenced by: '<Root>/Constant'
                                         */
 };
 
@@ -260,15 +251,6 @@ struct tag_RTM_wednesday_stuff_T {
     time_T taskTime0;
     uint32_T clockTick0;
     time_T stepSize0;
-    uint32_T clockTick1;
-    struct {
-      uint16_T TID[2];
-    } TaskCounters;
-
-    struct {
-      boolean_T TID0_1;
-    } RateInteraction;
-
     time_T tFinal;
     boolean_T stopRequestedFlag;
   } Timing;
@@ -283,13 +265,9 @@ extern B_wednesday_stuff_T wednesday_stuff_B;
 /* Block states (default storage) */
 extern DW_wednesday_stuff_T wednesday_stuff_DW;
 
-/* External function called from main */
-extern void wednesday_stuff_SetEventsForThisBaseStep(boolean_T *eventFlags);
-
 /* Model entry point functions */
 extern void wednesday_stuff_initialize(void);
-extern void wednesday_stuff_step0(void);
-extern void wednesday_stuff_step1(void);
+extern void wednesday_stuff_step(void);
 extern void wednesday_stuff_terminate(void);
 
 /* Real-time Model object */
