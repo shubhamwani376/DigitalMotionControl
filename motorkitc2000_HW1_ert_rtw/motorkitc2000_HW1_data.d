@@ -3,11 +3,13 @@ motorkitc2000_HW1_data.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCL
 motorkitc2000_HW1_data.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\rtwtypes.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_extmode.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/sysran_types.h
+motorkitc2000_HW1_data.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_continuous.h
+motorkitc2000_HW1_data.obj: D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/motorkitc2000_HW1_ert_rtw/rtwtypes.h
+motorkitc2000_HW1_data.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_solver.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000BoardSupport.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/stdbool.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/_ti_config.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/linkage.h
-motorkitc2000_HW1_data.obj: D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/motorkitc2000_HW1_ert_rtw/rtwtypes.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/inc/MW_f2837xD_includes.h
 motorkitc2000_HW1_data.obj: D:/ti/C2000W~2/DEVICE~1/f2837xd/headers/include/F2837xD_device.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/assert.h
@@ -79,6 +81,8 @@ motorkitc2000_HW1_data.obj: D:\ti\C2000W~2\DRIVER~1\f2837xd\DRIVER~1\inc/hw_dma.
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/inc/IQmathLib.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/limits.h
 motorkitc2000_HW1_data.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\motorkitc2000_HW1_types.h
+motorkitc2000_HW1_data.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\rtGetInf.h
+motorkitc2000_HW1_data.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\rt_nonfinite.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/string.h
 motorkitc2000_HW1_data.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\MW_target_hardware_resources.h
 motorkitc2000_HW1_data.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000SchedulerTimer.h
@@ -88,11 +92,13 @@ D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\m
 D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\rtwtypes.h:
 C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_extmode.h:
 C:/PROGRA~1/MATLAB/R2022b/simulink/include/sysran_types.h:
+C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_continuous.h:
+D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/motorkitc2000_HW1_ert_rtw/rtwtypes.h:
+C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_solver.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000BoardSupport.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/stdbool.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/_ti_config.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/linkage.h:
-D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/motorkitc2000_HW1_ert_rtw/rtwtypes.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/inc/MW_f2837xD_includes.h:
 D:/ti/C2000W~2/DEVICE~1/f2837xd/headers/include/F2837xD_device.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/assert.h:
@@ -164,6 +170,8 @@ D:\ti\C2000W~2\DRIVER~1\f2837xd\DRIVER~1\inc/hw_dma.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/inc/IQmathLib.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/limits.h:
 D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\motorkitc2000_HW1_types.h:
+D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\rtGetInf.h:
+D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\rt_nonfinite.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/string.h:
 D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\motorkitc2000_HW1_ert_rtw\MW_target_hardware_resources.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000SchedulerTimer.h:

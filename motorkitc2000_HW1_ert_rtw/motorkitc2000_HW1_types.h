@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'motorkitc2000_HW1'.
  *
- * Model version                  : 2.1
+ * Model version                  : 2.4
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Mon Jan 23 18:00:17 2023
+ * C/C++ source code generated on : Fri Jan 27 12:13:03 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000

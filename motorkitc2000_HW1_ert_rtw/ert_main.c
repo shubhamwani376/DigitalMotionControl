@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'motorkitc2000_HW1'.
  *
- * Model version                  : 2.1
+ * Model version                  : 2.4
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Mon Jan 23 18:00:17 2023
+ * C/C++ source code generated on : Fri Jan 27 12:13:03 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -24,14 +24,14 @@
 #include "MW_target_hardware_resources.h"
 
 volatile int IsrOverrun = 0;
-boolean_T isRateRunning[2] = { 0, 0 };
+boolean_T isRateRunning[3] = { 0, 0, 0 };
 
-boolean_T need2runFlags[2] = { 0, 0 };
+boolean_T need2runFlags[3] = { 0, 0, 0 };
 
 void rt_OneStep(void)
 {
   extmodeSimulationTime_T currentTime = (extmodeSimulationTime_T) 0;
-  boolean_T eventFlags[2];
+  boolean_T eventFlags[3];
 
   /* Check base rate for overrun */
   if (isRateRunning[0]++) {
@@ -55,39 +55,39 @@ void rt_OneStep(void)
   /* Get model outputs here */
 
   /* Trigger External Mode event */
-  extmodeEvent(0, currentTime);
+  extmodeEvent(1, currentTime);
   disableTimer0Interrupt();
   isRateRunning[0]--;
-  if (eventFlags[1]) {
-    if (need2runFlags[1]++) {
+  if (eventFlags[2]) {
+    if (need2runFlags[2]++) {
       IsrOverrun = 1;
-      need2runFlags[1]--;              /* allow future iterations to succeed*/
+      need2runFlags[2]--;              /* allow future iterations to succeed*/
       return;
     }
   }
 
-  if (need2runFlags[1]) {
+  if (need2runFlags[2]) {
     if (isRateRunning[1]) {
       /* Yield to higher priority*/
       return;
     }
 
-    isRateRunning[1]++;
+    isRateRunning[2]++;
     enableTimer0Interrupt();
 
-    /* Step the model for subrate "1" */
-    switch (1)
+    /* Step the model for subrate "2" */
+    switch (2)
     {
-     case 1 :
+     case 2 :
       currentTime = (extmodeSimulationTime_T)
-        ((motorkitc2000_HW1_M->Timing.clockTick1 * 10) + 0)
+        ((motorkitc2000_HW1_M->Timing.clockTick2 * 10) + 0)
         ;
-      motorkitc2000_HW1_step1();
+      motorkitc2000_HW1_step2();
 
       /* Get model outputs here */
 
       /* Trigger External Mode event */
-      extmodeEvent(1, currentTime);
+      extmodeEvent(2, currentTime);
       break;
 
      default :
@@ -95,8 +95,8 @@ void rt_OneStep(void)
     }
 
     disableTimer0Interrupt();
-    need2runFlags[1]--;
-    isRateRunning[1]--;
+    need2runFlags[2]--;
+    isRateRunning[2]--;
   }
 }
 
