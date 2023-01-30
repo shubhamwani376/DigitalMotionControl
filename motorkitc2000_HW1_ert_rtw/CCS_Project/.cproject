@@ -92,7 +92,7 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="MODEL=motorkitc2000_HW1">
 </listOptionValue>
-<listOptionValue builtIn="false" value="NUMST=2">
+<listOptionValue builtIn="false" value="NUMST=3">
 </listOptionValue>
 <listOptionValue builtIn="false" value="NCSTATES=0">
 </listOptionValue>
@@ -120,11 +120,11 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_BLOCK_2_NUMBER=5">
 </listOptionValue>
-<listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_BLOCK_3_SIZE=40">
+<listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_BLOCK_3_SIZE=64">
 </listOptionValue>
 <listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_BLOCK_3_NUMBER=5">
 </listOptionValue>
-<listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_RESERVED_POOLS_TOTAL_SIZE=2278">
+<listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_RESERVED_POOLS_TOTAL_SIZE=2998">
 </listOptionValue>
 <listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_RESERVED_POOLS_NUMBER=6">
 </listOptionValue>
@@ -138,7 +138,7 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="ALLOCATIONFCN=0">
 </listOptionValue>
-<listOptionValue builtIn="false" value="TID01EQ=0">
+<listOptionValue builtIn="false" value="TID01EQ=1">
 </listOptionValue>
 <listOptionValue builtIn="false" value="TERMFCN=1">
 </listOptionValue>
@@ -200,19 +200,13 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="XCP_MEM_BLOCK_2_NUMBER=2">
 </listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MEM_BLOCK_3_SIZE=40">
+<listOptionValue builtIn="false" value="XCP_MEM_BLOCK_3_SIZE=64">
 </listOptionValue>
 <listOptionValue builtIn="false" value="XCP_MEM_BLOCK_3_NUMBER=2">
 </listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MEM_RESERVED_POOLS_TOTAL_SIZE=832">
+<listOptionValue builtIn="false" value="XCP_MEM_RESERVED_POOLS_TOTAL_SIZE=1120">
 </listOptionValue>
 <listOptionValue builtIn="false" value="XCP_MEM_RESERVED_POOLS_NUMBER=3">
-</listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MEM_DAQ_RESERVED_POOL_BLOCKS_NUMBER=3">
-</listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MEM_DAQ_RESERVED_POOLS_NUMBER=2">
-</listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MIN_EVENT_NO_RESERVED_POOL=2">
 </listOptionValue>
 <listOptionValue builtIn="false" value="F28379D">
 </listOptionValue>
@@ -231,6 +225,12 @@
 <listOptionValue builtIn="false" value="CLA_RAMLS_DATA_START=0x9800">
 </listOptionValue>
 <listOptionValue builtIn="false" value="CLA_RAMLS_DATA_LENGTH=0x1000">
+</listOptionValue>
+<listOptionValue builtIn="false" value="XCP_MEM_DAQ_RESERVED_POOL_BLOCKS_NUMBER=3">
+</listOptionValue>
+<listOptionValue builtIn="false" value="XCP_MEM_DAQ_RESERVED_POOLS_NUMBER=2">
+</listOptionValue>
+<listOptionValue builtIn="false" value="XCP_MIN_EVENT_NO_RESERVED_POOL=3">
 </listOptionValue>
 </option>
 <option id="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.OTHER_FLAGS.1292182979" name="Other flags" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.OTHER_FLAGS" valueType="stringList">
@@ -386,7 +386,7 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="MODEL=motorkitc2000_HW1">
 </listOptionValue>
-<listOptionValue builtIn="false" value="NUMST=2">
+<listOptionValue builtIn="false" value="NUMST=3">
 </listOptionValue>
 <listOptionValue builtIn="false" value="NCSTATES=0">
 </listOptionValue>
@@ -414,11 +414,11 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_BLOCK_2_NUMBER=5">
 </listOptionValue>
-<listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_BLOCK_3_SIZE=40">
+<listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_BLOCK_3_SIZE=64">
 </listOptionValue>
 <listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_BLOCK_3_NUMBER=5">
 </listOptionValue>
-<listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_RESERVED_POOLS_TOTAL_SIZE=2278">
+<listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_RESERVED_POOLS_TOTAL_SIZE=2998">
 </listOptionValue>
 <listOptionValue builtIn="false" value="INTERNAL_XCP_MEM_RESERVED_POOLS_NUMBER=6">
 </listOptionValue>
@@ -432,7 +432,7 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="ALLOCATIONFCN=0">
 </listOptionValue>
-<listOptionValue builtIn="false" value="TID01EQ=0">
+<listOptionValue builtIn="false" value="TID01EQ=1">
 </listOptionValue>
 <listOptionValue builtIn="false" value="TERMFCN=1">
 </listOptionValue>
@@ -494,19 +494,13 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="XCP_MEM_BLOCK_2_NUMBER=2">
 </listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MEM_BLOCK_3_SIZE=40">
+<listOptionValue builtIn="false" value="XCP_MEM_BLOCK_3_SIZE=64">
 </listOptionValue>
 <listOptionValue builtIn="false" value="XCP_MEM_BLOCK_3_NUMBER=2">
 </listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MEM_RESERVED_POOLS_TOTAL_SIZE=832">
+<listOptionValue builtIn="false" value="XCP_MEM_RESERVED_POOLS_TOTAL_SIZE=1120">
 </listOptionValue>
 <listOptionValue builtIn="false" value="XCP_MEM_RESERVED_POOLS_NUMBER=3">
-</listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MEM_DAQ_RESERVED_POOL_BLOCKS_NUMBER=3">
-</listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MEM_DAQ_RESERVED_POOLS_NUMBER=2">
-</listOptionValue>
-<listOptionValue builtIn="false" value="XCP_MIN_EVENT_NO_RESERVED_POOL=2">
 </listOptionValue>
 <listOptionValue builtIn="false" value="F28379D">
 </listOptionValue>
@@ -525,6 +519,12 @@
 <listOptionValue builtIn="false" value="CLA_RAMLS_DATA_START=0x9800">
 </listOptionValue>
 <listOptionValue builtIn="false" value="CLA_RAMLS_DATA_LENGTH=0x1000">
+</listOptionValue>
+<listOptionValue builtIn="false" value="XCP_MEM_DAQ_RESERVED_POOL_BLOCKS_NUMBER=3">
+</listOptionValue>
+<listOptionValue builtIn="false" value="XCP_MEM_DAQ_RESERVED_POOLS_NUMBER=2">
+</listOptionValue>
+<listOptionValue builtIn="false" value="XCP_MIN_EVENT_NO_RESERVED_POOL=3">
 </listOptionValue>
 </option>
 <option id="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.OTHER_FLAGS.1292182979" name="Other flags" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.OTHER_FLAGS" valueType="stringList">

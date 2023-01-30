@@ -7,9 +7,9 @@
  *
  * Code generation for model "motorkitc2000_HW1".
  *
- * Model version              : 2.1
+ * Model version              : 2.4
  * Simulink Coder version : 9.8 (R2022b) 13-May-2022
- * C source code generated on : Mon Jan 23 18:00:17 2023
+ * C source code generated on : Fri Jan 27 12:13:03 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -52,7 +52,7 @@ typedef real_T extmodeClassicTriggerSignal_T;
 #define EXTMODE_STEP_SIZE_IN_MICROSECONDS 1000
 
 /** External Mode Base rate event id */
-#define EXTMODE_BASE_RATE_EVENT_ID     0
+#define EXTMODE_BASE_RATE_EVENT_ID     1
 
 /** External Mode Max Event Id */
 #define EXTMODE_MAX_EVENT_ID           0xFF

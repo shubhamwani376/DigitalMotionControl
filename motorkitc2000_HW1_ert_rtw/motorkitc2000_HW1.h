@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'motorkitc2000_HW1'.
  *
- * Model version                  : 2.1
+ * Model version                  : 2.4
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Mon Jan 23 18:00:17 2023
+ * C/C++ source code generated on : Fri Jan 27 12:13:03 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -24,12 +24,16 @@
 #include "rtwtypes.h"
 #include "rtw_extmode.h"
 #include "sysran_types.h"
+#include "rtw_continuous.h"
+#include "rtw_solver.h"
 #include "c2000BoardSupport.h"
 #include "MW_f2837xD_includes.h"
 #include "IQmathLib.h"
 #endif                                 /* motorkitc2000_HW1_COMMON_INCLUDES_ */
 
 #include "motorkitc2000_HW1_types.h"
+#include "rtGetInf.h"
+#include "rt_nonfinite.h"
 #include <string.h>
 #include "MW_target_hardware_resources.h"
 
@@ -67,7 +71,7 @@
 #endif
 
 #ifndef rtmGetT
-#define rtmGetT(rtm)                   ((rtm)->Timing.taskTime0)
+#define rtmGetT(rtm)                   (rtmGetTPtr((rtm))[0])
 #endif
 
 #ifndef rtmGetTFinal
@@ -75,7 +79,7 @@
 #endif
 
 #ifndef rtmGetTPtr
-#define rtmGetTPtr(rtm)                (&(rtm)->Timing.taskTime0)
+#define rtmGetTPtr(rtm)                ((rtm)->Timing.t)
 #endif
 
 #ifndef rtmTaskCounter
@@ -92,23 +96,34 @@ extern void config_ePWM_TBSync(void);
 
 /* Block signals (default storage) */
 typedef struct {
+  real_T Output;                       /* '<S1>/Output' */
   real_T Constant;                     /* '<Root>/Constant' */
   real_T eQEP_o1;                      /* '<Root>/eQEP' */
-  real_T Sum;                          /* '<Root>/Sum' */
+  real_T Sum2;                         /* '<Root>/Sum2' */
+  real_T Derivative;                   /* '<Root>/Derivative' */
   real_T Constant2;                    /* '<Root>/Constant2' */
+  real_T ZeroOrderHold;                /* '<Root>/Zero-Order Hold' */
   real_T Sum1;                         /* '<Root>/Sum1' */
   real32_T eQEP_o2;                    /* '<Root>/eQEP' */
 } B_motorkitc2000_HW1_T;
 
 /* Block states (default storage) for system '<Root>' */
 typedef struct {
+  real_T TimeStampA;                   /* '<Root>/Derivative' */
+  real_T LastUAtTimeA;                 /* '<Root>/Derivative' */
+  real_T TimeStampB;                   /* '<Root>/Derivative' */
+  real_T LastUAtTimeB;                 /* '<Root>/Derivative' */
   struct {
     void *LoggedData;
   } Scope1_PWORK;                      /* '<Root>/Scope1' */
 
   struct {
     void *LoggedData;
-  } Scope_PWORK;                       /* '<Root>/Scope' */
+  } Scope3_PWORK;                      /* '<Root>/Scope3' */
+
+  struct {
+    void *LoggedData;
+  } Scope5_PWORK;                      /* '<Root>/Scope5' */
 
   struct {
     void *LoggedData;
@@ -117,40 +132,36 @@ typedef struct {
 
 /* Parameters (default storage) */
 struct P_motorkitc2000_HW1_T_ {
+  real_T ChirpSignal_T;                /* Mask Parameter: ChirpSignal_T
+                                        * Referenced by: '<S1>/targetTime'
+                                        */
+  real_T ChirpSignal_f1;               /* Mask Parameter: ChirpSignal_f1
+                                        * Referenced by:
+                                        *   '<S1>/deltaFreq'
+                                        *   '<S1>/initialFreq'
+                                        */
+  real_T ChirpSignal_f2;               /* Mask Parameter: ChirpSignal_f2
+                                        * Referenced by: '<S1>/deltaFreq'
+                                        */
+  real_T Gain_Gain;                    /* Expression: 0.5
+                                        * Referenced by: '<S1>/Gain'
+                                        */
   real_T Constant_Value;               /* Expression: 958.0466360856269
                                         * Referenced by: '<Root>/Constant'
                                         */
   real_T Constant1_Value;              /* Expression: 1
                                         * Referenced by: '<Root>/Constant1'
                                         */
-  real_T Constant3_Value;              /* Expression: 100000
-                                        * Referenced by: '<Root>/Constant3'
+  real_T Constant4_Value;              /* Expression: -100000
+                                        * Referenced by: '<Root>/Constant4'
                                         */
   real_T Constant2_Value;              /* Expression: 1000
                                         * Referenced by: '<Root>/Constant2'
                                         */
-  real_T Step_Time;                    /* Expression: 1
-                                        * Referenced by: '<Root>/Step'
-                                        */
-  real_T Step_Y0;                      /* Expression: 0
-                                        * Referenced by: '<Root>/Step'
-                                        */
-  real_T Step_YFinal;                  /* Expression: 1
-                                        * Referenced by: '<Root>/Step'
-                                        */
-  real_T Step1_Time;                   /* Expression: 5
-                                        * Referenced by: '<Root>/Step1'
-                                        */
-  real_T Step1_Y0;                     /* Expression: 0
-                                        * Referenced by: '<Root>/Step1'
-                                        */
-  real_T Step1_YFinal;                 /* Expression: -1
-                                        * Referenced by: '<Root>/Step1'
-                                        */
-  real_T OutputvoltagetoPWM1_Gain;     /* Expression: 10.7
+  real_T OutputvoltagetoPWM1_Gain;     /* Expression: 10.48
                                         * Referenced by: '<Root>/Output voltage to PWM1'
                                         */
-  real_T OutputvoltagetoPWM_Gain;      /* Expression: 1000/10.7
+  real_T OutputvoltagetoPWM_Gain;      /* Expression: 1000/10.48
                                         * Referenced by: '<Root>/Output voltage to PWM'
                                         */
 };
@@ -159,6 +170,7 @@ struct P_motorkitc2000_HW1_T_ {
 struct tag_RTM_motorkitc2000_HW1_T {
   const char_T *errorStatus;
   RTWExtModeInfo *extModeInfo;
+  RTWSolverInfo solverInfo;
 
   /*
    * Sizes:
@@ -185,16 +197,23 @@ struct tag_RTM_motorkitc2000_HW1_T {
    * the timing information for the model.
    */
   struct {
-    time_T taskTime0;
     uint32_T clockTick0;
     time_T stepSize0;
     uint32_T clockTick1;
+    uint32_T clockTick2;
     struct {
-      uint16_T TID[2];
+      uint16_T TID[3];
     } TaskCounters;
 
+    struct {
+      boolean_T TID0_2;
+    } RateInteraction;
+
     time_T tFinal;
+    SimTimeStep simTimeStep;
     boolean_T stopRequestedFlag;
+    time_T *t;
+    time_T tArray[3];
   } Timing;
 };
 
@@ -213,19 +232,13 @@ extern void motorkitc2000_HW1_SetEventsForThisBaseStep(boolean_T *eventFlags);
 /* Model entry point functions */
 extern void motorkitc2000_HW1_initialize(void);
 extern void motorkitc2000_HW1_step0(void);
-extern void motorkitc2000_HW1_step1(void);
+extern void motorkitc2000_HW1_step2(void);
 extern void motorkitc2000_HW1_terminate(void);
 
 /* Real-time Model object */
 extern RT_MODEL_motorkitc2000_HW1_T *const motorkitc2000_HW1_M;
 extern volatile boolean_T stopRequested;
 extern volatile boolean_T runModel;
-
-/*-
- * These blocks were eliminated from the model due to optimizations:
- *
- * Block '<Root>/Zero-Order Hold' : Eliminated since input and output rates are identical
- */
 
 /*-
  * The generated code includes comments that allow you to trace directly
@@ -242,6 +255,7 @@ extern volatile boolean_T runModel;
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'motorkitc2000_HW1'
+ * '<S1>'   : 'motorkitc2000_HW1/Chirp Signal'
  */
 #endif                                 /* RTW_HEADER_motorkitc2000_HW1_h_ */
 

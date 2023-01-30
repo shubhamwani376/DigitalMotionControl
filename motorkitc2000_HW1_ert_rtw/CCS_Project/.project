@@ -63,6 +63,21 @@
 <location>D:/Onedrive_UCLA/OneDrive - UCLA IT Services/UCLA/277/DigitalMotionControl/motorkitc2000_HW1_ert_rtw/motorkitc2000_HW1_data.c</location>
 </link>
 <link>
+<name>rtGetInf.c</name>
+<type>1</type>
+<location>D:/Onedrive_UCLA/OneDrive - UCLA IT Services/UCLA/277/DigitalMotionControl/motorkitc2000_HW1_ert_rtw/rtGetInf.c</location>
+</link>
+<link>
+<name>rtGetNaN.c</name>
+<type>1</type>
+<location>D:/Onedrive_UCLA/OneDrive - UCLA IT Services/UCLA/277/DigitalMotionControl/motorkitc2000_HW1_ert_rtw/rtGetNaN.c</location>
+</link>
+<link>
+<name>rt_nonfinite.c</name>
+<type>1</type>
+<location>D:/Onedrive_UCLA/OneDrive - UCLA IT Services/UCLA/277/DigitalMotionControl/motorkitc2000_HW1_ert_rtw/rt_nonfinite.c</location>
+</link>
+<link>
 <name>xcp_ext_common.c</name>
 <type>1</type>
 <location>C:/Program Files/MATLAB/R2022b/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_common.c</location>
