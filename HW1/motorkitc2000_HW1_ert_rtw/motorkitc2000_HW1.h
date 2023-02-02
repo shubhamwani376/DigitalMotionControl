@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'motorkitc2000_HW1'.
  *
- * Model version                  : 2.5
+ * Model version                  : 2.6
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Wed Feb  1 15:49:41 2023
+ * C/C++ source code generated on : Wed Feb  1 17:33:12 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -96,12 +96,13 @@ extern void config_ePWM_TBSync(void);
 
 /* Block signals (default storage) */
 typedef struct {
+  real_T Output;                       /* '<S1>/Output' */
   real_T Constant;                     /* '<Root>/Constant' */
   real_T eQEP_o1;                      /* '<Root>/eQEP' */
-  real_T Gain;                         /* '<Root>/Gain' */
+  real_T Gain_p;                       /* '<Root>/Gain' */
   real_T Derivative;                   /* '<Root>/Derivative' */
   real_T Constant2;                    /* '<Root>/Constant2' */
-  real_T Step;                         /* '<Root>/Step' */
+  real_T ZeroOrderHold;                /* '<Root>/Zero-Order Hold' */
   real_T Sum1;                         /* '<Root>/Sum1' */
   real32_T eQEP_o2;                    /* '<Root>/eQEP' */
 } B_motorkitc2000_HW1_T;
@@ -127,6 +128,20 @@ typedef struct {
 
 /* Parameters (default storage) */
 struct P_motorkitc2000_HW1_T_ {
+  real_T ChirpSignal_T;                /* Mask Parameter: ChirpSignal_T
+                                        * Referenced by: '<S1>/targetTime'
+                                        */
+  real_T ChirpSignal_f1;               /* Mask Parameter: ChirpSignal_f1
+                                        * Referenced by:
+                                        *   '<S1>/deltaFreq'
+                                        *   '<S1>/initialFreq'
+                                        */
+  real_T ChirpSignal_f2;               /* Mask Parameter: ChirpSignal_f2
+                                        * Referenced by: '<S1>/deltaFreq'
+                                        */
+  real_T Gain_Gain;                    /* Expression: 0.5
+                                        * Referenced by: '<S1>/Gain'
+                                        */
   real_T Constant_Value;               /* Expression: 958.0466360856269
                                         * Referenced by: '<Root>/Constant'
                                         */
@@ -136,20 +151,11 @@ struct P_motorkitc2000_HW1_T_ {
   real_T Constant4_Value;              /* Expression: -100000
                                         * Referenced by: '<Root>/Constant4'
                                         */
-  real_T Gain_Gain;                    /* Expression: 3.14159/400
+  real_T Gain_Gain_h;                  /* Expression: 3.14159/400
                                         * Referenced by: '<Root>/Gain'
                                         */
   real_T Constant2_Value;              /* Expression: 1000
                                         * Referenced by: '<Root>/Constant2'
-                                        */
-  real_T Step_Time;                    /* Expression: 1
-                                        * Referenced by: '<Root>/Step'
-                                        */
-  real_T Step_Y0;                      /* Expression: 0
-                                        * Referenced by: '<Root>/Step'
-                                        */
-  real_T Step_YFinal;                  /* Expression: 1
-                                        * Referenced by: '<Root>/Step'
                                         */
   real_T OutputvoltagetoPWM1_Gain;     /* Expression: 10.48
                                         * Referenced by: '<Root>/Output voltage to PWM1'
@@ -198,6 +204,10 @@ struct tag_RTM_motorkitc2000_HW1_T {
       uint16_T TID[3];
     } TaskCounters;
 
+    struct {
+      boolean_T TID0_2;
+    } RateInteraction;
+
     time_T tFinal;
     SimTimeStep simTimeStep;
     boolean_T stopRequestedFlag;
@@ -230,12 +240,6 @@ extern volatile boolean_T stopRequested;
 extern volatile boolean_T runModel;
 
 /*-
- * These blocks were eliminated from the model due to optimizations:
- *
- * Block '<Root>/Zero-Order Hold' : Eliminated since input and output rates are identical
- */
-
-/*-
  * The generated code includes comments that allow you to trace directly
  * back to the appropriate location in the model.  The basic format
  * is <system>/block_name, where system is the system number (uniquely
@@ -250,6 +254,7 @@ extern volatile boolean_T runModel;
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'motorkitc2000_HW1'
+ * '<S1>'   : 'motorkitc2000_HW1/Chirp Signal'
  */
 #endif                                 /* RTW_HEADER_motorkitc2000_HW1_h_ */
 

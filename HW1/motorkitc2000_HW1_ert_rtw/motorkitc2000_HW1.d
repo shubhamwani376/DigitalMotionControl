@@ -86,6 +86,9 @@ motorkitc2000_HW1.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277
 motorkitc2000_HW1.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/string.h
 motorkitc2000_HW1.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\HW1\motorkitc2000_HW1_ert_rtw\MW_target_hardware_resources.h
 motorkitc2000_HW1.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000SchedulerTimer.h
+motorkitc2000_HW1.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/math.h
+motorkitc2000_HW1.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/_defs.h
+motorkitc2000_HW1.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/machine/_limits.h
 motorkitc2000_HW1.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\HW1\motorkitc2000_HW1_ert_rtw\motorkitc2000_HW1_private.h
 motorkitc2000_HW1.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\HW1\motorkitc2000_HW1_ert_rtw\multiword_types.h
 
@@ -177,6 +180,9 @@ D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\H
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/string.h:
 D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\HW1\motorkitc2000_HW1_ert_rtw\MW_target_hardware_resources.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000SchedulerTimer.h:
+C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/math.h:
+C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/_defs.h:
+C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/machine/_limits.h:
 D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\HW1\motorkitc2000_HW1_ert_rtw\motorkitc2000_HW1_private.h:
 D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\HW1\motorkitc2000_HW1_ert_rtw\multiword_types.h:
 

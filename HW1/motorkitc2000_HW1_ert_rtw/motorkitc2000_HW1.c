@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'motorkitc2000_HW1'.
  *
- * Model version                  : 2.5
+ * Model version                  : 2.6
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Wed Feb  1 15:49:41 2023
+ * C/C++ source code generated on : Wed Feb  1 17:33:12 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -18,6 +18,7 @@
  */
 
 #include "motorkitc2000_HW1.h"
+#include <math.h>
 #include "rtwtypes.h"
 #include "motorkitc2000_HW1_private.h"
 #include <string.h>
@@ -56,6 +57,17 @@ void motorkitc2000_HW1_SetEventsForThisBaseStep(boolean_T *eventFlags)
  */
 static void rate_monotonic_scheduler(void)
 {
+  /* To ensure a deterministic data transfer between two rates,
+   * data is transferred at the priority of a fast task and the frequency
+   * of the slow task.  The following flags indicate when the data transfer
+   * happens.  That is, a rate interaction flag is set true when both rates
+   * will run, and false otherwise.
+   */
+
+  /* tid 0 shares data with slower tid rate: 2 */
+  motorkitc2000_HW1_M->Timing.RateInteraction.TID0_2 =
+    (motorkitc2000_HW1_M->Timing.TaskCounters.TID[2] == 0);
+
   /* Compute which subrates run during the next base time step.  Subrates
    * are an integer multiple of the base rate counter.  Therefore, the subtask
    * counter is reset when it reaches its limit (zero means run).
@@ -75,8 +87,38 @@ void motorkitc2000_HW1_step0(void)     /* Sample time: [0.0s, 0.0s] */
 
   {
     real_T lastTime;
-    real_T tmp;
+    real_T rtb_Clock1_tmp;
     real_T *lastU;
+
+    /* Clock: '<S1>/Clock1' incorporates:
+     *  Derivative: '<Root>/Derivative'
+     */
+    rtb_Clock1_tmp = motorkitc2000_HW1_M->Timing.t[0];
+
+    /* Trigonometry: '<S1>/Output' incorporates:
+     *  Clock: '<S1>/Clock1'
+     *  Constant: '<S1>/deltaFreq'
+     *  Constant: '<S1>/initialFreq'
+     *  Constant: '<S1>/targetTime'
+     *  Gain: '<S1>/Gain'
+     *  Product: '<S1>/Product'
+     *  Product: '<S1>/Product1'
+     *  Product: '<S1>/Product2'
+     *  Sum: '<S1>/Sum'
+     */
+    motorkitc2000_HW1_B.Output = sin(((motorkitc2000_HW1_P.ChirpSignal_f2 -
+      motorkitc2000_HW1_P.ChirpSignal_f1) * 6.2831853071795862 /
+      motorkitc2000_HW1_P.ChirpSignal_T * motorkitc2000_HW1_P.Gain_Gain *
+      rtb_Clock1_tmp + 6.2831853071795862 * motorkitc2000_HW1_P.ChirpSignal_f1) *
+      rtb_Clock1_tmp);
+
+    /* ZeroOrderHold: '<Root>/Zero-Order Hold' */
+    if (motorkitc2000_HW1_M->Timing.RateInteraction.TID0_2) {
+      /* ZeroOrderHold: '<Root>/Zero-Order Hold' */
+      motorkitc2000_HW1_B.ZeroOrderHold = motorkitc2000_HW1_B.Output;
+    }
+
+    /* End of ZeroOrderHold: '<Root>/Zero-Order Hold' */
 
     /* Constant: '<Root>/Constant' */
     motorkitc2000_HW1_B.Constant = motorkitc2000_HW1_P.Constant_Value;
@@ -116,34 +158,31 @@ void motorkitc2000_HW1_step0(void)     /* Sample time: [0.0s, 0.0s] */
      *  Constant: '<Root>/Constant4'
      *  Sum: '<Root>/Sum2'
      */
-    motorkitc2000_HW1_B.Gain = (motorkitc2000_HW1_P.Constant4_Value +
-      motorkitc2000_HW1_B.eQEP_o1) * motorkitc2000_HW1_P.Gain_Gain;
+    motorkitc2000_HW1_B.Gain_p = (motorkitc2000_HW1_P.Constant4_Value +
+      motorkitc2000_HW1_B.eQEP_o1) * motorkitc2000_HW1_P.Gain_Gain_h;
 
     /* Derivative: '<Root>/Derivative' */
-    tmp = motorkitc2000_HW1_M->Timing.t[0];
-    if ((motorkitc2000_HW1_DW.TimeStampA >= tmp) &&
-        (motorkitc2000_HW1_DW.TimeStampB >= tmp)) {
+    if ((motorkitc2000_HW1_DW.TimeStampA >= rtb_Clock1_tmp) &&
+        (motorkitc2000_HW1_DW.TimeStampB >= rtb_Clock1_tmp)) {
       /* Derivative: '<Root>/Derivative' */
       motorkitc2000_HW1_B.Derivative = 0.0;
     } else {
       lastTime = motorkitc2000_HW1_DW.TimeStampA;
       lastU = &motorkitc2000_HW1_DW.LastUAtTimeA;
       if (motorkitc2000_HW1_DW.TimeStampA < motorkitc2000_HW1_DW.TimeStampB) {
-        if (motorkitc2000_HW1_DW.TimeStampB < tmp) {
+        if (motorkitc2000_HW1_DW.TimeStampB < rtb_Clock1_tmp) {
           lastTime = motorkitc2000_HW1_DW.TimeStampB;
           lastU = &motorkitc2000_HW1_DW.LastUAtTimeB;
         }
-      } else if (motorkitc2000_HW1_DW.TimeStampA >= tmp) {
+      } else if (motorkitc2000_HW1_DW.TimeStampA >= rtb_Clock1_tmp) {
         lastTime = motorkitc2000_HW1_DW.TimeStampB;
         lastU = &motorkitc2000_HW1_DW.LastUAtTimeB;
       }
 
       /* Derivative: '<Root>/Derivative' */
-      motorkitc2000_HW1_B.Derivative = (motorkitc2000_HW1_B.Gain - *lastU) /
-        (tmp - lastTime);
+      motorkitc2000_HW1_B.Derivative = (motorkitc2000_HW1_B.Gain_p - *lastU) /
+        (rtb_Clock1_tmp - lastTime);
     }
-
-    /* End of Derivative: '<Root>/Derivative' */
   }
 
   {
@@ -165,7 +204,7 @@ void motorkitc2000_HW1_step0(void)     /* Sample time: [0.0s, 0.0s] */
       lastU = &motorkitc2000_HW1_DW.LastUAtTimeB;
     }
 
-    *lastU = motorkitc2000_HW1_B.Gain;
+    *lastU = motorkitc2000_HW1_B.Gain_p;
 
     /* End of Update for Derivative: '<Root>/Derivative' */
   }
@@ -195,25 +234,13 @@ void motorkitc2000_HW1_step2(void)     /* Sample time: [0.01s, 0.0s] */
   /* Constant: '<Root>/Constant2' */
   motorkitc2000_HW1_B.Constant2 = motorkitc2000_HW1_P.Constant2_Value;
 
-  /* Step: '<Root>/Step' */
-  if (((motorkitc2000_HW1_M->Timing.clockTick2) * 0.01) <
-      motorkitc2000_HW1_P.Step_Time) {
-    /* Step: '<Root>/Step' */
-    motorkitc2000_HW1_B.Step = motorkitc2000_HW1_P.Step_Y0;
-  } else {
-    /* Step: '<Root>/Step' */
-    motorkitc2000_HW1_B.Step = motorkitc2000_HW1_P.Step_YFinal;
-  }
-
-  /* End of Step: '<Root>/Step' */
-
   /* Sum: '<Root>/Sum1' incorporates:
    *  Gain: '<Root>/Output voltage to PWM'
    *  Gain: '<Root>/Output voltage to PWM1'
    */
   motorkitc2000_HW1_B.Sum1 = motorkitc2000_HW1_P.OutputvoltagetoPWM1_Gain *
-    motorkitc2000_HW1_B.Step * motorkitc2000_HW1_P.OutputvoltagetoPWM_Gain +
-    motorkitc2000_HW1_B.Constant2;
+    motorkitc2000_HW1_B.ZeroOrderHold *
+    motorkitc2000_HW1_P.OutputvoltagetoPWM_Gain + motorkitc2000_HW1_B.Constant2;
 
   /* S-Function (c2802xpwm): '<Root>/ePWM2' */
 
@@ -263,10 +290,10 @@ void motorkitc2000_HW1_initialize(void)
   motorkitc2000_HW1_M->Timing.stepSize0 = 0.001;
 
   /* External mode info */
-  motorkitc2000_HW1_M->Sizes.checksums[0] = (2691914544U);
-  motorkitc2000_HW1_M->Sizes.checksums[1] = (1010990604U);
-  motorkitc2000_HW1_M->Sizes.checksums[2] = (1608925661U);
-  motorkitc2000_HW1_M->Sizes.checksums[3] = (3038777343U);
+  motorkitc2000_HW1_M->Sizes.checksums[0] = (1683618029U);
+  motorkitc2000_HW1_M->Sizes.checksums[1] = (1380268820U);
+  motorkitc2000_HW1_M->Sizes.checksums[2] = (1810016577U);
+  motorkitc2000_HW1_M->Sizes.checksums[3] = (350145325U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;

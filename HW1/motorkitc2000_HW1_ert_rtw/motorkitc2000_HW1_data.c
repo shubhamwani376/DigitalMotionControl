@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'motorkitc2000_HW1'.
  *
- * Model version                  : 2.5
+ * Model version                  : 2.6
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Wed Feb  1 15:49:41 2023
+ * C/C++ source code generated on : Wed Feb  1 17:33:12 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -21,6 +21,28 @@
 
 /* Block parameters (default storage) */
 P_motorkitc2000_HW1_T motorkitc2000_HW1_P = {
+  /* Mask Parameter: ChirpSignal_T
+   * Referenced by: '<S1>/targetTime'
+   */
+  50.0,
+
+  /* Mask Parameter: ChirpSignal_f1
+   * Referenced by:
+   *   '<S1>/deltaFreq'
+   *   '<S1>/initialFreq'
+   */
+  0.1,
+
+  /* Mask Parameter: ChirpSignal_f2
+   * Referenced by: '<S1>/deltaFreq'
+   */
+  20.0,
+
+  /* Expression: 0.5
+   * Referenced by: '<S1>/Gain'
+   */
+  0.5,
+
   /* Expression: 958.0466360856269
    * Referenced by: '<Root>/Constant'
    */
@@ -45,21 +67,6 @@ P_motorkitc2000_HW1_T motorkitc2000_HW1_P = {
    * Referenced by: '<Root>/Constant2'
    */
   1000.0,
-
-  /* Expression: 1
-   * Referenced by: '<Root>/Step'
-   */
-  1.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/Step'
-   */
-  0.0,
-
-  /* Expression: 1
-   * Referenced by: '<Root>/Step'
-   */
-  1.0,
 
   /* Expression: 10.48
    * Referenced by: '<Root>/Output voltage to PWM1'
