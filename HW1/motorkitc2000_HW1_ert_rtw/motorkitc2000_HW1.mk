@@ -2,7 +2,7 @@
 ## Makefile generated for component 'motorkitc2000_HW1'. 
 ## 
 ## Makefile     : motorkitc2000_HW1.mk
-## Generated on : Wed Feb 01 17:33:20 2023
+## Generated on : Wed Feb 01 17:44:51 2023
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/motorkitc2000_HW1.out
 ## Product type : executable
 ## 
