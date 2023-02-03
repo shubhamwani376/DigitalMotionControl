@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.8
+ * Model version                  : 1.20
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Feb  3 11:42:23 2023
+ * C/C++ source code generated on : Fri Feb  3 15:15:07 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -24,12 +24,12 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
   /* Variable: A_d
    * Referenced by: '<Root>/SOFC'
    */
-  { 1.0, 0.0, 0.00099701308806597068, 0.994032129823957 },
+  { 1.0, 0.0, 0.0097065957769039563, 0.94189875324479411 },
 
   /* Variable: B_d
    * Referenced by: '<Root>/SOFC'
    */
-  { 0.0012316920750621374, 2.4609290676060303 },
+  { 0.120989056376251, 23.958806540064497 },
 
   /* Variable: C_d
    * Referenced by: '<Root>/SOFC'
@@ -39,27 +39,22 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
   /* Variable: K_SF
    * Referenced by: '<Root>/SOFC'
    */
-  { 0.51689467842222725, 0.012679123694011566 },
+  { 0.44682652252884253, 0.012758098447356359 },
 
   /* Variable: L_Pred
    * Referenced by: '<Root>/SOFC'
    */
-  { 0.92705594764175048, 212.73623601452047 },
+  { 1.9381638677813784, 91.0369490040518 },
 
   /* Variable: N
    * Referenced by: '<Root>/SOFC'
    */
-  0.51689467842222681,
-
-  /* Variable: Stepsize
-   * Referenced by: '<Root>/r'
-   */
-  1.0,
+  0.44682652252884253,
 
   /* Variable: Tcomp
    * Referenced by: '<Root>/Transport Delay1'
    */
-  7.0E-6,
+  7.0000000000000007E-5,
 
   /* Variable: encoder_resolution
    * Referenced by: '<Root>/Quantizer'
@@ -126,30 +121,35 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
    */
   { 0.25, 0.25, 0.25, 0.25 },
 
+  /* Expression: 0.2
+   * Referenced by: '<Root>/Signal Generator'
+   */
+  0.2,
+
+  /* Expression: 1
+   * Referenced by: '<Root>/Signal Generator'
+   */
+  1.0,
+
+  /* Expression: 0
+   * Referenced by: '<Root>/Step'
+   */
+  0.0,
+
+  /* Expression: 0
+   * Referenced by: '<Root>/Step'
+   */
+  0.0,
+
+  /* Expression: 0.2
+   * Referenced by: '<Root>/Step'
+   */
+  0.2,
+
   /* Expression: 0
    * Referenced by:
    */
   0.0,
-
-  /* Expression: 1
-   * Referenced by: '<Root>/r'
-   */
-  1.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/r'
-   */
-  0.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/Discrete FIR Filter3'
-   */
-  0.0,
-
-  /* Expression: [1]
-   * Referenced by: '<Root>/Discrete FIR Filter3'
-   */
-  1.0,
 
   /* Expression: -100000
    * Referenced by: '<Root>/Constant3'
@@ -164,7 +164,17 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
   /* Computed Parameter: TSamp_WtEt
    * Referenced by: '<S1>/TSamp'
    */
-  1000.0
+  1000.0,
+
+  /* Expression: 0
+   * Referenced by: '<Root>/Discrete FIR Filter3'
+   */
+  0.0,
+
+  /* Expression: [1]
+   * Referenced by: '<Root>/Discrete FIR Filter3'
+   */
+  1.0
 };
 
 /*

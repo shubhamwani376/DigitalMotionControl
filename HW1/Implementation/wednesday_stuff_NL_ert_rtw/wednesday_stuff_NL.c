@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.8
+ * Model version                  : 1.20
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Feb  3 11:42:23 2023
+ * C/C++ source code generated on : Fri Feb  3 15:15:07 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -229,6 +229,7 @@ void wednesday_stuff_NL_SetEventsForThisBaseStep(boolean_T *eventFlags)
 {
   /* Task runs when its counter is zero, computed via rtmStepTask macro */
   eventFlags[2] = ((boolean_T)rtmStepTask(wednesday_stuff_NL_M, 2));
+  eventFlags[3] = ((boolean_T)rtmStepTask(wednesday_stuff_NL_M, 3));
 }
 
 /*
@@ -248,10 +249,16 @@ static void rate_monotonic_scheduler(void)
    * will run, and false otherwise.
    */
 
-  /* tid 1 shares data with slower tid rate: 2 */
+  /* tid 0 shares data with slower tid rate: 3 */
+  wednesday_stuff_NL_M->Timing.RateInteraction.TID0_3 =
+    (wednesday_stuff_NL_M->Timing.TaskCounters.TID[3] == 0);
+
+  /* tid 1 shares data with slower tid rates: 2, 3 */
   if (wednesday_stuff_NL_M->Timing.TaskCounters.TID[1] == 0) {
     wednesday_stuff_NL_M->Timing.RateInteraction.TID1_2 =
       (wednesday_stuff_NL_M->Timing.TaskCounters.TID[2] == 0);
+    wednesday_stuff_NL_M->Timing.RateInteraction.TID1_3 =
+      (wednesday_stuff_NL_M->Timing.TaskCounters.TID[3] == 0);
   }
 
   /* Compute which subrates run during the next base time step.  Subrates
@@ -261,6 +268,11 @@ static void rate_monotonic_scheduler(void)
   (wednesday_stuff_NL_M->Timing.TaskCounters.TID[2])++;
   if ((wednesday_stuff_NL_M->Timing.TaskCounters.TID[2]) > 19) {/* Sample time: [0.001s, 0.0s] */
     wednesday_stuff_NL_M->Timing.TaskCounters.TID[2] = 0;
+  }
+
+  (wednesday_stuff_NL_M->Timing.TaskCounters.TID[3])++;
+  if ((wednesday_stuff_NL_M->Timing.TaskCounters.TID[3]) > 199) {/* Sample time: [0.01s, 0.0s] */
+    wednesday_stuff_NL_M->Timing.TaskCounters.TID[3] = 0;
   }
 }
 
@@ -286,7 +298,7 @@ real_T rt_roundd_snf(real_T u)
 void wednesday_stuff_NL_step0(void)    /* Sample time: [0.0s, 0.0s] */
 {
   /* local block i/o variables */
-  real_T rtb_TransportDelay1;
+  real_T rtb_SignalGenerator;
   real_T acc1;
   int32_T cff;
   int32_T j;
@@ -318,7 +330,7 @@ void wednesday_stuff_NL_step0(void)    /* Sample time: [0.0s, 0.0s] */
       &wednesday_stuff_NL_DW.TransportDelay1_PWORK.TUbufferPtrs[0];
     real_T simTime = wednesday_stuff_NL_M->Timing.t[0];
     real_T tMinusDelay = simTime - wednesday_stuff_NL_P.Tcomp;
-    rtb_TransportDelay1 = rt_TDelayInterpolate(
+    rtb_SignalGenerator = rt_TDelayInterpolate(
       tMinusDelay,
       0.0,
       *uBuffer,
@@ -336,7 +348,7 @@ void wednesday_stuff_NL_step0(void)    /* Sample time: [0.0s, 0.0s] */
    *  Gain: '<Root>/Output voltage to PWM1'
    */
   wednesday_stuff_NL_B.Sum1 = wednesday_stuff_NL_P.OutputvoltagetoPWM1_Gain *
-    rtb_TransportDelay1 * wednesday_stuff_NL_P.OutputvoltagetoPWM_Gain +
+    rtb_SignalGenerator * wednesday_stuff_NL_P.OutputvoltagetoPWM_Gain +
     wednesday_stuff_NL_B.Constant2;
 
   /* S-Function (c2802xpwm): '<Root>/ePWM2' */
@@ -384,17 +396,51 @@ void wednesday_stuff_NL_step0(void)    /* Sample time: [0.0s, 0.0s] */
   /* RateTransition generated from: '<Root>/Discrete FIR Filter3' incorporates:
    *  DiscreteFir: '<Root>/Discrete FIR Filter2'
    */
-  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID1_2) {
+  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID1_3) {
     wednesday_stuff_NL_DW.TmpRTBAtDiscreteFIRFilter3Inpor = acc1;
+  }
 
-    /* RateTransition generated from: '<Root>/Transport Delay1' incorporates:
-     *  DiscreteFir: '<Root>/Discrete FIR Filter2'
+  /* End of RateTransition generated from: '<Root>/Discrete FIR Filter3' */
+
+  /* SignalGenerator: '<Root>/Signal Generator' */
+  acc1 = wednesday_stuff_NL_P.SignalGenerator_Frequency *
+    wednesday_stuff_NL_M->Timing.t[0];
+  if (acc1 - floor(acc1) >= 0.5) {
+    /* SignalGenerator: '<Root>/Signal Generator' */
+    rtb_SignalGenerator = wednesday_stuff_NL_P.SignalGenerator_Amplitude;
+  } else {
+    /* SignalGenerator: '<Root>/Signal Generator' */
+    rtb_SignalGenerator = -wednesday_stuff_NL_P.SignalGenerator_Amplitude;
+  }
+
+  /* End of SignalGenerator: '<Root>/Signal Generator' */
+
+  /* ZeroOrderHold: '<Root>/Zero-Order Hold2' */
+  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID0_3) {
+    /* Step: '<Root>/Step' */
+    if (wednesday_stuff_NL_M->Timing.t[0] < wednesday_stuff_NL_P.Step_Time) {
+      acc1 = wednesday_stuff_NL_P.Step_Y0;
+    } else {
+      acc1 = wednesday_stuff_NL_P.Step_YFinal;
+    }
+
+    /* ZeroOrderHold: '<Root>/Zero-Order Hold2' incorporates:
+     *  Step: '<Root>/Step'
+     *  Sum: '<Root>/Sum2'
      */
+    wednesday_stuff_NL_B.ZeroOrderHold2 = rtb_SignalGenerator + acc1;
+  }
+
+  /* End of ZeroOrderHold: '<Root>/Zero-Order Hold2' */
+
+  /* RateTransition generated from: '<Root>/Transport Delay1' */
+  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID1_3) {
+    /* RateTransition generated from: '<Root>/Transport Delay1' */
     wednesday_stuff_NL_B.TmpRTBAtTransportDelay1Inport1 =
       wednesday_stuff_NL_DW.TmpRTBAtTransportDelay1Inport1_;
   }
 
-  /* End of RateTransition generated from: '<Root>/Discrete FIR Filter3' */
+  /* End of RateTransition generated from: '<Root>/Transport Delay1' */
 
   /* Update for TransportDelay: '<Root>/Transport Delay1' */
   {
@@ -456,82 +502,8 @@ void wednesday_stuff_NL_step2(void)    /* Sample time: [0.001s, 0.0s] */
 {
   /* local block i/o variables */
   real_T rtb_TSamp;
-  real_T u_unsat;
+  real_T rtb_Sum;
   real_T yTemp;
-
-  /* Step: '<Root>/r' */
-  if (((wednesday_stuff_NL_M->Timing.clockTick2) * 0.001) <
-      wednesday_stuff_NL_P.r_Time) {
-    /* Step: '<Root>/r' */
-    wednesday_stuff_NL_B.r = wednesday_stuff_NL_P.r_Y0;
-  } else {
-    /* Step: '<Root>/r' */
-    wednesday_stuff_NL_B.r = wednesday_stuff_NL_P.Stepsize;
-  }
-
-  /* End of Step: '<Root>/r' */
-
-  /* SignalConversion generated from: '<Root>/Mux1' */
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[0] = 0.0;
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[1] = 0.0;
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[2] =
-    wednesday_stuff_NL_B.r;
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[3] = 0.0;
-
-  /* DiscreteFir: '<Root>/Discrete FIR Filter3' incorporates:
-   *  RateTransition generated from: '<Root>/Discrete FIR Filter3'
-   */
-  wednesday_stuff_NL_B.DiscreteFIRFilter3 =
-    wednesday_stuff_NL_DW.TmpRTBAtDiscreteFIRFilter3Inpor *
-    wednesday_stuff_NL_P.DiscreteFIRFilter3_Coefficients;
-
-  /* SignalConversion generated from: '<Root>/Mux5' */
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_d[0] =
-    wednesday_stuff_NL_B.DiscreteFIRFilter3;
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_d[1] = 0.0;
-
-  /* MATLAB Function: '<Root>/SOFC' */
-  u_unsat = (-wednesday_stuff_NL_P.K_SF[0] * wednesday_stuff_NL_DW.xhat[0] +
-             -wednesday_stuff_NL_P.K_SF[1] * wednesday_stuff_NL_DW.xhat[1]) +
-    wednesday_stuff_NL_P.N * wednesday_stuff_NL_B.r;
-  yTemp = fabs(u_unsat);
-  if (rtIsNaN(u_unsat)) {
-    u_unsat = (rtNaN);
-  } else if (u_unsat < 0.0) {
-    u_unsat = -1.0;
-  } else {
-    u_unsat = (u_unsat > 0.0);
-  }
-
-  if ((yTemp >= 1.0) || rtIsNaN(yTemp)) {
-    yTemp = 1.0;
-  }
-
-  wednesday_stuff_NL_B.u = u_unsat * yTemp;
-  u_unsat = (wednesday_stuff_NL_P.A_d[0] - wednesday_stuff_NL_P.L_Pred[0] *
-             wednesday_stuff_NL_P.C_d[0]) * wednesday_stuff_NL_DW.xhat[0] +
-    (wednesday_stuff_NL_P.A_d[2] - wednesday_stuff_NL_P.L_Pred[0] *
-     wednesday_stuff_NL_P.C_d[1]) * wednesday_stuff_NL_DW.xhat[1];
-  yTemp = (wednesday_stuff_NL_P.A_d[1] - wednesday_stuff_NL_P.C_d[0] *
-           wednesday_stuff_NL_P.L_Pred[1]) * wednesday_stuff_NL_DW.xhat[0] +
-    (wednesday_stuff_NL_P.A_d[3] - wednesday_stuff_NL_P.L_Pred[1] *
-     wednesday_stuff_NL_P.C_d[1]) * wednesday_stuff_NL_DW.xhat[1];
-  wednesday_stuff_NL_DW.xhat[0] = (wednesday_stuff_NL_P.B_d[0] *
-    wednesday_stuff_NL_B.u + u_unsat) + wednesday_stuff_NL_P.L_Pred[0] *
-    wednesday_stuff_NL_B.DiscreteFIRFilter3;
-  wednesday_stuff_NL_DW.xhat[1] = (wednesday_stuff_NL_P.B_d[1] *
-    wednesday_stuff_NL_B.u + yTemp) + wednesday_stuff_NL_P.L_Pred[1] *
-    wednesday_stuff_NL_B.DiscreteFIRFilter3;
-
-  /* End of MATLAB Function: '<Root>/SOFC' */
-
-  /* SignalConversion generated from: '<Root>/Mux3' */
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_n[0] =
-    wednesday_stuff_NL_B.u;
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_n[1] = 0.0;
-
-  /* RateTransition generated from: '<Root>/Transport Delay1' */
-  wednesday_stuff_NL_DW.TmpRTBAtTransportDelay1Inport1_ = wednesday_stuff_NL_B.u;
 
   /* S-Function (c280xqep): '<Root>/eQEP' */
   {
@@ -556,18 +528,18 @@ void wednesday_stuff_NL_step2(void)    /* Sample time: [0.001s, 0.0s] */
   /* Sum: '<Root>/Sum' incorporates:
    *  Constant: '<Root>/Constant3'
    */
-  u_unsat = wednesday_stuff_NL_P.Constant3_Value + wednesday_stuff_NL_B.eQEP_o1;
+  rtb_Sum = wednesday_stuff_NL_P.Constant3_Value + wednesday_stuff_NL_B.eQEP_o1;
 
   /* MATLABSystem: '<Root>/Modulo by Constant' */
-  if (rtIsNaN(u_unsat) || rtIsInf(u_unsat)) {
+  if (rtIsNaN(rtb_Sum) || rtIsInf(rtb_Sum)) {
     yTemp = (rtNaN);
-  } else if (u_unsat == 0.0) {
+  } else if (rtb_Sum == 0.0) {
     yTemp = 0.0;
   } else {
-    yTemp = fmod(u_unsat, 400.0);
+    yTemp = fmod(rtb_Sum, 400.0);
     if (yTemp == 0.0) {
       yTemp = 0.0;
-    } else if (u_unsat < 0.0) {
+    } else if (rtb_Sum < 0.0) {
       yTemp += 400.0;
     }
   }
@@ -618,6 +590,83 @@ void wednesday_stuff_NL_step2(void)    /* Sample time: [0.001s, 0.0s] */
   wednesday_stuff_NL_M->Timing.clockTick2++;
 }
 
+/* Model step function for TID3 */
+void wednesday_stuff_NL_step3(void)    /* Sample time: [0.01s, 0.0s] */
+{
+  real_T u1;
+  real_T u_unsat;
+
+  /* SignalConversion generated from: '<Root>/Mux1' */
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[0] = 0.0;
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[1] = 0.0;
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[2] =
+    wednesday_stuff_NL_B.ZeroOrderHold2;
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[3] = 0.0;
+
+  /* DiscreteFir: '<Root>/Discrete FIR Filter3' incorporates:
+   *  RateTransition generated from: '<Root>/Discrete FIR Filter3'
+   */
+  wednesday_stuff_NL_B.DiscreteFIRFilter3 =
+    wednesday_stuff_NL_DW.TmpRTBAtDiscreteFIRFilter3Inpor *
+    wednesday_stuff_NL_P.DiscreteFIRFilter3_Coefficients;
+
+  /* SignalConversion generated from: '<Root>/Mux5' */
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_d[0] =
+    wednesday_stuff_NL_B.DiscreteFIRFilter3;
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_d[1] = 0.0;
+
+  /* MATLAB Function: '<Root>/SOFC' */
+  u_unsat = (-wednesday_stuff_NL_P.K_SF[0] * wednesday_stuff_NL_DW.xhat[0] +
+             -wednesday_stuff_NL_P.K_SF[1] * wednesday_stuff_NL_DW.xhat[1]) +
+    wednesday_stuff_NL_P.N * wednesday_stuff_NL_B.ZeroOrderHold2;
+  u1 = fabs(u_unsat);
+  if (rtIsNaN(u_unsat)) {
+    u_unsat = (rtNaN);
+  } else if (u_unsat < 0.0) {
+    u_unsat = -1.0;
+  } else {
+    u_unsat = (u_unsat > 0.0);
+  }
+
+  if ((u1 >= 1.0) || rtIsNaN(u1)) {
+    u1 = 1.0;
+  }
+
+  wednesday_stuff_NL_B.u = u_unsat * u1;
+  u_unsat = (wednesday_stuff_NL_P.A_d[0] - wednesday_stuff_NL_P.L_Pred[0] *
+             wednesday_stuff_NL_P.C_d[0]) * wednesday_stuff_NL_DW.xhat[0] +
+    (wednesday_stuff_NL_P.A_d[2] - wednesday_stuff_NL_P.L_Pred[0] *
+     wednesday_stuff_NL_P.C_d[1]) * wednesday_stuff_NL_DW.xhat[1];
+  u1 = (wednesday_stuff_NL_P.A_d[1] - wednesday_stuff_NL_P.C_d[0] *
+        wednesday_stuff_NL_P.L_Pred[1]) * wednesday_stuff_NL_DW.xhat[0] +
+    (wednesday_stuff_NL_P.A_d[3] - wednesday_stuff_NL_P.L_Pred[1] *
+     wednesday_stuff_NL_P.C_d[1]) * wednesday_stuff_NL_DW.xhat[1];
+  wednesday_stuff_NL_DW.xhat[0] = (wednesday_stuff_NL_P.B_d[0] *
+    wednesday_stuff_NL_B.u + u_unsat) + wednesday_stuff_NL_P.L_Pred[0] *
+    wednesday_stuff_NL_B.DiscreteFIRFilter3;
+  wednesday_stuff_NL_DW.xhat[1] = (wednesday_stuff_NL_P.B_d[1] *
+    wednesday_stuff_NL_B.u + u1) + wednesday_stuff_NL_P.L_Pred[1] *
+    wednesday_stuff_NL_B.DiscreteFIRFilter3;
+
+  /* End of MATLAB Function: '<Root>/SOFC' */
+
+  /* SignalConversion generated from: '<Root>/Mux3' */
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_n[0] =
+    wednesday_stuff_NL_B.u;
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_n[1] = 0.0;
+
+  /* RateTransition generated from: '<Root>/Transport Delay1' */
+  wednesday_stuff_NL_DW.TmpRTBAtTransportDelay1Inport1_ = wednesday_stuff_NL_B.u;
+
+  /* Update absolute time */
+  /* The "clockTick3" counts the number of times the code of this task has
+   * been executed. The resolution of this integer timer is 0.01, which is the step size
+   * of the task. Size of "clockTick3" ensures timer will not overflow during the
+   * application lifespan selected.
+   */
+  wednesday_stuff_NL_M->Timing.clockTick3++;
+}
+
 /* Model initialize function */
 void wednesday_stuff_NL_initialize(void)
 {
@@ -650,10 +699,10 @@ void wednesday_stuff_NL_initialize(void)
   wednesday_stuff_NL_M->Timing.stepSize0 = 5.0E-5;
 
   /* External mode info */
-  wednesday_stuff_NL_M->Sizes.checksums[0] = (1566693324U);
-  wednesday_stuff_NL_M->Sizes.checksums[1] = (3758083067U);
-  wednesday_stuff_NL_M->Sizes.checksums[2] = (3485287868U);
-  wednesday_stuff_NL_M->Sizes.checksums[3] = (368952431U);
+  wednesday_stuff_NL_M->Sizes.checksums[0] = (2733504511U);
+  wednesday_stuff_NL_M->Sizes.checksums[1] = (2224108484U);
+  wednesday_stuff_NL_M->Sizes.checksums[2] = (4231740634U);
+  wednesday_stuff_NL_M->Sizes.checksums[3] = (3823260184U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;

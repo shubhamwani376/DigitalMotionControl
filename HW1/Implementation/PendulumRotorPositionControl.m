@@ -18,7 +18,7 @@ SSdesign = 'state_observer_feedback';
 
 
 
-Ts = 0.001;  %digital control sampling time
+Ts = 0.01;  %digital control sampling time
 
 
 %Motor and Pendulum Parameters:
@@ -332,7 +332,7 @@ zpk(G_d)
                 end
         end %for SSdesign simulation
         
-        save('rotor_simulation_triangle_1000.mat', "u_L", "u_NL", "y_L", "y_NL", "w_L", "w_NL");
+        save('rotor_simulation_sine_100.mat', "u_L", "u_NL", "y_L", "y_NL", "w_L", "w_NL");
 
 
 
