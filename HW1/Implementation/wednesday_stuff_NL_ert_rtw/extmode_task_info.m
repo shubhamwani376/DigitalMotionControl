@@ -18,7 +18,7 @@ function [taskInfo, numtask, isDeploymentDiagram]=extmode_task_info()
             taskInfo(2).entryPoints = {};
             taskInfo(2).nonFcnCallPartitionName = 'Cont';
 
-            taskInfo(3).samplePeriod = 0.001;
+            taskInfo(3).samplePeriod = 0.01;
             taskInfo(3).sampleOffset = 0.0;
 
                 taskInfo(3).taskPrio = 41;
@@ -27,19 +27,10 @@ function [taskInfo, numtask, isDeploymentDiagram]=extmode_task_info()
             taskInfo(3).entryPoints = {};
             taskInfo(3).nonFcnCallPartitionName = 'D2';
 
-            taskInfo(4).samplePeriod = 0.01;
-            taskInfo(4).sampleOffset = 0.0;
-
-                taskInfo(4).taskPrio = 42;
-
-                taskInfo(4).taskName = ['SubRate' '3'];
-            taskInfo(4).entryPoints = {};
-            taskInfo(4).nonFcnCallPartitionName = 'D3';
 
 
 
-
-    numtask = 4;
+    numtask = 3;
     for i = 1:numtask
     if ( 0 == isnumeric(taskInfo(i).samplePeriod) )
     taskInfo(i).samplePeriod = evalin('base', 'str2double(taskInfo(i).samplePeriod)');

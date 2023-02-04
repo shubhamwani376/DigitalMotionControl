@@ -7,9 +7,9 @@
  *
  * Code generation for model "wednesday_stuff_NL".
  *
- * Model version              : 1.20
+ * Model version              : 1.47
  * Simulink Coder version : 9.8 (R2022b) 13-May-2022
- * C source code generated on : Fri Feb  3 15:15:07 2023
+ * C source code generated on : Sat Feb  4 14:00:27 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000

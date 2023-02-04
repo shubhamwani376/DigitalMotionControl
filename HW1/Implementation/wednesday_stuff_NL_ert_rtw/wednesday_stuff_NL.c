@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.20
+ * Model version                  : 1.47
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Feb  3 15:15:07 2023
+ * C/C++ source code generated on : Sat Feb  4 14:00:27 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -229,7 +229,6 @@ void wednesday_stuff_NL_SetEventsForThisBaseStep(boolean_T *eventFlags)
 {
   /* Task runs when its counter is zero, computed via rtmStepTask macro */
   eventFlags[2] = ((boolean_T)rtmStepTask(wednesday_stuff_NL_M, 2));
-  eventFlags[3] = ((boolean_T)rtmStepTask(wednesday_stuff_NL_M, 3));
 }
 
 /*
@@ -249,16 +248,14 @@ static void rate_monotonic_scheduler(void)
    * will run, and false otherwise.
    */
 
-  /* tid 0 shares data with slower tid rate: 3 */
-  wednesday_stuff_NL_M->Timing.RateInteraction.TID0_3 =
-    (wednesday_stuff_NL_M->Timing.TaskCounters.TID[3] == 0);
+  /* tid 0 shares data with slower tid rate: 2 */
+  wednesday_stuff_NL_M->Timing.RateInteraction.TID0_2 =
+    (wednesday_stuff_NL_M->Timing.TaskCounters.TID[2] == 0);
 
-  /* tid 1 shares data with slower tid rates: 2, 3 */
+  /* tid 1 shares data with slower tid rate: 2 */
   if (wednesday_stuff_NL_M->Timing.TaskCounters.TID[1] == 0) {
     wednesday_stuff_NL_M->Timing.RateInteraction.TID1_2 =
       (wednesday_stuff_NL_M->Timing.TaskCounters.TID[2] == 0);
-    wednesday_stuff_NL_M->Timing.RateInteraction.TID1_3 =
-      (wednesday_stuff_NL_M->Timing.TaskCounters.TID[3] == 0);
   }
 
   /* Compute which subrates run during the next base time step.  Subrates
@@ -266,13 +263,8 @@ static void rate_monotonic_scheduler(void)
    * counter is reset when it reaches its limit (zero means run).
    */
   (wednesday_stuff_NL_M->Timing.TaskCounters.TID[2])++;
-  if ((wednesday_stuff_NL_M->Timing.TaskCounters.TID[2]) > 19) {/* Sample time: [0.001s, 0.0s] */
+  if ((wednesday_stuff_NL_M->Timing.TaskCounters.TID[2]) > 199) {/* Sample time: [0.01s, 0.0s] */
     wednesday_stuff_NL_M->Timing.TaskCounters.TID[2] = 0;
-  }
-
-  (wednesday_stuff_NL_M->Timing.TaskCounters.TID[3])++;
-  if ((wednesday_stuff_NL_M->Timing.TaskCounters.TID[3]) > 199) {/* Sample time: [0.01s, 0.0s] */
-    wednesday_stuff_NL_M->Timing.TaskCounters.TID[3] = 0;
   }
 }
 
@@ -396,7 +388,7 @@ void wednesday_stuff_NL_step0(void)    /* Sample time: [0.0s, 0.0s] */
   /* RateTransition generated from: '<Root>/Discrete FIR Filter3' incorporates:
    *  DiscreteFir: '<Root>/Discrete FIR Filter2'
    */
-  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID1_3) {
+  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID1_2) {
     wednesday_stuff_NL_DW.TmpRTBAtDiscreteFIRFilter3Inpor = acc1;
   }
 
@@ -416,7 +408,7 @@ void wednesday_stuff_NL_step0(void)    /* Sample time: [0.0s, 0.0s] */
   /* End of SignalGenerator: '<Root>/Signal Generator' */
 
   /* ZeroOrderHold: '<Root>/Zero-Order Hold2' */
-  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID0_3) {
+  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID0_2) {
     /* Step: '<Root>/Step' */
     if (wednesday_stuff_NL_M->Timing.t[0] < wednesday_stuff_NL_P.Step_Time) {
       acc1 = wednesday_stuff_NL_P.Step_Y0;
@@ -434,7 +426,7 @@ void wednesday_stuff_NL_step0(void)    /* Sample time: [0.0s, 0.0s] */
   /* End of ZeroOrderHold: '<Root>/Zero-Order Hold2' */
 
   /* RateTransition generated from: '<Root>/Transport Delay1' */
-  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID1_3) {
+  if (wednesday_stuff_NL_M->Timing.RateInteraction.TID1_2) {
     /* RateTransition generated from: '<Root>/Transport Delay1' */
     wednesday_stuff_NL_B.TmpRTBAtTransportDelay1Inport1 =
       wednesday_stuff_NL_DW.TmpRTBAtTransportDelay1Inport1_;
@@ -498,101 +490,10 @@ void wednesday_stuff_NL_step0(void)    /* Sample time: [0.0s, 0.0s] */
 }
 
 /* Model step function for TID2 */
-void wednesday_stuff_NL_step2(void)    /* Sample time: [0.001s, 0.0s] */
+void wednesday_stuff_NL_step2(void)    /* Sample time: [0.01s, 0.0s] */
 {
   /* local block i/o variables */
   real_T rtb_TSamp;
-  real_T rtb_Sum;
-  real_T yTemp;
-
-  /* S-Function (c280xqep): '<Root>/eQEP' */
-  {
-    wednesday_stuff_NL_B.eQEP_o1 = EQep1Regs.QPOSCNT;/*eQEP Position Counter*/
-
-    /* V1.1 Added UPEVNT (bit 7) This reflects changes made as of F280x Rev A devices==>Currently, our target board "TMS320F2808eZdsp" is Rev 0.
-     *         if(EQep1Regs.QEPSTS.bit.UPEVNT==1U){
-     */
-    if (EQep1Regs.QEPSTS.bit.COEF ==0U && EQep1Regs.QEPSTS.bit.CDEF ==0U)
-      wednesday_stuff_NL_B.eQEP_o2 = EQep1Regs.QCPRD;
-                   /* eQEP Capture Period (QCPRD) Register : No Capture overflow
-                      else
-                      wednesday_stuff_NL_B.eQEP_o2 = 65535;      eQEP Capture Period (QCPRD) Register : Capture overflow, saturate the result
-                      EQep1Regs.QEPSTS.bit.UPEVNT==1U;
-                      }*/
-    if (EQep1Regs.QEPSTS.bit.COEF ==1U)
-      EQep1Regs.QEPSTS.bit.COEF = 1U;
-    if (EQep1Regs.QEPSTS.bit.CDEF ==1U)
-      EQep1Regs.QEPSTS.bit.CDEF = 1U;
-  }
-
-  /* Sum: '<Root>/Sum' incorporates:
-   *  Constant: '<Root>/Constant3'
-   */
-  rtb_Sum = wednesday_stuff_NL_P.Constant3_Value + wednesday_stuff_NL_B.eQEP_o1;
-
-  /* MATLABSystem: '<Root>/Modulo by Constant' */
-  if (rtIsNaN(rtb_Sum) || rtIsInf(rtb_Sum)) {
-    yTemp = (rtNaN);
-  } else if (rtb_Sum == 0.0) {
-    yTemp = 0.0;
-  } else {
-    yTemp = fmod(rtb_Sum, 400.0);
-    if (yTemp == 0.0) {
-      yTemp = 0.0;
-    } else if (rtb_Sum < 0.0) {
-      yTemp += 400.0;
-    }
-  }
-
-  /* Gain: '<Root>/Gain' incorporates:
-   *  MATLABSystem: '<Root>/Modulo by Constant'
-   */
-  wednesday_stuff_NL_B.Gain = wednesday_stuff_NL_P.Gain_Gain * yTemp;
-
-  /* SampleTimeMath: '<S1>/TSamp'
-   *
-   * About '<S1>/TSamp':
-   *  y = u * K where K = 1 / ( w * Ts )
-   */
-  rtb_TSamp = wednesday_stuff_NL_B.Gain * wednesday_stuff_NL_P.TSamp_WtEt;
-
-  /* Sum: '<S1>/Diff' incorporates:
-   *  UnitDelay: '<S1>/UD'
-   *
-   * Block description for '<S1>/Diff':
-   *
-   *  Add in CPU
-   *
-   * Block description for '<S1>/UD':
-   *
-   *  Store in Global RAM
-   */
-  wednesday_stuff_NL_B.Diff = rtb_TSamp - wednesday_stuff_NL_DW.UD_DSTATE;
-
-  /* RateTransition generated from: '<Root>/Discrete FIR Filter' */
-  wednesday_stuff_NL_DW.TmpRTBAtDiscreteFIRFilterInport =
-    wednesday_stuff_NL_B.Gain;
-
-  /* Update for UnitDelay: '<S1>/UD'
-   *
-   * Block description for '<S1>/UD':
-   *
-   *  Store in Global RAM
-   */
-  wednesday_stuff_NL_DW.UD_DSTATE = rtb_TSamp;
-
-  /* Update absolute time */
-  /* The "clockTick2" counts the number of times the code of this task has
-   * been executed. The resolution of this integer timer is 0.001, which is the step size
-   * of the task. Size of "clockTick2" ensures timer will not overflow during the
-   * application lifespan selected.
-   */
-  wednesday_stuff_NL_M->Timing.clockTick2++;
-}
-
-/* Model step function for TID3 */
-void wednesday_stuff_NL_step3(void)    /* Sample time: [0.01s, 0.0s] */
-{
   real_T u1;
   real_T u_unsat;
 
@@ -658,13 +559,72 @@ void wednesday_stuff_NL_step3(void)    /* Sample time: [0.01s, 0.0s] */
   /* RateTransition generated from: '<Root>/Transport Delay1' */
   wednesday_stuff_NL_DW.TmpRTBAtTransportDelay1Inport1_ = wednesday_stuff_NL_B.u;
 
+  /* S-Function (c280xqep): '<Root>/eQEP' */
+  {
+    wednesday_stuff_NL_B.eQEP_o1 = EQep1Regs.QPOSCNT;/*eQEP Position Counter*/
+
+    /* V1.1 Added UPEVNT (bit 7) This reflects changes made as of F280x Rev A devices==>Currently, our target board "TMS320F2808eZdsp" is Rev 0.
+     *         if(EQep1Regs.QEPSTS.bit.UPEVNT==1U){
+     */
+    if (EQep1Regs.QEPSTS.bit.COEF ==0U && EQep1Regs.QEPSTS.bit.CDEF ==0U)
+      wednesday_stuff_NL_B.eQEP_o2 = EQep1Regs.QCPRD;
+                   /* eQEP Capture Period (QCPRD) Register : No Capture overflow
+                      else
+                      wednesday_stuff_NL_B.eQEP_o2 = 65535;      eQEP Capture Period (QCPRD) Register : Capture overflow, saturate the result
+                      EQep1Regs.QEPSTS.bit.UPEVNT==1U;
+                      }*/
+    if (EQep1Regs.QEPSTS.bit.COEF ==1U)
+      EQep1Regs.QEPSTS.bit.COEF = 1U;
+    if (EQep1Regs.QEPSTS.bit.CDEF ==1U)
+      EQep1Regs.QEPSTS.bit.CDEF = 1U;
+  }
+
+  /* Gain: '<Root>/Gain' incorporates:
+   *  Constant: '<Root>/Constant3'
+   *  Sum: '<Root>/Sum'
+   */
+  wednesday_stuff_NL_B.Gain = (wednesday_stuff_NL_P.Constant3_Value +
+    wednesday_stuff_NL_B.eQEP_o1) * wednesday_stuff_NL_P.Gain_Gain;
+
+  /* SampleTimeMath: '<S1>/TSamp'
+   *
+   * About '<S1>/TSamp':
+   *  y = u * K where K = 1 / ( w * Ts )
+   */
+  rtb_TSamp = wednesday_stuff_NL_B.Gain * wednesday_stuff_NL_P.TSamp_WtEt;
+
+  /* Sum: '<S1>/Diff' incorporates:
+   *  UnitDelay: '<S1>/UD'
+   *
+   * Block description for '<S1>/Diff':
+   *
+   *  Add in CPU
+   *
+   * Block description for '<S1>/UD':
+   *
+   *  Store in Global RAM
+   */
+  wednesday_stuff_NL_B.Diff = rtb_TSamp - wednesday_stuff_NL_DW.UD_DSTATE;
+
+  /* RateTransition generated from: '<Root>/Discrete FIR Filter' */
+  wednesday_stuff_NL_DW.TmpRTBAtDiscreteFIRFilterInport =
+    wednesday_stuff_NL_B.Gain;
+
+  /* Update for UnitDelay: '<S1>/UD'
+   *
+   * Block description for '<S1>/UD':
+   *
+   *  Store in Global RAM
+   */
+  wednesday_stuff_NL_DW.UD_DSTATE = rtb_TSamp;
+
   /* Update absolute time */
-  /* The "clockTick3" counts the number of times the code of this task has
+  /* The "clockTick2" counts the number of times the code of this task has
    * been executed. The resolution of this integer timer is 0.01, which is the step size
-   * of the task. Size of "clockTick3" ensures timer will not overflow during the
+   * of the task. Size of "clockTick2" ensures timer will not overflow during the
    * application lifespan selected.
    */
-  wednesday_stuff_NL_M->Timing.clockTick3++;
+  wednesday_stuff_NL_M->Timing.clockTick2++;
 }
 
 /* Model initialize function */
@@ -699,20 +659,19 @@ void wednesday_stuff_NL_initialize(void)
   wednesday_stuff_NL_M->Timing.stepSize0 = 5.0E-5;
 
   /* External mode info */
-  wednesday_stuff_NL_M->Sizes.checksums[0] = (2733504511U);
-  wednesday_stuff_NL_M->Sizes.checksums[1] = (2224108484U);
-  wednesday_stuff_NL_M->Sizes.checksums[2] = (4231740634U);
-  wednesday_stuff_NL_M->Sizes.checksums[3] = (3823260184U);
+  wednesday_stuff_NL_M->Sizes.checksums[0] = (3685485537U);
+  wednesday_stuff_NL_M->Sizes.checksums[1] = (2899879553U);
+  wednesday_stuff_NL_M->Sizes.checksums[2] = (2228646961U);
+  wednesday_stuff_NL_M->Sizes.checksums[3] = (719631587U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
     static RTWExtModeInfo rt_ExtModeInfo;
-    static const sysRanDType *systemRan[3];
+    static const sysRanDType *systemRan[2];
     wednesday_stuff_NL_M->extModeInfo = (&rt_ExtModeInfo);
     rteiSetSubSystemActiveVectorAddresses(&rt_ExtModeInfo, systemRan);
     systemRan[0] = &rtAlwaysEnabled;
     systemRan[1] = &rtAlwaysEnabled;
-    systemRan[2] = &rtAlwaysEnabled;
     rteiSetModelMappingInfoPtr(wednesday_stuff_NL_M->extModeInfo,
       &wednesday_stuff_NL_M->SpecialInfo.mappingInfo);
     rteiSetChecksumsPtr(wednesday_stuff_NL_M->extModeInfo,

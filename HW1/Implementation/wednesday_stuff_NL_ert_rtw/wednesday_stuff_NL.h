@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.20
+ * Model version                  : 1.47
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Feb  3 15:15:07 2023
+ * C/C++ source code generated on : Sat Feb  4 14:00:27 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -104,9 +104,6 @@ typedef struct {
   real_T Sum1;                         /* '<Root>/Sum1' */
   real_T TmpRTBAtDiscreteFIRFilterInport;/* '<Root>/Gain' */
   real_T TmpRTBAtTransportDelay1Inport1;/* '<Root>/SOFC' */
-  real_T eQEP_o1;                      /* '<Root>/eQEP' */
-  real_T Gain;                         /* '<Root>/Gain' */
-  real_T Diff;                         /* '<S1>/Diff' */
   real_T ZeroOrderHold2;               /* '<Root>/Zero-Order Hold2' */
   real_T TmpSignalConversionAtTAQSigLogg[4];
   /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux1_at_outport_0Inport1' */
@@ -115,6 +112,9 @@ typedef struct {
   /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux5_at_outport_0Inport1' */
   real_T TmpSignalConversionAtTAQSigLo_n[2];
   /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux3_at_outport_0Inport1' */
+  real_T eQEP_o1;                      /* '<Root>/eQEP' */
+  real_T Gain;                         /* '<Root>/Gain' */
+  real_T Diff;                         /* '<S1>/Diff' */
   real_T u;                            /* '<Root>/SOFC' */
   real_T Quantizer;                    /* '<Root>/Quantizer' */
   real32_T eQEP_o2;                    /* '<Root>/eQEP' */
@@ -143,18 +143,6 @@ typedef struct {
 
   struct {
     void *LoggedData;
-  } Scope_PWORK;                       /* '<Root>/Scope' */
-
-  struct {
-    void *LoggedData;
-  } Scope3_PWORK;                      /* '<Root>/Scope3' */
-
-  struct {
-    void *LoggedData;
-  } Scope1_PWORK;                      /* '<Root>/Scope1' */
-
-  struct {
-    void *LoggedData;
   } y_PWORK;                           /* '<Root>/y' */
 
   struct {
@@ -176,6 +164,18 @@ typedef struct {
   struct {
     void *LoggedData;
   } ToWorkspace8_PWORK;                /* '<Root>/To Workspace8' */
+
+  struct {
+    void *LoggedData;
+  } Scope_PWORK;                       /* '<Root>/Scope' */
+
+  struct {
+    void *LoggedData;
+  } Scope3_PWORK;                      /* '<Root>/Scope3' */
+
+  struct {
+    void *LoggedData;
+  } Scope1_PWORK;                      /* '<Root>/Scope1' */
 
   int32_T DiscreteFIRFilter2_circBuf;  /* '<Root>/Discrete FIR Filter2' */
   struct {
@@ -228,10 +228,10 @@ struct P_wednesday_stuff_NL_T_ {
   real_T TransportDelay1_InitOutput;   /* Expression: 0
                                         * Referenced by: '<Root>/Transport Delay1'
                                         */
-  real_T OutputvoltagetoPWM1_Gain;     /* Expression: 10.7
+  real_T OutputvoltagetoPWM1_Gain;     /* Expression: 10.5
                                         * Referenced by: '<Root>/Output voltage to PWM1'
                                         */
-  real_T OutputvoltagetoPWM_Gain;      /* Expression: 1000/10.7
+  real_T OutputvoltagetoPWM_Gain;      /* Expression: 1000/10.5
                                         * Referenced by: '<Root>/Output voltage to PWM'
                                         */
   real_T TmpRTBAtDiscreteFIRFilterInport;/* Expression: 0
@@ -267,6 +267,12 @@ struct P_wednesday_stuff_NL_T_ {
   real_T TmpRTBAtTransportDelay1Inport1_;/* Expression: 0
                                           * Referenced by:
                                           */
+  real_T DiscreteFIRFilter3_InitialState;/* Expression: 0
+                                          * Referenced by: '<Root>/Discrete FIR Filter3'
+                                          */
+  real_T DiscreteFIRFilter3_Coefficients;/* Expression: [1]
+                                          * Referenced by: '<Root>/Discrete FIR Filter3'
+                                          */
   real_T Constant3_Value;              /* Expression: -100000
                                         * Referenced by: '<Root>/Constant3'
                                         */
@@ -276,12 +282,6 @@ struct P_wednesday_stuff_NL_T_ {
   real_T TSamp_WtEt;                   /* Computed Parameter: TSamp_WtEt
                                         * Referenced by: '<S1>/TSamp'
                                         */
-  real_T DiscreteFIRFilter3_InitialState;/* Expression: 0
-                                          * Referenced by: '<Root>/Discrete FIR Filter3'
-                                          */
-  real_T DiscreteFIRFilter3_Coefficients;/* Expression: [1]
-                                          * Referenced by: '<Root>/Discrete FIR Filter3'
-                                          */
 };
 
 /* Real-time Model Data Structure */
@@ -319,22 +319,20 @@ struct tag_RTM_wednesday_stuff_NL_T {
     time_T stepSize0;
     uint32_T clockTick1;
     uint32_T clockTick2;
-    uint32_T clockTick3;
     struct {
-      uint16_T TID[4];
+      uint16_T TID[3];
     } TaskCounters;
 
     struct {
-      boolean_T TID0_3;
+      boolean_T TID0_2;
       boolean_T TID1_2;
-      boolean_T TID1_3;
     } RateInteraction;
 
     time_T tFinal;
     SimTimeStep simTimeStep;
     boolean_T stopRequestedFlag;
     time_T *t;
-    time_T tArray[4];
+    time_T tArray[3];
   } Timing;
 };
 
@@ -354,7 +352,6 @@ extern void wednesday_stuff_NL_SetEventsForThisBaseStep(boolean_T *eventFlags);
 extern void wednesday_stuff_NL_initialize(void);
 extern void wednesday_stuff_NL_step0(void);
 extern void wednesday_stuff_NL_step2(void);
-extern void wednesday_stuff_NL_step3(void);
 extern void wednesday_stuff_NL_terminate(void);
 
 /* Real-time Model object */

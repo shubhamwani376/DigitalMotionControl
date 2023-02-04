@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.20
+ * Model version                  : 1.47
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Feb  3 15:15:07 2023
+ * C/C++ source code generated on : Sat Feb  4 14:00:27 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -24,12 +24,13 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
   /* Variable: A_d
    * Referenced by: '<Root>/SOFC'
    */
-  { 1.0, 0.0, 0.0097065957769039563, 0.94189875324479411 },
+  { 1.0102181949775826, 2.0377680306658008, 0.0098970112358951427,
+    0.98287610994631669 },
 
   /* Variable: B_d
    * Referenced by: '<Root>/SOFC'
    */
-  { 0.120989056376251, 23.958806540064497 },
+  { 0.056536744772911637, 11.274865209452672 },
 
   /* Variable: C_d
    * Referenced by: '<Root>/SOFC'
@@ -39,17 +40,17 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
   /* Variable: K_SF
    * Referenced by: '<Root>/SOFC'
    */
-  { 0.44682652252884253, 0.012758098447356359 },
+  { 0.446826522528843, 0.0127580984473564 },
 
   /* Variable: L_Pred
    * Referenced by: '<Root>/SOFC'
    */
-  { 1.9381638677813784, 91.0369490040518 },
+  { 1.93816386778138, 91.0369490040518 },
 
   /* Variable: N
    * Referenced by: '<Root>/SOFC'
    */
-  0.44682652252884253,
+  0.26609105538043171,
 
   /* Variable: Tcomp
    * Referenced by: '<Root>/Transport Delay1'
@@ -86,15 +87,15 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
    */
   0.0,
 
-  /* Expression: 10.7
+  /* Expression: 10.5
    * Referenced by: '<Root>/Output voltage to PWM1'
    */
-  10.7,
+  10.5,
 
-  /* Expression: 1000/10.7
+  /* Expression: 1000/10.5
    * Referenced by: '<Root>/Output voltage to PWM'
    */
-  93.45794392523365,
+  95.238095238095241,
 
   /* Expression: 0
    * Referenced by:
@@ -151,6 +152,16 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
    */
   0.0,
 
+  /* Expression: 0
+   * Referenced by: '<Root>/Discrete FIR Filter3'
+   */
+  0.0,
+
+  /* Expression: [1]
+   * Referenced by: '<Root>/Discrete FIR Filter3'
+   */
+  1.0,
+
   /* Expression: -100000
    * Referenced by: '<Root>/Constant3'
    */
@@ -164,17 +175,7 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
   /* Computed Parameter: TSamp_WtEt
    * Referenced by: '<S1>/TSamp'
    */
-  1000.0,
-
-  /* Expression: 0
-   * Referenced by: '<Root>/Discrete FIR Filter3'
-   */
-  0.0,
-
-  /* Expression: [1]
-   * Referenced by: '<Root>/Discrete FIR Filter3'
-   */
-  1.0
+  100.0
 };
 
 /*
