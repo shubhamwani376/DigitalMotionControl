@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.47
+ * Model version                  : 1.48
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Sat Feb  4 14:00:27 2023
+ * C/C++ source code generated on : Sun Feb  5 00:08:31 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -24,14 +24,15 @@
 #include "MW_target_hardware_resources.h"
 
 volatile int IsrOverrun = 0;
-boolean_T isRateRunning[3] = { 0, 0, 0 };
+boolean_T isRateRunning[4] = { 0, 0, 0, 0 };
 
-boolean_T need2runFlags[3] = { 0, 0, 0 };
+boolean_T need2runFlags[4] = { 0, 0, 0, 0 };
 
 void rt_OneStep(void)
 {
   extmodeSimulationTime_T currentTime = (extmodeSimulationTime_T) 0;
-  boolean_T eventFlags[3];
+  boolean_T eventFlags[4];
+  int_T i;
 
   /* Check base rate for overrun */
   if (isRateRunning[0]++) {
@@ -58,45 +59,61 @@ void rt_OneStep(void)
   extmodeEvent(1, currentTime);
   disableTimer0Interrupt();
   isRateRunning[0]--;
-  if (eventFlags[2]) {
-    if (need2runFlags[2]++) {
-      IsrOverrun = 1;
-      need2runFlags[2]--;              /* allow future iterations to succeed*/
-      return;
+  for (i = 1; i < 4; i++) {
+    if (eventFlags[i]) {
+      if (need2runFlags[i]++) {
+        IsrOverrun = 1;
+        need2runFlags[i]--;            /* allow future iterations to succeed*/
+        break;
+      }
     }
   }
 
-  if (need2runFlags[2]) {
-    if (isRateRunning[1]) {
+  for (i = 2; i < 4; i++) {
+    if (isRateRunning[i]) {
       /* Yield to higher priority*/
       return;
     }
 
-    isRateRunning[2]++;
-    enableTimer0Interrupt();
+    if (need2runFlags[i]) {
+      isRateRunning[i]++;
+      enableTimer0Interrupt();
 
-    /* Step the model for subrate "2" */
-    switch (2)
-    {
-     case 2 :
-      currentTime = (extmodeSimulationTime_T)
-        ((wednesday_stuff_NL_M->Timing.clockTick2 * 200) + 0)
-        ;
-      wednesday_stuff_NL_step2();
+      /* Step the model for subrate "i" */
+      switch (i)
+      {
+       case 2 :
+        currentTime = (extmodeSimulationTime_T)
+          ((wednesday_stuff_NL_M->Timing.clockTick2 * 20) + 0)
+          ;
+        wednesday_stuff_NL_step2();
 
-      /* Get model outputs here */
+        /* Get model outputs here */
 
-      /* Trigger External Mode event */
-      extmodeEvent(2, currentTime);
-      break;
+        /* Trigger External Mode event */
+        extmodeEvent(2, currentTime);
+        break;
 
-     default :
-      break;
+       case 3 :
+        currentTime = (extmodeSimulationTime_T)
+          ((wednesday_stuff_NL_M->Timing.clockTick3 * 200) + 0)
+          ;
+        wednesday_stuff_NL_step3();
+
+        /* Get model outputs here */
+
+        /* Trigger External Mode event */
+        extmodeEvent(3, currentTime);
+        break;
+
+       default :
+        break;
+      }
+
+      disableTimer0Interrupt();
+      need2runFlags[i]--;
+      isRateRunning[i]--;
     }
-
-    disableTimer0Interrupt();
-    need2runFlags[2]--;
-    isRateRunning[2]--;
   }
 }
 

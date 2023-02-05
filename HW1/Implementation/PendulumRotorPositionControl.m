@@ -142,7 +142,7 @@ zpk(G_d)
         %L_Pred = place(A_d',C_d',Pole_Pred); %for MIMO, but no identical poles
         L_Pred = acker(A_d',C_d',Pole_Pred);  %for SISO only
         L_Pred = L_Pred';
-        L_Pred = [ 1.93816386778138  ; 91.0369490040518];
+        L_Pred = [1.93816386778138;   91.0369490040518];
         %State Feedback Poles:
         Tr = 0.05;  % Rise time 0.05
         Mp = 15/100 ;  % Maximum percent overshoot 15%
