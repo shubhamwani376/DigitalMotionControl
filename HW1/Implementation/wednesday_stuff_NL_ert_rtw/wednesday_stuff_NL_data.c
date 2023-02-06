@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.51
+ * Model version                  : 1.53
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Sun Feb  5 17:41:52 2023
+ * C/C++ source code generated on : Sun Feb  5 21:31:14 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -61,40 +61,15 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
    */
   0.0,
 
-  /* Expression: sps.Delay
-   * Referenced by: '<S4>/Constant3'
-   */
-  0.25,
-
-  /* Expression: sps.Period
-   * Referenced by: '<S4>/Constant1'
-   */
-  1.0,
-
-  /* Expression: sps.Freq
-   * Referenced by: '<S4>/1\ib1'
-   */
-  1.0,
-
-  /* Expression: [0 2 0]
-   * Referenced by: '<S4>/1-D Lookup Table'
-   */
-  { 0.0, 2.0, 0.0 },
-
-  /* Expression: [0 .5 1]
-   * Referenced by: '<S4>/1-D Lookup Table'
-   */
-  { 0.0, 0.5, 1.0 },
-
-  /* Expression: 1
-   * Referenced by: '<S4>/Constant2'
-   */
-  1.0,
-
   /* Expression: 0.2
-   * Referenced by: '<Root>/Gain1'
+   * Referenced by: '<Root>/Signal Generator'
    */
   0.2,
+
+  /* Expression: 1
+   * Referenced by: '<Root>/Signal Generator'
+   */
+  1.0,
 
   /* Expression: 0
    * Referenced by: '<Root>/Step'

@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.51
+ * Model version                  : 1.53
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Sun Feb  5 17:41:52 2023
+ * C/C++ source code generated on : Sun Feb  5 21:31:14 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -218,111 +218,42 @@ real_T rt_TDelayInterpolate(
   return(yout);
 }
 
-real_T look1_pbinlxpw(real_T u0, const real_T bp0[], const real_T table[],
-                      uint32_T prevIndex[], uint32_T maxIndex)
-{
-  real_T frac;
-  real_T yL_0d0;
-  uint32_T bpIdx;
-  uint32_T found;
-  uint32_T iLeft;
-  uint32_T iRght;
-
-  /* Column-major Lookup 1-D
-     Search method: 'binary'
-     Use previous index: 'on'
-     Interpolation method: 'Linear point-slope'
-     Extrapolation method: 'Linear'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Remove protection against out-of-range input in generated code: 'off'
-   */
-  /* Prelookup - Index and Fraction
-     Index Search method: 'binary'
-     Extrapolation method: 'Linear'
-     Use previous index: 'on'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Remove protection against out-of-range input in generated code: 'off'
-   */
-  if (u0 <= bp0[0UL]) {
-    bpIdx = 0UL;
-    frac = (u0 - bp0[0UL]) / (bp0[1UL] - bp0[0UL]);
-  } else if (u0 < bp0[maxIndex]) {
-    /* Binary Search using Previous Index */
-    bpIdx = prevIndex[0UL];
-    iLeft = 0UL;
-    iRght = maxIndex;
-    found = 0UL;
-    while (found == 0UL) {
-      if (u0 < bp0[bpIdx]) {
-        iRght = bpIdx - 1UL;
-        bpIdx = ((bpIdx + iLeft) - 1UL) >> 1UL;
-      } else if (u0 < bp0[bpIdx + 1UL]) {
-        found = 1UL;
-      } else {
-        iLeft = bpIdx + 1UL;
-        bpIdx = ((bpIdx + iRght) + 1UL) >> 1UL;
-      }
-    }
-
-    frac = (u0 - bp0[bpIdx]) / (bp0[bpIdx + 1UL] - bp0[bpIdx]);
-  } else {
-    bpIdx = maxIndex - 1UL;
-    frac = (u0 - bp0[maxIndex - 1UL]) / (bp0[maxIndex] - bp0[maxIndex - 1UL]);
-  }
-
-  prevIndex[0UL] = bpIdx;
-
-  /* Column-major Interpolation 1-D
-     Interpolation method: 'Linear point-slope'
-     Use last breakpoint for index at or above upper limit: 'off'
-     Overflow mode: 'portable wrapping'
-   */
-  yL_0d0 = table[bpIdx];
-  return (table[bpIdx + 1UL] - yL_0d0) * frac + yL_0d0;
-}
-
 /* Model step function */
 void wednesday_stuff_NL_step(void)
 {
   /* local block i/o variables */
   real_T rtb_TransportDelay1;
   real_T rtb_TSamp;
-  real_T rtb_Step;
+  real_T u1;
   real_T u_unsat;
 
-  /* Lookup_n-D: '<S4>/1-D Lookup Table' incorporates:
-   *  Constant: '<S4>/Constant1'
-   *  Constant: '<S4>/Constant3'
-   *  DigitalClock: '<S4>/Digital Clock'
-   *  Gain: '<S4>/1\ib1'
-   *  Math: '<S4>/Math Function'
-   *  Sum: '<S4>/Add1'
-   */
-  rtb_Step = look1_pbinlxpw(fmod(((wednesday_stuff_NL_M->Timing.clockTick1) *
-    0.1) + wednesday_stuff_NL_P.Constant3_Value,
-    wednesday_stuff_NL_P.Constant1_Value) * wednesday_stuff_NL_P.uib1_Gain,
-    wednesday_stuff_NL_P.uDLookupTable_bp01Data,
-    wednesday_stuff_NL_P.uDLookupTable_tableData,
-    &wednesday_stuff_NL_DW.m_bpIndex, 2UL);
+  /* SignalGenerator: '<Root>/Signal Generator' */
+  u_unsat = wednesday_stuff_NL_P.SignalGenerator_Frequency *
+    wednesday_stuff_NL_M->Timing.t[0];
 
   /* Step: '<Root>/Step' */
-  if (((wednesday_stuff_NL_M->Timing.clockTick1) * 0.1) <
-      wednesday_stuff_NL_P.Step_Time) {
-    u_unsat = wednesday_stuff_NL_P.Step_Y0;
+  if (wednesday_stuff_NL_M->Timing.t[0] < wednesday_stuff_NL_P.Step_Time) {
+    /* TransportDelay: '<Root>/Transport Delay1' */
+    rtb_TransportDelay1 = wednesday_stuff_NL_P.Step_Y0;
   } else {
-    u_unsat = wednesday_stuff_NL_P.Step_YFinal;
+    /* TransportDelay: '<Root>/Transport Delay1' */
+    rtb_TransportDelay1 = wednesday_stuff_NL_P.Step_YFinal;
+  }
+
+  /* End of Step: '<Root>/Step' */
+
+  /* SignalGenerator: '<Root>/Signal Generator' */
+  if (u_unsat - floor(u_unsat) >= 0.5) {
+    u_unsat = wednesday_stuff_NL_P.SignalGenerator_Amplitude;
+  } else {
+    u_unsat = -wednesday_stuff_NL_P.SignalGenerator_Amplitude;
   }
 
   /* ZeroOrderHold: '<Root>/Zero-Order Hold2' incorporates:
-   *  Constant: '<S4>/Constant2'
-   *  Gain: '<Root>/Gain1'
-   *  Step: '<Root>/Step'
+   *  SignalGenerator: '<Root>/Signal Generator'
    *  Sum: '<Root>/Sum2'
-   *  Sum: '<S4>/Add3'
    */
-  wednesday_stuff_NL_B.ZeroOrderHold2 = (rtb_Step -
-    wednesday_stuff_NL_P.Constant2_Value) * wednesday_stuff_NL_P.Gain1_Gain +
-    u_unsat;
+  wednesday_stuff_NL_B.ZeroOrderHold2 = u_unsat + rtb_TransportDelay1;
 
   /* SignalConversion generated from: '<Root>/Mux1' */
   wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[0] = 0.0;
@@ -335,7 +266,7 @@ void wednesday_stuff_NL_step(void)
    *  Constant: '<Root>/Constant1'
    */
   {
-    if (wednesday_stuff_NL_P.Constant1_Value_a) {
+    if (wednesday_stuff_NL_P.Constant1_Value) {
       GpioDataRegs.GPASET.bit.GPIO2 = 1U;
     } else {
       GpioDataRegs.GPACLEAR.bit.GPIO2 = 1U;
@@ -366,7 +297,7 @@ void wednesday_stuff_NL_step(void)
    *  Constant: '<Root>/Constant3'
    *  Sum: '<Root>/Sum'
    */
-  wednesday_stuff_NL_B.Gain = (wednesday_stuff_NL_P.Constant3_Value_e +
+  wednesday_stuff_NL_B.Gain = (wednesday_stuff_NL_P.Constant3_Value +
     wednesday_stuff_NL_B.eQEP_o1) * wednesday_stuff_NL_P.Gain_Gain;
 
   /* SignalConversion generated from: '<Root>/Mux5' */
@@ -378,7 +309,7 @@ void wednesday_stuff_NL_step(void)
   u_unsat = (-wednesday_stuff_NL_P.K_SF[0] * wednesday_stuff_NL_DW.xhat[0] +
              -wednesday_stuff_NL_P.K_SF[1] * wednesday_stuff_NL_DW.xhat[1]) +
     wednesday_stuff_NL_P.N * wednesday_stuff_NL_B.ZeroOrderHold2;
-  rtb_Step = fabs(u_unsat);
+  u1 = fabs(u_unsat);
   if (rtIsNaN(u_unsat)) {
     u_unsat = (rtNaN);
   } else if (u_unsat < 0.0) {
@@ -387,24 +318,24 @@ void wednesday_stuff_NL_step(void)
     u_unsat = (u_unsat > 0.0);
   }
 
-  if ((rtb_Step >= 1.0) || rtIsNaN(rtb_Step)) {
-    rtb_Step = 1.0;
+  if ((u1 >= 1.0) || rtIsNaN(u1)) {
+    u1 = 1.0;
   }
 
-  wednesday_stuff_NL_B.u = u_unsat * rtb_Step;
+  wednesday_stuff_NL_B.u = u_unsat * u1;
   u_unsat = (wednesday_stuff_NL_P.A_d[0] - wednesday_stuff_NL_P.L_Pred[0] *
              wednesday_stuff_NL_P.C_d[0]) * wednesday_stuff_NL_DW.xhat[0] +
     (wednesday_stuff_NL_P.A_d[2] - wednesday_stuff_NL_P.L_Pred[0] *
      wednesday_stuff_NL_P.C_d[1]) * wednesday_stuff_NL_DW.xhat[1];
-  rtb_Step = (wednesday_stuff_NL_P.A_d[1] - wednesday_stuff_NL_P.C_d[0] *
-              wednesday_stuff_NL_P.L_Pred[1]) * wednesday_stuff_NL_DW.xhat[0] +
+  u1 = (wednesday_stuff_NL_P.A_d[1] - wednesday_stuff_NL_P.C_d[0] *
+        wednesday_stuff_NL_P.L_Pred[1]) * wednesday_stuff_NL_DW.xhat[0] +
     (wednesday_stuff_NL_P.A_d[3] - wednesday_stuff_NL_P.L_Pred[1] *
      wednesday_stuff_NL_P.C_d[1]) * wednesday_stuff_NL_DW.xhat[1];
   wednesday_stuff_NL_DW.xhat[0] = (wednesday_stuff_NL_P.B_d[0] *
     wednesday_stuff_NL_B.u + u_unsat) + wednesday_stuff_NL_P.L_Pred[0] *
     wednesday_stuff_NL_B.Gain;
   wednesday_stuff_NL_DW.xhat[1] = (wednesday_stuff_NL_P.B_d[1] *
-    wednesday_stuff_NL_B.u + rtb_Step) + wednesday_stuff_NL_P.L_Pred[1] *
+    wednesday_stuff_NL_B.u + u1) + wednesday_stuff_NL_P.L_Pred[1] *
     wednesday_stuff_NL_B.Gain;
 
   /* End of MATLAB Function: '<Root>/SOFC' */
@@ -435,7 +366,7 @@ void wednesday_stuff_NL_step(void)
   wednesday_stuff_NL_B.Diff = rtb_TSamp - wednesday_stuff_NL_DW.UD_DSTATE;
 
   /* Constant: '<Root>/Constant2' */
-  wednesday_stuff_NL_B.Constant2 = wednesday_stuff_NL_P.Constant2_Value_a;
+  wednesday_stuff_NL_B.Constant2 = wednesday_stuff_NL_P.Constant2_Value;
 
   /* TransportDelay: '<Root>/Transport Delay1' */
   {
@@ -586,10 +517,10 @@ void wednesday_stuff_NL_initialize(void)
   wednesday_stuff_NL_M->Timing.stepSize0 = 0.1;
 
   /* External mode info */
-  wednesday_stuff_NL_M->Sizes.checksums[0] = (3898904478U);
-  wednesday_stuff_NL_M->Sizes.checksums[1] = (1356367215U);
-  wednesday_stuff_NL_M->Sizes.checksums[2] = (1758499798U);
-  wednesday_stuff_NL_M->Sizes.checksums[3] = (2652453099U);
+  wednesday_stuff_NL_M->Sizes.checksums[0] = (60619932U);
+  wednesday_stuff_NL_M->Sizes.checksums[1] = (893003603U);
+  wednesday_stuff_NL_M->Sizes.checksums[2] = (1207625854U);
+  wednesday_stuff_NL_M->Sizes.checksums[3] = (2565535129U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;

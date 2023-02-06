@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.51
+ * Model version                  : 1.53
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Sun Feb  5 17:41:52 2023
+ * C/C++ source code generated on : Sun Feb  5 21:31:14 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -57,8 +57,6 @@ real_T rt_TDelayInterpolate(
   boolean_T discrete,
   boolean_T minorStepAndTAtLastMajorOutput)
   ;
-extern real_T look1_pbinlxpw(real_T u0, const real_T bp0[], const real_T table[],
-  uint32_T prevIndex[], uint32_T maxIndex);
 
 #endif                            /* RTW_HEADER_wednesday_stuff_NL_private_h_ */
 
