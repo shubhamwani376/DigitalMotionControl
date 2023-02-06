@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.48
+ * Model version                  : 1.51
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Sun Feb  5 00:08:31 2023
+ * C/C++ source code generated on : Sun Feb  5 17:41:52 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -45,7 +45,6 @@ void config_QEP_eQEP1(uint32_T pcmaximumvalue, uint32_T pcInitialvalue, uint32_T
                       unittimerperiod, uint32_T comparevalue, uint16_T
                       watchdogtimer, uint16_T qdecctl, uint16_T qepctl, uint16_T
                       qposctl, uint16_T qcapctl, uint16_T qeint);
-extern real_T rt_roundd_snf(real_T u);
 real_T rt_TDelayInterpolate(
   real_T tMinusDelay,                 /* tMinusDelay = currentSimTime - delay */
   real_T tStart,
@@ -58,6 +57,8 @@ real_T rt_TDelayInterpolate(
   boolean_T discrete,
   boolean_T minorStepAndTAtLastMajorOutput)
   ;
+extern real_T look1_pbinlxpw(real_T u0, const real_T bp0[], const real_T table[],
+  uint32_T prevIndex[], uint32_T maxIndex);
 
 #endif                            /* RTW_HEADER_wednesday_stuff_NL_private_h_ */
 

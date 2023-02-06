@@ -6,6 +6,8 @@ wednesday_stuff_NL.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/sysran_types.
 wednesday_stuff_NL.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_continuous.h
 wednesday_stuff_NL.obj: D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/rtwtypes.h
 wednesday_stuff_NL.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_solver.h
+wednesday_stuff_NL.obj: C:/PROGRA~1/MATLAB/R2022b/toolbox/coder/xcp/src/target/ext_mode/include/ext_mode.h
+wednesday_stuff_NL.obj: D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/ext_mode_types.h
 wednesday_stuff_NL.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000BoardSupport.h
 wednesday_stuff_NL.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/stdbool.h
 wednesday_stuff_NL.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/_ti_config.h
@@ -102,6 +104,8 @@ C:/PROGRA~1/MATLAB/R2022b/simulink/include/sysran_types.h:
 C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_continuous.h:
 D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/rtwtypes.h:
 C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_solver.h:
+C:/PROGRA~1/MATLAB/R2022b/toolbox/coder/xcp/src/target/ext_mode/include/ext_mode.h:
+D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/ext_mode_types.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000BoardSupport.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/stdbool.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/_ti_config.h:

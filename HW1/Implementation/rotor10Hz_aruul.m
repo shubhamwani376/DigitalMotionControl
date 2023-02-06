@@ -131,7 +131,7 @@ zpk(G_d)
         % Calculate Observer damping ratio and natural frequency:
         
         Zeta=1;
-        Wn = 10*2*pi;        % 100*2*pi
+        Wn = 100*2*pi;        % 100*2*pi
         s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
         Pole_Pred=exp(s_pole*Ts);
         %Pole_Pred = [-0.15 -0.13];
@@ -155,14 +155,14 @@ zpk(G_d)
         % Calculate closed loop damping ratio and natural frequency:
         Wn = 1.8/Tr; %rad/sec
         tmp = (log(Mp)/pi)^2;
-        Zeta = 2.9*sqrt(tmp/(1+tmp));
+        Zeta = sqrt(tmp/(1+tmp));
         %Wd=sqrt(1-Zeta^2)*Wn = pi/Tp;
         %Sig=Zeta*Wn=4/Ts;
         %Wn=Wb % rad/sec;
         %Zeta= PM/100;
       
         s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
-        Pole_SF = exp(s_pole*0.01);
+        Pole_SF = exp(s_pole*Ts);
         %Pole_SF = [-0.08 -0.09];
         if pend ~= 1; 
           

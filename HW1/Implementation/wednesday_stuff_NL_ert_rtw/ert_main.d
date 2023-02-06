@@ -6,6 +6,8 @@ ert_main.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/sysran_types.h
 ert_main.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_continuous.h
 ert_main.obj: D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/rtwtypes.h
 ert_main.obj: C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_solver.h
+ert_main.obj: C:/PROGRA~1/MATLAB/R2022b/toolbox/coder/xcp/src/target/ext_mode/include/ext_mode.h
+ert_main.obj: D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/ext_mode_types.h
 ert_main.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000BoardSupport.h
 ert_main.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/stdbool.h
 ert_main.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/_ti_config.h
@@ -99,8 +101,6 @@ ert_main.obj: D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuf
 ert_main.obj: C:/PROGRA~1/MATLAB/R2022b/toolbox/coder/xcp/src/target/slave/protocol/src/xcp_cfg.h
 ert_main.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/stdio.h
 ert_main.obj: C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000SchedulerTimer.h
-ert_main.obj: C:/PROGRA~1/MATLAB/R2022b/toolbox/coder/xcp/src/target/ext_mode/include/ext_mode.h
-ert_main.obj: D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/ext_mode_types.h
 ert_main.obj: D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\HW1\Implementation\wednesday_stuff_NL_ert_rtw\MW_target_hardware_resources.h
 
 D:/Onedrive_UCLA/OneDrive\ -\ UCLA\ IT\ Services/UCLA/277/DigitalMotionControl/HW1/Implementation/wednesday_stuff_NL_ert_rtw/ert_main.c:
@@ -111,6 +111,8 @@ C:/PROGRA~1/MATLAB/R2022b/simulink/include/sysran_types.h:
 C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_continuous.h:
 D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/rtwtypes.h:
 C:/PROGRA~1/MATLAB/R2022b/simulink/include/rtw_solver.h:
+C:/PROGRA~1/MATLAB/R2022b/toolbox/coder/xcp/src/target/ext_mode/include/ext_mode.h:
+D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/ext_mode_types.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000BoardSupport.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/stdbool.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/_ti_config.h:
@@ -204,7 +206,5 @@ D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/M
 C:/PROGRA~1/MATLAB/R2022b/toolbox/coder/xcp/src/target/slave/protocol/src/xcp_cfg.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/3P778C~1.INS/TIC28X~1.INS/TI-CGT~1.LTS/include/stdio.h:
 C:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src/c2000SchedulerTimer.h:
-C:/PROGRA~1/MATLAB/R2022b/toolbox/coder/xcp/src/target/ext_mode/include/ext_mode.h:
-D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW1/IMPLEM~1/wednesday_stuff_NL_ert_rtw/ext_mode_types.h:
 D:\Onedrive_UCLA\OneDrive\ -\ UCLA\ IT\ Services\UCLA\277\DigitalMotionControl\HW1\Implementation\wednesday_stuff_NL_ert_rtw\MW_target_hardware_resources.h:
 

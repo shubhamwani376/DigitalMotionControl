@@ -8,7 +8,7 @@ close ALL;
 clear ALL;
 
 plant = 'rotor';
-plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
+%plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
 
 pend = 1; %1: single pendulum for this file 2: double pendulum not implemented
 
@@ -142,7 +142,7 @@ zpk(G_d)
         %L_Pred = place(A_d',C_d',Pole_Pred); %for MIMO, but no identical poles
         L_Pred = acker(A_d',C_d',Pole_Pred);  %for SISO only
         L_Pred = L_Pred';
-        L_Pred = [1.93816386778138;   91.0369490040518];
+        %L_Pred = [1.93816386778138;   91.0369490040518];
         %State Feedback Poles:
         Tr = 0.05;  % Rise time 0.05
         Mp = 15/100 ;  % Maximum percent overshoot 15%
@@ -179,7 +179,7 @@ zpk(G_d)
                 %K_SF=place(A_d,B_d,Pole_SF);  %for MIMO, but no identical poles
                 K_SF=acker(A_d,B_d,Pole_SF);  %for SISO only
                 K_int=0;
-                K_SF = [0.446826522528843	0.0127580984473564];
+                %K_SF = [0.446826522528843	0.0127580984473564];
                 TF_yrf=ss(A_d-B_d*K_SF,B_d,C_d,[0],Ts);
                 N=1/freqresp(TF_yrf,[0]);   %Scale the feedforward gain N to make dc gain y/r=1
                 

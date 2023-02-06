@@ -131,10 +131,11 @@ zpk(G_d)
         % Calculate Observer damping ratio and natural frequency:
         
         Zeta = 11;
-        Wn = 16.5*2*pi;        % 100*2*pi
+        Wn = 18*2*pi;        % 100*2*pi
         s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
         Pole_Pred=exp(s_pole*Ts);
-        %%Pole_Pred = [-0.000000000000007 -0.000000000000009];
+        Pole_Pred = [0.05 0.1];
+        %Pole_Pred = [-0.000000000000007 -0.000000000000009];
         %Pole_Pred=exp(s_pole*Ts);
         if pend ~= 1; 
             
@@ -144,7 +145,7 @@ zpk(G_d)
         %L_Pred = place(A_d',C_d',Pole_Pred); %for MIMO, but no identical poles
         L_Pred = acker(A_d',C_d',Pole_Pred);  %for SISO only
         L_Pred = L_Pred';
-        
+        %L_Pred = [0.6; 0.015];
         %State Feedback Poles:
         Tr = 0.05;  % Rise time 0.05
         Mp = 15/100 ;  % Maximum percent overshoot 15%
@@ -164,6 +165,7 @@ zpk(G_d)
       
         s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
         Pole_SF = exp(s_pole*Ts);
+        Pole_SF = [0.1 0.15];
         %Pole_SF = [-0.00000005 -0.0000008];
         if pend ~= 1; 
           
@@ -181,7 +183,8 @@ zpk(G_d)
                 %K_SF=place(A_d,B_d,Pole_SF);  %for MIMO, but no identical poles
                 K_SF=acker(A_d,B_d,Pole_SF);  %for SISO only
                 K_int=0;
-                
+                %K_SF = [0.0719 0.0061];
+
                 TF_yrf=ss(A_d-B_d*K_SF,B_d,C_d,[0],Ts);
                 N=1/freqresp(TF_yrf,[0]);   %Scale the feedforward gain N to make dc gain y/r=1
                 
