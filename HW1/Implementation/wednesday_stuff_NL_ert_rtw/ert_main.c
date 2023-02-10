@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.48
+ * Model version                  : 1.53
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Sun Feb  5 00:08:31 2023
+ * C/C++ source code generated on : Sun Feb  5 21:31:14 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -24,104 +24,29 @@
 #include "MW_target_hardware_resources.h"
 
 volatile int IsrOverrun = 0;
-boolean_T isRateRunning[4] = { 0, 0, 0, 0 };
-
-boolean_T need2runFlags[4] = { 0, 0, 0, 0 };
-
+static boolean_T OverrunFlag = 0;
 void rt_OneStep(void)
 {
-  extmodeSimulationTime_T currentTime = (extmodeSimulationTime_T) 0;
-  boolean_T eventFlags[4];
-  int_T i;
-
-  /* Check base rate for overrun */
-  if (isRateRunning[0]++) {
+  /* Check for overrun. Protect OverrunFlag against preemption */
+  if (OverrunFlag++) {
     IsrOverrun = 1;
-    isRateRunning[0]--;                /* allow future iterations to succeed*/
+    OverrunFlag--;
     return;
   }
 
-  /*
-   * For a bare-board target (i.e., no operating system), the rates
-   * that execute this base step are buffered locally to allow for
-   * overlapping preemption.
-   */
-  wednesday_stuff_NL_SetEventsForThisBaseStep(eventFlags);
   enableTimer0Interrupt();
-  currentTime = (extmodeSimulationTime_T)
-    ((wednesday_stuff_NL_M->Timing.clockTick0 * 1) + 0)
-    ;
-  wednesday_stuff_NL_step0();
+  wednesday_stuff_NL_step();
 
   /* Get model outputs here */
-
-  /* Trigger External Mode event */
-  extmodeEvent(1, currentTime);
   disableTimer0Interrupt();
-  isRateRunning[0]--;
-  for (i = 1; i < 4; i++) {
-    if (eventFlags[i]) {
-      if (need2runFlags[i]++) {
-        IsrOverrun = 1;
-        need2runFlags[i]--;            /* allow future iterations to succeed*/
-        break;
-      }
-    }
-  }
-
-  for (i = 2; i < 4; i++) {
-    if (isRateRunning[i]) {
-      /* Yield to higher priority*/
-      return;
-    }
-
-    if (need2runFlags[i]) {
-      isRateRunning[i]++;
-      enableTimer0Interrupt();
-
-      /* Step the model for subrate "i" */
-      switch (i)
-      {
-       case 2 :
-        currentTime = (extmodeSimulationTime_T)
-          ((wednesday_stuff_NL_M->Timing.clockTick2 * 20) + 0)
-          ;
-        wednesday_stuff_NL_step2();
-
-        /* Get model outputs here */
-
-        /* Trigger External Mode event */
-        extmodeEvent(2, currentTime);
-        break;
-
-       case 3 :
-        currentTime = (extmodeSimulationTime_T)
-          ((wednesday_stuff_NL_M->Timing.clockTick3 * 200) + 0)
-          ;
-        wednesday_stuff_NL_step3();
-
-        /* Get model outputs here */
-
-        /* Trigger External Mode event */
-        extmodeEvent(3, currentTime);
-        break;
-
-       default :
-        break;
-      }
-
-      disableTimer0Interrupt();
-      need2runFlags[i]--;
-      isRateRunning[i]--;
-    }
-  }
+  OverrunFlag--;
 }
 
 volatile boolean_T stopRequested;
 volatile boolean_T runModel;
 int main(void)
 {
-  float modelBaseRate = 5.0E-5;
+  float modelBaseRate = 0.1;
   float systemClock = 200;
   extmodeErrorCode_T errorCode = EXTMODE_SUCCESS;
 
