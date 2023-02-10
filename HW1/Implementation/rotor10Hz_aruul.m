@@ -246,30 +246,31 @@ zpk(G_d)
         TF_yw=TF(1,3)  ;
         TF_uw=TF(2,3)  ;
         TF_ew=TF(3,3) ;
-        figure
-        step(TF_yr,TF_ur)
-        legend('TFyr','TFur');
-        grid
-        figure
-        step(TF_yd,TF_ud)
-        legend('TFyd','TFud');
-         grid
-        figure
-        bode(TF_yr,TF_ur,TF_yd,TF_ud)
-         legend('TFyr','Tur','TFyd','TFud');
-         grid
-        figure
-        bode(TF_yr,TF_ur)
-        legend('TFyr','Tur');
-       grid
+%         figure
+%         step(TF_yr,TF_ur)
+%         legend('TFyr','TFur');
+%         grid
+%         figure
+%         step(TF_yd,TF_ud)
+%         legend('TFyd','TFud');
+%          grid
+%         figure
+%         bode(TF_yr,TF_ur,TF_yd,TF_ud)
+%          legend('TFyr','Tur','TFyd','TFud');
+%          grid
+%         figure
+%         bode(TF_yr,TF_ur)
+%         legend('TFyr','Tur');
+%        grid
          figure
          bode(TF_yd,TF_ud)
         legend('TFyd','TFud');
-        grid
-        zpk(TF_yr)
-        zpk(TF_ur)
-        zpk(TF_yd)
-        zpk(TF_ud)
+        title('Bode Plot for Motor Rotor System - y/d & u/d - 1000hz')
+%         grid
+%         zpk(TF_yr)
+%         zpk(TF_ur)
+%         zpk(TF_yd)
+%         zpk(TF_ud)
         %Loop Transfer Function Calculation:
         Controller_SF =ss(A_d-B_d*K_SF-L_Pred*C_d,L_Pred,K_SF,0,Ts);
         Controller_int =K_int/(z-1)*(1-ss(A_d-B_d*K_SF-L_Pred*C_d,B_d,K_SF,0,Ts));
@@ -289,9 +290,11 @@ zpk(G_d)
          figure
         nyquist(Loop, Loop_SF);
          legend('Loop', 'Loop_{SF}');
+         title('Nyquist Plot - Motor Rotor System - 1000hz')
         figure
         bode(Loop, Loop_SF);
          legend('Loop', 'Loop_{SF}');
+%          title('Nyquist Plot - Motor Rotor System - 10hz')
         grid on
         [Gm,Pm,Wcp,Wcg] = margin(Loop)
         [Gm_SF,Pm_SF,Wcp_SF,Wcg_SF] = margin(Loop_SF)
@@ -303,11 +306,20 @@ zpk(G_d)
          hold on
          bodemag(Sensitivity_SF);
          hold off
+         title('Sensitivity - Motor Rotor 1000hz')
        grid on;
          legend;
         % Find the Sensitivity_peak and frequency Wpeak
-        % S_peak = 10^(dB/20)
-        % VGM = S_peak/(S_peak - 1)
+%         dB = 
+%         S_peak = 10^(dB/20)
+%         VGM = S_peak/(S_peak - 1)
+        [dB,fpeak] = getPeakGain(Sensitivity_SF);
+        S_peak = 10^(dB/20);
+        VGM_Closed = S_peak/(S_peak - 1)
+        
+        [dB,fpeak] = getPeakGain(Sensitivity);
+        S_peak = 10^(dB/20);
+        VGM_Open = S_peak/(S_peak - 1)
         
         % Simulation:
         switch (SSdesign)
