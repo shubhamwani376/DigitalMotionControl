@@ -83,7 +83,7 @@ P_penduposred= P_rotorposred/(1+K_tot*P_rotorposred*F_rotorred);
 
 % Discrte-time plant model:
 
-z=tf('z',Ts);
+z=tf('z',Ts)
 %G= P_penduposred;  %Use the reduced order plant for control design
 
 switch(pend)
@@ -94,7 +94,7 @@ switch(pend)
         B = [0; kapa/tau];
         C = [1 0];
         G = ss(A, B, C, 0);
-        zpk(G);
+        zpk(G)
     case{2}
         % Double pendulum
               
@@ -107,8 +107,8 @@ zpk(G_d)
         
         % State Observer Feedback Control based on 2 states reduced order model
         
-        Plant=tf(G);
-        Plant_d = tf(G_d);
+        Plant=tf(G)
+        Plant_d = tf(G_d)
    
         [A_d B_d C_d D_d] = ssdata(G_d);
         switch(pend)
@@ -214,7 +214,7 @@ zpk(G_d)
 %                 K_SF=K_aug(1:size(A_d,1));
 %                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 
-                K_aug = dlqr(Aaug, Baug, 0.1*[1, 0, 0; 0, 0, 0; 0, 0, 1], 50*1);
+                K_aug = lqr(Aaug, Baug, 0.1*[1, 0, 0; 0, 0, 0; 0, 0, 1], 50*1);
                 K_SF = K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
 
@@ -332,8 +332,8 @@ zpk(G_d)
                 switch(pend)
                     case{1}
                
-                       open('Pendulum_SOFC_integral')
-                       sim('Pendulum_SOFC_integral')
+%                        open('Pendulum_SOFC_integral')
+%                        sim('Pendulum_SOFC_integral')
                     case{2}
                        % open('DoublePendulum_SOFC_integral')
                        % sim('DoublePendulum_SOFC_integral')

@@ -652,8 +652,8 @@ zpk(G_d)
                 switch(pend)
                    case{1}
                   
-                     open('Pendulum_SOFC')
-                     sim('Pendulum_SOFC')
+%                      open('Pendulum_SOFC')
+%                      sim('Pendulum_SOFC')
                    case{2}
                      % open('DoublePendulum_SOFC')
                       % sim('DoublePendulum_SOFC')
@@ -662,8 +662,8 @@ zpk(G_d)
                 switch(pend)
                     case{1}
                
-                       open('Pendulum_SOFC_integral')
-                       sim('Pendulum_SOFC_integral')
+%                        open('Pendulum_SOFC_integral')
+%                        sim('Pendulum_SOFC_integral')
                     case{2}
                        % open('DoublePendulum_SOFC_integral')
                        % sim('DoublePendulum_SOFC_integral')
