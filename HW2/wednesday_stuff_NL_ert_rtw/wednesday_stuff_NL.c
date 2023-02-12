@@ -9,7 +9,7 @@
  *
  * Model version                  : 1.64
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Thu Feb  9 11:53:06 2023
+ * C/C++ source code generated on : Fri Feb 10 10:36:36 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -228,16 +228,20 @@ void wednesday_stuff_NL_step(void)
   real_T u_unsat;
 
   /* Step: '<Root>/Step' */
-  if (((wednesday_stuff_NL_M->Timing.clockTick1) * 0.01) <
-      wednesday_stuff_NL_P.Step_Time) {
-    /* ZeroOrderHold: '<Root>/Zero-Order Hold2' */
-    wednesday_stuff_NL_B.ZeroOrderHold2 = wednesday_stuff_NL_P.Step_Y0;
+  if (wednesday_stuff_NL_M->Timing.t[0] < wednesday_stuff_NL_P.Step_Time) {
+    /* TransportDelay: '<Root>/Transport Delay2' */
+    rtb_TransportDelay2 = wednesday_stuff_NL_P.Step_Y0;
   } else {
-    /* ZeroOrderHold: '<Root>/Zero-Order Hold2' */
-    wednesday_stuff_NL_B.ZeroOrderHold2 = wednesday_stuff_NL_P.Step_YFinal;
+    /* TransportDelay: '<Root>/Transport Delay2' */
+    rtb_TransportDelay2 = wednesday_stuff_NL_P.Step_YFinal;
   }
 
   /* End of Step: '<Root>/Step' */
+
+  /* ZeroOrderHold: '<Root>/Zero-Order Hold2' incorporates:
+   *  Sum: '<Root>/Sum2'
+   */
+  wednesday_stuff_NL_B.ZeroOrderHold2 = rtb_TransportDelay2;
 
   /* SignalConversion generated from: '<Root>/Mux1' */
   wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[0] = 0.0;
@@ -503,10 +507,10 @@ void wednesday_stuff_NL_initialize(void)
   wednesday_stuff_NL_M->Timing.stepSize0 = 0.01;
 
   /* External mode info */
-  wednesday_stuff_NL_M->Sizes.checksums[0] = (1204393411U);
-  wednesday_stuff_NL_M->Sizes.checksums[1] = (3375415020U);
-  wednesday_stuff_NL_M->Sizes.checksums[2] = (1987398368U);
-  wednesday_stuff_NL_M->Sizes.checksums[3] = (1277205691U);
+  wednesday_stuff_NL_M->Sizes.checksums[0] = (2575413115U);
+  wednesday_stuff_NL_M->Sizes.checksums[1] = (776136114U);
+  wednesday_stuff_NL_M->Sizes.checksums[2] = (2982024792U);
+  wednesday_stuff_NL_M->Sizes.checksums[3] = (1794366314U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -541,7 +545,7 @@ void wednesday_stuff_NL_initialize(void)
   EDIS;
 
   /* Start for S-Function (c280xqep): '<Root>/eQEP' */
-  config_QEP_eQEP1((uint32_T)4294967295U,(uint32_T)1U, (uint32_T)0, (uint32_T)0,
+  config_QEP_eQEP1((uint32_T)4294967295U,(uint32_T)0U, (uint32_T)0, (uint32_T)0,
                    (uint16_T)0, (uint16_T)0, (uint16_T)4232, (uint16_T)32768,
                    (uint16_T)32864,(uint16_T)0);
 

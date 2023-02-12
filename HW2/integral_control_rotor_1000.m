@@ -13,7 +13,7 @@ plant = 'rotor';
 pend = 1; %1: single pendulum for this file 2: double pendulum not implemented
 
 
-SSdesign = 'state_observer_feedback';
+%SSdesign = 'state_observer_feedback';
 SSdesign = 'state_observer_feedback_integral';
 
 

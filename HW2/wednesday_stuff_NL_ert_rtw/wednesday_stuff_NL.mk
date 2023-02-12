@@ -2,7 +2,7 @@
 ## Makefile generated for component 'wednesday_stuff_NL'. 
 ## 
 ## Makefile     : wednesday_stuff_NL.mk
-## Generated on : Thu Feb 09 11:00:03 2023
+## Generated on : Fri Feb 10 10:36:57 2023
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/wednesday_stuff_NL.out
 ## Product type : executable
 ## 
@@ -21,7 +21,7 @@ MAKEFILE                  = wednesday_stuff_NL.mk
 MATLAB_ROOT               = C:/PROGRA~1/MATLAB/R2022b
 MATLAB_BIN                = C:/PROGRA~1/MATLAB/R2022b/bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)/win64
-START_DIR                 = D:/ONEDRI~2/ONEDRI~1/UCLA/277/DIGITA~1/HW2
+START_DIR                 = E:/ASUS/Desktop/InternshipsandProjects/DigitalMotionControl/HW2
 SOLVER                    = 
 SOLVER_OBJ                = 
 CLASSIC_INTERFACE         = 0
@@ -198,7 +198,7 @@ BUILD_TYPE = "Top-Level Standalone Executable"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR) -I$(START_DIR)/wednesday_stuff_NL_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/common -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/src -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/platform/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/platform/default -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/target/SUPPOR~1/tic2000/inc -I$(MATLAB_ROOT)/toolbox/shared/can/src/scanutil -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/target/SUPPOR~1/tic2000/src -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/inc -ID:/ti/C2000W~2/LIBRAR~1/CALIBR~1/hrpwm/f2837xd/include -ID:/ti/C2000W~2/DRIVER~1/f2837xd/DRIVER~1 -ID:/ti/C2000W~2/DRIVER~1/f2837xd/DRIVER~1/inc -ID:/ti/C2000W~2/DEVICE~1/f2837xd/common/include -ID:/ti/C2000W~2/DEVICE~1/f2837xd/headers/include -ID:/ti/C2000W~2/DEVICE~1/f2837xd/common
+INCLUDES_BUILDINFO = -I$(START_DIR) -I$(START_DIR)/wednesday_stuff_NL_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/common -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/src -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/platform/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/platform/default -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/target/SUPPOR~1/tic2000/inc -I$(MATLAB_ROOT)/toolbox/shared/can/src/scanutil -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/target/SUPPOR~1/tic2000/src -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/src -IC:/PROGRA~3/MATLAB/SUPPOR~1/R2022b/toolbox/shared/SUPPOR~1/tic2000/inc -IC:/ti/c2000/C2000W~1/LIBRAR~1/CALIBR~1/hrpwm/f2837xd/include -IC:/ti/c2000/C2000W~1/DRIVER~1/f2837xd/DRIVER~1 -IC:/ti/c2000/C2000W~1/DRIVER~1/f2837xd/DRIVER~1/inc -IC:/ti/c2000/C2000W~1/DEVICE~1/f2837xd/common/include -IC:/ti/c2000/C2000W~1/DEVICE~1/f2837xd/headers/include -IC:/ti/c2000/C2000W~1/DEVICE~1/f2837xd/common
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -219,7 +219,7 @@ DEFINES = $(DEFINES_) $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM) $(DEFINES_OPTS) $(
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_mode.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/MW_c28xx_csl.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/MW_c28xx_board.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/MW_c28xx_pwm.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/MW_c28xx_qep.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/rtGetInf.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/rtGetNaN.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/rt_nonfinite.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/wednesday_stuff_NL.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/wednesday_stuff_NL_data.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_common.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_classic_trigger.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src/xcp.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src/xcp_standard.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src/xcp_daq.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src/xcp_calibration.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/src/xcp_fifo.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/src/xcp_transport.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/platform/default/xcp_mem_default.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/platform/default/xcp_drv_rtiostream.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/common/xcp_utils.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/src/xcp_frame_serial.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_param_default_serial.c D:/ti/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/sysctl.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/c2837xDBoard_Realtime_Support.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/MW_c28xGlobalInterrupts.c D:/ti/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/dma.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_CpuTimers.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_DefaultISR.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/headers/source/F2837xD_GlobalVariableDefs.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_PieCtrl.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_PieVect.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_SysCtrl.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_usDelay.asm D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_CodeStartBranch.asm D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Dma.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Adc.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Gpio.c D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Ipc_Driver_Lite.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/target/supportpackages/tic2000/src/c2000HardwareTimerConfig.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/MW_c28xGPIO.c D:/ti/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/clb.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/c2837xDSchedulerTimer0.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/rtiostream_serial_c28x_ext_xcp.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/datamodify_xcp.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/target/supportpackages/tic2000/src/c2000HardwareTimerSupport.c
+SRCS = $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_mode.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/MW_c28xx_csl.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/MW_c28xx_board.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/MW_c28xx_pwm.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/MW_c28xx_qep.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/rtGetInf.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/rtGetNaN.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/rt_nonfinite.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/wednesday_stuff_NL.c $(START_DIR)/wednesday_stuff_NL_ert_rtw/wednesday_stuff_NL_data.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_common.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_classic_trigger.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src/xcp.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src/xcp_standard.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src/xcp_daq.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/protocol/src/xcp_calibration.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/src/xcp_fifo.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/src/xcp_transport.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/platform/default/xcp_mem_default.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/platform/default/xcp_drv_rtiostream.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/common/xcp_utils.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/slave/transport/src/xcp_frame_serial.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_param_default_serial.c C:/ti/c2000/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/sysctl.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/c2837xDBoard_Realtime_Support.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/MW_c28xGlobalInterrupts.c C:/ti/c2000/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/dma.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_CpuTimers.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_DefaultISR.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/headers/source/F2837xD_GlobalVariableDefs.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_PieCtrl.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_PieVect.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_SysCtrl.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_usDelay.asm C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_CodeStartBranch.asm C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Dma.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Adc.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Gpio.c C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Ipc_Driver_Lite.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/target/supportpackages/tic2000/src/c2000HardwareTimerConfig.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/MW_c28xGPIO.c C:/ti/c2000/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/clb.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/c2837xDSchedulerTimer0.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/rtiostream_serial_c28x_ext_xcp.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/datamodify_xcp.c C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/target/supportpackages/tic2000/src/c2000HardwareTimerSupport.c
 
 MAIN_SRC = $(START_DIR)/wednesday_stuff_NL_ert_rtw/ert_main.c
 
@@ -245,7 +245,7 @@ PREBUILT_OBJS =
 ## LIBRARIES
 ###########################################################################
 
-LIBS = D:/ti/C2000Ware_4_00_00_00/libraries/math/IQmath/c28/lib/IQmath_fpu32.lib C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/c2837xDPeripherals.cmd C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/target/supportpackages/tic2000/src/c28377D.cmd
+LIBS = C:/ti/c2000/C2000Ware_4_00_00_00/libraries/math/IQmath/c28/lib/IQmath_fpu32.lib C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/supportpackages/tic2000/src/c2837xDPeripherals.cmd C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/target/supportpackages/tic2000/src/c28377D.cmd
 
 ###########################################################################
 ## SYSTEM LIBRARIES
@@ -686,7 +686,7 @@ xcp_ext_param_default_serial.obj : $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/e
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-sysctl.obj : D:/ti/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/sysctl.c
+sysctl.obj : C:/ti/c2000/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/sysctl.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
@@ -698,55 +698,55 @@ MW_c28xGlobalInterrupts.obj : C:/ProgramData/MATLAB/SupportPackages/R2022b/toolb
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-dma.obj : D:/ti/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/dma.c
+dma.obj : C:/ti/c2000/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/dma.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_CpuTimers.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_CpuTimers.c
+F2837xD_CpuTimers.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_CpuTimers.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_DefaultISR.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_DefaultISR.c
+F2837xD_DefaultISR.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_DefaultISR.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_GlobalVariableDefs.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/headers/source/F2837xD_GlobalVariableDefs.c
+F2837xD_GlobalVariableDefs.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/headers/source/F2837xD_GlobalVariableDefs.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_PieCtrl.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_PieCtrl.c
+F2837xD_PieCtrl.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_PieCtrl.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_PieVect.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_PieVect.c
+F2837xD_PieVect.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_PieVect.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_SysCtrl.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_SysCtrl.c
+F2837xD_SysCtrl.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_SysCtrl.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_usDelay.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_usDelay.asm
+F2837xD_usDelay.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_usDelay.asm
 	$(AS) $(ASFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_CodeStartBranch.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_CodeStartBranch.asm
+F2837xD_CodeStartBranch.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_CodeStartBranch.asm
 	$(AS) $(ASFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_Dma.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Dma.c
+F2837xD_Dma.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Dma.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_Adc.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Adc.c
+F2837xD_Adc.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Adc.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_Gpio.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Gpio.c
+F2837xD_Gpio.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Gpio.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-F2837xD_Ipc_Driver_Lite.obj : D:/ti/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Ipc_Driver_Lite.c
+F2837xD_Ipc_Driver_Lite.obj : C:/ti/c2000/C2000Ware_4_00_00_00/device_support/f2837xd/common/source/F2837xD_Ipc_Driver_Lite.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
@@ -758,7 +758,7 @@ MW_c28xGPIO.obj : C:/ProgramData/MATLAB/SupportPackages/R2022b/toolbox/shared/su
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
-clb.obj : D:/ti/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/clb.c
+clb.obj : C:/ti/c2000/C2000Ware_4_00_00_00/driverlib/f2837xd/driverlib/clb.c
 	$(CC) $(CFLAGS) --output_file="$@" "$<"
 
 
