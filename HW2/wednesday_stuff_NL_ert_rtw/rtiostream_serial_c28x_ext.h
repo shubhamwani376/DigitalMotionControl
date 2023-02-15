@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 // Created on 14-Feb-2023 12:55:10
+=======
+// Created on 10-Feb-2023 10:10:48
+>>>>>>> Stashed changes
 #ifndef RTIOSTREAM_SERIAL_C28X_EXT_H_
 #define RTIOSTREAM_SERIAL_C28X_EXT_H_
 

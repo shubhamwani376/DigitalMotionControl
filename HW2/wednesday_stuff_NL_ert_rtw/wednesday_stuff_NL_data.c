@@ -7,9 +7,15 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
+<<<<<<< Updated upstream
  * Model version                  : 1.69
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
  * C/C++ source code generated on : Tue Feb 14 12:55:02 2023
+=======
+ * Model version                  : 1.74
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Fri Feb 10 10:10:41 2023
+>>>>>>> Stashed changes
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -67,10 +73,25 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
    */
   0.25,
 
+<<<<<<< Updated upstream
   /* Expression: sps.Period
    * Referenced by: '<S4>/Constant1'
+=======
+  /* Expression: 0
+   * Referenced by: '<Root>/Step'
    */
-  1.0,
+  0.0,
+
+  /* Expression: 0.2
+   * Referenced by: '<Root>/Step'
+>>>>>>> Stashed changes
+   */
+  0.2,
+
+  /* Expression: -100000
+   * Referenced by: '<Root>/Constant3'
+   */
+  -100000.0,
 
   /* Expression: sps.Freq
    * Referenced by: '<S4>/1\ib1'

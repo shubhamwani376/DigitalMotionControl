@@ -9,7 +9,7 @@
  *
  * Model version                  : 1.53
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Sun Feb  5 21:31:14 2023
+ * C/C++ source code generated on : Thu Feb  9 19:04:55 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -450,7 +450,7 @@ void wednesday_stuff_NL_step(void)
     }
   }
 
-  {                                    /* Sample time: [0.1s, 0.0s] */
+  {                                    /* Sample time: [0.001s, 0.0s] */
     extmodeErrorCode_T errorCode = EXTMODE_SUCCESS;
     extmodeSimulationTime_T currentTime = (extmodeSimulationTime_T)
       ((wednesday_stuff_NL_M->Timing.clockTick1 * 1) + 0)
@@ -475,9 +475,9 @@ void wednesday_stuff_NL_step(void)
     wednesday_stuff_NL_M->Timing.stepSize0;
 
   {
-    /* Update absolute timer for sample time: [0.1s, 0.0s] */
+    /* Update absolute timer for sample time: [0.001s, 0.0s] */
     /* The "clockTick1" counts the number of times the code of this task has
-     * been executed. The resolution of this integer timer is 0.1, which is the step size
+     * been executed. The resolution of this integer timer is 0.001, which is the step size
      * of the task. Size of "clockTick1" ensures timer will not overflow during the
      * application lifespan selected.
      */
@@ -514,13 +514,13 @@ void wednesday_stuff_NL_initialize(void)
   rtsiSetSolverName(&wednesday_stuff_NL_M->solverInfo,"FixedStepDiscrete");
   rtmSetTPtr(wednesday_stuff_NL_M, &wednesday_stuff_NL_M->Timing.tArray[0]);
   rtmSetTFinal(wednesday_stuff_NL_M, -1);
-  wednesday_stuff_NL_M->Timing.stepSize0 = 0.1;
+  wednesday_stuff_NL_M->Timing.stepSize0 = 0.001;
 
   /* External mode info */
-  wednesday_stuff_NL_M->Sizes.checksums[0] = (60619932U);
-  wednesday_stuff_NL_M->Sizes.checksums[1] = (893003603U);
-  wednesday_stuff_NL_M->Sizes.checksums[2] = (1207625854U);
-  wednesday_stuff_NL_M->Sizes.checksums[3] = (2565535129U);
+  wednesday_stuff_NL_M->Sizes.checksums[0] = (886517687U);
+  wednesday_stuff_NL_M->Sizes.checksums[1] = (2729806505U);
+  wednesday_stuff_NL_M->Sizes.checksums[2] = (1622613732U);
+  wednesday_stuff_NL_M->Sizes.checksums[3] = (53544178U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;

@@ -18,7 +18,11 @@
       Description  "EmlPersistent"\
       SFName       ""\
       Path         ""\
+<<<<<<< Updated upstream
       SrcLocation  "wednesday_stuff_NL:173:62-66"\
+=======
+      SrcLocation  "wednesday_stuff_NL:173:65-69"\
+>>>>>>> Stashed changes
       Dimensions   [2]\
     }\
     ChartData {\
@@ -26,7 +30,11 @@
       Description  "EmlPersistent"\
       SFName       ""\
       Path         ""\
+<<<<<<< Updated upstream
       SrcLocation  "wednesday_stuff_NL:173:67-71"\
+=======
+      SrcLocation  "wednesday_stuff_NL:173:70-74"\
+>>>>>>> Stashed changes
     }\
   }
   %return ChartDataElements

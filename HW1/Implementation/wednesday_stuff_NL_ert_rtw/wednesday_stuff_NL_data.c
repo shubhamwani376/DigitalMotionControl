@@ -9,7 +9,7 @@
  *
  * Model version                  : 1.53
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Sun Feb  5 21:31:14 2023
+ * C/C++ source code generated on : Thu Feb  9 19:04:55 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -24,12 +24,12 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
   /* Variable: A_d
    * Referenced by: '<Root>/SOFC'
    */
-  { 1.0, 0.0, 0.075246338133039076, 0.54959430064081238 },
+  { 1.0, 0.0, 0.00099701308806597068, 0.994032129823957 },
 
   /* Variable: B_d
    * Referenced by: '<Root>/SOFC'
    */
-  { 10.207495173510191, 185.73066187297144 },
+  { 0.0012316920750621374, 2.4609290676060303 },
 
   /* Variable: C_d
    * Referenced by: '<Root>/SOFC'
@@ -39,22 +39,22 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
   /* Variable: K_SF
    * Referenced by: '<Root>/SOFC'
    */
-  { 0.071861017039244621, 0.0060655834503797555 },
+  { 0.51689467842222725, 0.012679123694011566 },
 
   /* Variable: L_Pred
    * Referenced by: '<Root>/SOFC'
    */
-  { 1.5495943006408124, 4.0142005948889912 },
+  { 0.92705594764175048, 212.73623601452047 },
 
   /* Variable: N
    * Referenced by: '<Root>/SOFC'
    */
-  0.071861017039244621,
+  0.51689467842222681,
 
   /* Variable: Tcomp
    * Referenced by: '<Root>/Transport Delay1'
    */
-  0.0007,
+  7.0E-6,
 
   /* Mask Parameter: DiscreteDerivative_ICPrevScaled
    * Referenced by: '<S1>/UD'
@@ -104,7 +104,7 @@ P_wednesday_stuff_NL_T wednesday_stuff_NL_P = {
   /* Computed Parameter: TSamp_WtEt
    * Referenced by: '<S1>/TSamp'
    */
-  10.0,
+  1000.0,
 
   /* Expression: 1000
    * Referenced by: '<Root>/Constant2'

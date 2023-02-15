@@ -7,9 +7,15 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
+<<<<<<< Updated upstream
  * Model version                  : 1.69
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
  * C/C++ source code generated on : Tue Feb 14 12:55:02 2023
+=======
+ * Model version                  : 1.74
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Fri Feb 10 10:10:41 2023
+>>>>>>> Stashed changes
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -306,11 +312,20 @@ void wednesday_stuff_NL_step(void)
     &wednesday_stuff_NL_DW.m_bpIndex, 2UL);
 
   /* Step: '<Root>/Step' */
+<<<<<<< Updated upstream
   if (((wednesday_stuff_NL_M->Timing.clockTick1) * 0.001) <
       wednesday_stuff_NL_P.Step_Time) {
     u_unsat = wednesday_stuff_NL_P.Step_Y0;
   } else {
     u_unsat = wednesday_stuff_NL_P.Step_YFinal;
+=======
+  if (wednesday_stuff_NL_M->Timing.t[0] < wednesday_stuff_NL_P.Step_Time) {
+    /* TransportDelay: '<Root>/Transport Delay2' */
+    rtb_TransportDelay2 = wednesday_stuff_NL_P.Step_Y0;
+  } else {
+    /* TransportDelay: '<Root>/Transport Delay2' */
+    rtb_TransportDelay2 = wednesday_stuff_NL_P.Step_YFinal;
+>>>>>>> Stashed changes
   }
 
   /* ZeroOrderHold: '<Root>/Zero-Order Hold2' incorporates:
@@ -323,6 +338,11 @@ void wednesday_stuff_NL_step(void)
   wednesday_stuff_NL_B.ZeroOrderHold2 = (rtb_Sum -
     wednesday_stuff_NL_P.Constant2_Value) * wednesday_stuff_NL_P.Gain1_Gain +
     u_unsat;
+
+  /* ZeroOrderHold: '<Root>/Zero-Order Hold2' incorporates:
+   *  Sum: '<Root>/Sum2'
+   */
+  wednesday_stuff_NL_B.ZeroOrderHold2 = rtb_TransportDelay2;
 
   /* SignalConversion generated from: '<Root>/Mux1' */
   wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[0] = 0.0;
@@ -363,20 +383,19 @@ void wednesday_stuff_NL_step(void)
   }
 
   /* Gain: '<Root>/Gain' incorporates:
+   *  Constant: '<Root>/Constant3'
    *  Sum: '<Root>/Sum'
    */
-  wednesday_stuff_NL_B.Gain = wednesday_stuff_NL_P.Gain_Gain *
-    wednesday_stuff_NL_B.eQEP_o1;
-
-  /* SignalConversion generated from: '<Root>/Mux5' */
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_d[0] =
-    wednesday_stuff_NL_B.Gain;
-  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_d[1] = 0.0;
+  wednesday_stuff_NL_B.Gain = (wednesday_stuff_NL_P.Constant3_Value +
+    wednesday_stuff_NL_B.eQEP_o1) * wednesday_stuff_NL_P.Gain_Gain;
 
   /* MATLAB Function: '<Root>/SOFC integral1' */
-  u_unsat = ((-wednesday_stuff_NL_P.K_aug[0] * wednesday_stuff_NL_DW.xhat[0] +
-              -wednesday_stuff_NL_P.K_aug[1] * wednesday_stuff_NL_DW.xhat[1]) +
-             -wednesday_stuff_NL_P.K_aug[2] * wednesday_stuff_NL_DW.xint) +
+  wednesday_stuff_NL_B.xaug[0] = wednesday_stuff_NL_DW.xhat[0];
+  wednesday_stuff_NL_B.xaug[1] = wednesday_stuff_NL_DW.xhat[1];
+  wednesday_stuff_NL_B.xaug[2] = wednesday_stuff_NL_DW.xint;
+  u_unsat = ((-wednesday_stuff_NL_P.K_aug[0] * wednesday_stuff_NL_B.xaug[0] +
+              -wednesday_stuff_NL_P.K_aug[1] * wednesday_stuff_NL_B.xaug[1]) +
+             -wednesday_stuff_NL_P.K_aug[2] * wednesday_stuff_NL_B.xaug[2]) +
     wednesday_stuff_NL_P.N * wednesday_stuff_NL_B.ZeroOrderHold2;
   rtb_Sum = fabs(u_unsat);
   if (rtIsNaN(u_unsat)) {
@@ -410,11 +429,15 @@ void wednesday_stuff_NL_step(void)
     + wednesday_stuff_NL_B.Gain) - wednesday_stuff_NL_B.ZeroOrderHold2;
 
   /* End of MATLAB Function: '<Root>/SOFC integral1' */
-
   /* SignalConversion generated from: '<Root>/Mux3' */
   wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_n[0] =
     wednesday_stuff_NL_B.u;
   wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_n[1] = 0.0;
+
+  /* SignalConversion generated from: '<Root>/Mux5' */
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_d[0] =
+    wednesday_stuff_NL_B.Gain;
+  wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLo_d[1] = 0.0;
 
   /* SampleTimeMath: '<S1>/TSamp'
    *
@@ -588,10 +611,17 @@ void wednesday_stuff_NL_initialize(void)
   wednesday_stuff_NL_M->Timing.stepSize0 = 0.001;
 
   /* External mode info */
+<<<<<<< Updated upstream
   wednesday_stuff_NL_M->Sizes.checksums[0] = (1547582251U);
   wednesday_stuff_NL_M->Sizes.checksums[1] = (1783989400U);
   wednesday_stuff_NL_M->Sizes.checksums[2] = (1672398844U);
   wednesday_stuff_NL_M->Sizes.checksums[3] = (2280610667U);
+=======
+  wednesday_stuff_NL_M->Sizes.checksums[0] = (1441103264U);
+  wednesday_stuff_NL_M->Sizes.checksums[1] = (336834907U);
+  wednesday_stuff_NL_M->Sizes.checksums[2] = (2383542088U);
+  wednesday_stuff_NL_M->Sizes.checksums[3] = (3179861771U);
+>>>>>>> Stashed changes
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -626,7 +656,12 @@ void wednesday_stuff_NL_initialize(void)
   EDIS;
 
   /* Start for S-Function (c280xqep): '<Root>/eQEP' */
+<<<<<<< Updated upstream
   config_QEP_eQEP1((uint32_T)4294967295U,(uint32_T)0U, (uint32_T)0, (uint32_T)0,
+=======
+  config_QEP_eQEP1((uint32_T)4294967295U,(uint32_T)100000U, (uint32_T)0,
+                   (uint32_T)0,
+>>>>>>> Stashed changes
                    (uint16_T)0, (uint16_T)0, (uint16_T)4232, (uint16_T)32768,
                    (uint16_T)32864,(uint16_T)0);
 

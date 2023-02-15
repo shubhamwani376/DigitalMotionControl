@@ -18,7 +18,7 @@ SSdesign = 'state_observer_feedback';
 
 
 
-Ts = 0.1;  %digital control sampling time
+Ts = 0.001;  %digital control sampling time
 
 
 %Motor and Pendulum Parameters:

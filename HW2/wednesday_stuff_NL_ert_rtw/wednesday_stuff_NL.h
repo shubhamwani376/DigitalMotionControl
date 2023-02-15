@@ -7,9 +7,15 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
+<<<<<<< Updated upstream
  * Model version                  : 1.69
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
  * C/C++ source code generated on : Tue Feb 14 12:55:02 2023
+=======
+ * Model version                  : 1.74
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Fri Feb 10 10:10:41 2023
+>>>>>>> Stashed changes
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -96,17 +102,18 @@ typedef struct {
   real_T TmpSignalConversionAtTAQSigLogg[4];
   /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux1_at_outport_0Inport1' */
   real_T eQEP_o1;                      /* '<Root>/eQEP' */
-  real_T eQEP_o2;                      /* '<Root>/eQEP' */
   real_T Gain;                         /* '<Root>/Gain' */
-  real_T TmpSignalConversionAtTAQSigLo_d[2];
-  /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux5_at_outport_0Inport1' */
   real_T TmpSignalConversionAtTAQSigLo_n[2];
   /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux3_at_outport_0Inport1' */
+  real_T TmpSignalConversionAtTAQSigLo_d[2];
+  /* '<Root>/TmpSignal ConversionAtTAQSigLogging_InsertedFor_Mux5_at_outport_0Inport1' */
   real_T Diff;                         /* '<S1>/Diff' */
   real_T Constant2;                    /* '<Root>/Constant2' */
   real_T Sum1;                         /* '<Root>/Sum1' */
   real_T Constant;                     /* '<Root>/Constant' */
   real_T u;                            /* '<Root>/SOFC integral1' */
+  real_T xaug[3];                      /* '<Root>/SOFC integral1' */
+  real32_T eQEP_o2;                    /* '<Root>/eQEP' */
 } B_wednesday_stuff_NL_T;
 
 /* Block states (default storage) for system '<Root>' */
@@ -125,11 +132,15 @@ typedef struct {
 
   struct {
     void *LoggedData;
-  } y_m_PWORK;                         /* '<Root>/y_m' */
+  } ToWorkspace4_PWORK;                /* '<Root>/To Workspace4' */
 
   struct {
     void *LoggedData;
   } u_PWORK;                           /* '<Root>/u' */
+
+  struct {
+    void *LoggedData;
+  } y_m_PWORK;                         /* '<Root>/y_m' */
 
   struct {
     void *LoggedData;
@@ -229,7 +240,14 @@ struct P_wednesday_stuff_NL_T_ {
   real_T Step_YFinal;                  /* Expression: 0.2
                                         * Referenced by: '<Root>/Step'
                                         */
+<<<<<<< Updated upstream
   real_T Constant1_Value_a;            /* Expression: 1
+=======
+  real_T Constant3_Value;              /* Expression: -100000
+                                        * Referenced by: '<Root>/Constant3'
+                                        */
+  real_T Constant1_Value;              /* Expression: 1
+>>>>>>> Stashed changes
                                         * Referenced by: '<Root>/Constant1'
                                         */
   real_T Gain_Gain;                    /* Expression: 3.14159/400

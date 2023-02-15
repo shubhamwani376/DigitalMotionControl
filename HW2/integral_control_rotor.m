@@ -130,6 +130,7 @@ zpk(G_d)
         
         % Calculate Observer damping ratio and natural frequency:
         
+<<<<<<< Updated upstream
 %         Zeta=7.5;
 %         Wn = 20*2*pi;        % 100*2*pi
 %         s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
@@ -138,6 +139,16 @@ zpk(G_d)
 %             
 %         % To be filled for double pendulum 
 %         end       
+=======
+        Zeta = 7.5;
+        Wn = 20*2*pi;        % 100*2*pi
+        s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
+        Pole_Pred=exp(s_pole*Ts);
+        if pend ~= 1; 
+            
+        % To be filled for double pendulum 
+        end       
+>>>>>>> Stashed changes
         %Pole_Pred = [0,0]; [0.8+1j*0.1 0.8-1j*0.1];
         %L_Pred = place(A_d',C_d',Pole_Pred); %for MIMO, but no identical poles
 %         L_Pred = acker(A_d',C_d',Pole_Pred);  %for SISO only

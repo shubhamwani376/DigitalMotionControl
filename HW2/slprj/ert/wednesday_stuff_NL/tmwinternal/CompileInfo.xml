@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" packageUris="http://schema.mathworks.com/mf0/ci/19700101 http://schema.mathworks.com/mf0/sl_modelref_info/R2022b http://schema.mathworks.com/mf0/slexec_mm_sto/R2022b_202202091112 http://schema.mathworks.com/mf0/sltp_mm/R2022b_202203181029">
+<<<<<<< Updated upstream
   <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="df2fdaca-2b0b-4e58-9a44-f25bab633d97">
     <JITEngines>smOshTzGeEFFvqxdX7rrweD</JITEngines>
     <childModelRefInfo type="ModelRefInfoRepo.ChildModelRefInfo" uuid="c585d02b-6970-41f1-8b8c-2cb7aaf3da08">
+=======
+  <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="ac407625-e690-4fc4-8ce7-9bd41bc89174">
+    <JITEngines>swzxaEx4nemWsBR4rBCRCZC</JITEngines>
+    <childModelRefInfo type="ModelRefInfoRepo.ChildModelRefInfo" uuid="a123e556-5d51-42b2-9fd4-f550fb09c0c0">
+>>>>>>> Stashed changes
       <isSingleInstance>true</isSingleInstance>
       <modelName>wednesday_stuff_NL</modelName>
       <modelPath>wednesday_stuff_NL</modelPath>
@@ -36,6 +42,7 @@
     <removeResetFunc>true</removeResetFunc>
     <runtimeNonFcnCallRateInfos type="ModelRefInfoRepo.RateInfo">
       <compiled>true</compiled>
+      <needAbsoluteTime>true</needAbsoluteTime>
       <period>0.0</period>
       <priority>40</priority>
       <rateIdx>0</rateIdx>
@@ -52,14 +59,22 @@
     <solverStatusFlags>335</solverStatusFlags>
     <timingAndTaskingRegistry>&lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;slexec_sto version=&quot;1.1&quot; packageUris=&quot;http://schema.mathworks.com/mf0/slexec_mm_sto/R2022b_202202091112&quot;&gt;
+<<<<<<< Updated upstream
   &lt;sto.Registry type=&quot;sto.Registry&quot; uuid=&quot;99d5264c-ded0-408c-a10a-86feab2fd5e3&quot;&gt;
     &lt;executionSpec&gt;Undetermined&lt;/executionSpec&gt;
     &lt;clockRegistry type=&quot;sto.ClockRegistry&quot; uuid=&quot;d887c34b-7f72-4a63-bb8f-6f9b251e7b78&quot;&gt;
       &lt;clocks type=&quot;sto.Timer&quot; uuid=&quot;942b9595-6e6d-4ee4-9f8e-9542a7205946&quot;&gt;
+=======
+  &lt;sto.Registry type=&quot;sto.Registry&quot; uuid=&quot;4c453380-b92d-4a2c-896a-0b8714682918&quot;&gt;
+    &lt;executionSpec&gt;Undetermined&lt;/executionSpec&gt;
+    &lt;clockRegistry type=&quot;sto.ClockRegistry&quot; uuid=&quot;f2672782-6b78-463f-821a-0172d3c1bc35&quot;&gt;
+      &lt;clocks type=&quot;sto.Timer&quot; uuid=&quot;1146dbee-c8b7-4f68-992d-2e0fc7623031&quot;&gt;
+>>>>>>> Stashed changes
         &lt;clockTickConstraint&gt;PeriodicWithFixedResolution&lt;/clockTickConstraint&gt;
         &lt;computedFundamentalDiscretePeriod&gt;.001&lt;/computedFundamentalDiscretePeriod&gt;
         &lt;resolution&gt;.001&lt;/resolution&gt;
         &lt;timeAdvanceMode&gt;FixedStep&lt;/timeAdvanceMode&gt;
+<<<<<<< Updated upstream
         &lt;rates type=&quot;sto.ContinuousRate&quot; uuid=&quot;8ed3460a-a645-48f2-925e-3d37f156f2eb&quot;&gt;
           &lt;annotation&gt;Cont&lt;/annotation&gt;
           &lt;description&gt;Continuous&lt;/description&gt;
@@ -67,11 +82,21 @@
           &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;9391b9da-4af7-4712-b59f-d6efc59d1603&quot;/&gt;
         &lt;/rates&gt;
         &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;e4f9a8b6-bdc6-4609-994e-2e1ebb046663&quot;&gt;
+=======
+        &lt;rates type=&quot;sto.ContinuousRate&quot; uuid=&quot;2418381f-62e5-452b-ad8a-ba8f6b098b94&quot;&gt;
+          &lt;annotation&gt;Cont&lt;/annotation&gt;
+          &lt;description&gt;Continuous&lt;/description&gt;
+          &lt;taskId&gt;_task0&lt;/taskId&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;d62d4b53-1a44-443f-aeb6-3706bde8a803&quot;/&gt;
+        &lt;/rates&gt;
+        &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;b0282dcc-b6f4-4d42-8e5b-0cb3e50076a7&quot;&gt;
+>>>>>>> Stashed changes
           &lt;annotation&gt;D1&lt;/annotation&gt;
           &lt;colorIndex&gt;2&lt;/colorIndex&gt;
           &lt;description&gt;Discrete 1&lt;/description&gt;
           &lt;rateIdx&gt;1&lt;/rateIdx&gt;
           &lt;taskId&gt;_task0&lt;/taskId&gt;
+<<<<<<< Updated upstream
           &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;9e382b51-052a-43fb-a25a-fa59a43e9df2&quot;&gt;
             &lt;period&gt;.001&lt;/period&gt;
             &lt;rateType&gt;ClassicPeriodicDiscrete&lt;/rateType&gt;
@@ -85,16 +110,39 @@
         &lt;/baseRate&gt;
       &lt;/clocks&gt;
       &lt;clocks type=&quot;sto.Event&quot; uuid=&quot;55de00a0-8796-4bb8-9998-3a58065e92ab&quot;&gt;
+=======
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;fa8b0d89-ee02-4514-8b82-3058e31826b6&quot;&gt;
+            &lt;period&gt;.01&lt;/period&gt;
+            &lt;rateType&gt;ClassicPeriodicDiscrete&lt;/rateType&gt;
+          &lt;/rateSpec&gt;
+        &lt;/rates&gt;
+        &lt;baseRate type=&quot;sto.ContinuousRate&quot; uuid=&quot;8bfd8949-298f-413d-b0bc-fa8c83974a6f&quot;&gt;
+          &lt;annotation&gt;Cont&lt;/annotation&gt;
+          &lt;description&gt;Continuous&lt;/description&gt;
+          &lt;taskId&gt;_task0&lt;/taskId&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;369e52d3-0e13-4250-aa6e-cdcdde7d2280&quot;/&gt;
+        &lt;/baseRate&gt;
+      &lt;/clocks&gt;
+      &lt;clocks type=&quot;sto.Event&quot; uuid=&quot;7a59ef88-0b3f-4800-a88c-e3ae8993bfb2&quot;&gt;
+>>>>>>> Stashed changes
         &lt;eventType&gt;PARAMETER_CHANGE_EVENT&lt;/eventType&gt;
         &lt;cNum&gt;1&lt;/cNum&gt;
         &lt;clockType&gt;Event&lt;/clockType&gt;
         &lt;identifier&gt;ParameterChangeEvent&lt;/identifier&gt;
+<<<<<<< Updated upstream
         &lt;rates type=&quot;sto.ModelWideEventRate&quot; uuid=&quot;3e163eda-e9af-48d2-9289-ec137921be8c&quot;&gt;
+=======
+        &lt;rates type=&quot;sto.ModelWideEventRate&quot; uuid=&quot;fda754db-a5e4-4358-beb3-197a3b091eed&quot;&gt;
+>>>>>>> Stashed changes
           &lt;clockId&gt;ParameterChangeEvent&lt;/clockId&gt;
           &lt;rateIdx&gt;-1&lt;/rateIdx&gt;
           &lt;taskId&gt;ModelWideParameterChangeEvent&lt;/taskId&gt;
           &lt;useForExecution&gt;NotForExecution&lt;/useForExecution&gt;
+<<<<<<< Updated upstream
           &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;3cfeaebd-a24d-4c2d-86b7-36c7eb08fc0d&quot;&gt;
+=======
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;28bc1cc4-93a7-4c8d-bfb5-6a92dffb291a&quot;&gt;
+>>>>>>> Stashed changes
             &lt;period&gt;inf&lt;/period&gt;
             &lt;rateType&gt;ModelWideParameterChangeEvent&lt;/rateType&gt;
           &lt;/rateSpec&gt;
@@ -102,15 +150,26 @@
       &lt;/clocks&gt;
       &lt;timeAdvanceMode&gt;FixedStep&lt;/timeAdvanceMode&gt;
     &lt;/clockRegistry&gt;
+<<<<<<< Updated upstream
     &lt;taskRegistry type=&quot;sto.TaskRegistry&quot; uuid=&quot;27f92542-53cb-43f7-b3c1-344e90e3e215&quot;&gt;
       &lt;rootTaskHierarchyElements type=&quot;sto.Task&quot; uuid=&quot;5e0b90fc-0d02-42a4-9ce6-34666f4978ea&quot;&gt;
         &lt;isExplicit&gt;true&lt;/isExplicit&gt;
         &lt;rates type=&quot;sto.ModelWideEventRate&quot; uuid=&quot;71072038-8388-4e1b-a65f-196c06c94ea6&quot;&gt;
+=======
+    &lt;taskRegistry type=&quot;sto.TaskRegistry&quot; uuid=&quot;60ef38da-dc83-4ab2-8de8-acb1176053f5&quot;&gt;
+      &lt;rootTaskHierarchyElements type=&quot;sto.Task&quot; uuid=&quot;04ef307f-9346-4c6c-83bf-cd9c96c7126c&quot;&gt;
+        &lt;isExplicit&gt;true&lt;/isExplicit&gt;
+        &lt;rates type=&quot;sto.ModelWideEventRate&quot; uuid=&quot;40e910da-aeef-4c6b-b8e6-e240f42fe72a&quot;&gt;
+>>>>>>> Stashed changes
           &lt;clockId&gt;ParameterChangeEvent&lt;/clockId&gt;
           &lt;rateIdx&gt;-1&lt;/rateIdx&gt;
           &lt;taskId&gt;ModelWideParameterChangeEvent&lt;/taskId&gt;
           &lt;useForExecution&gt;NotForExecution&lt;/useForExecution&gt;
+<<<<<<< Updated upstream
           &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;0ad2eb82-83c5-4c18-bcd9-d5c87166e862&quot;&gt;
+=======
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;01abea96-cdda-469c-acc7-76e284b0ef89&quot;&gt;
+>>>>>>> Stashed changes
             &lt;period&gt;inf&lt;/period&gt;
             &lt;rateType&gt;ModelWideParameterChangeEvent&lt;/rateType&gt;
           &lt;/rateSpec&gt;
@@ -120,6 +179,7 @@
         &lt;identifier&gt;ModelWideParameterChangeEvent&lt;/identifier&gt;
         &lt;priority&gt;-1&lt;/priority&gt;
       &lt;/rootTaskHierarchyElements&gt;
+<<<<<<< Updated upstream
       &lt;rootTaskHierarchyElements type=&quot;sto.Task&quot; uuid=&quot;64c8eefc-427a-44dd-97d5-adaf3ec84738&quot;&gt;
         &lt;isExecutable&gt;true&lt;/isExecutable&gt;
         &lt;orderIndex&gt;1&lt;/orderIndex&gt;
@@ -130,13 +190,30 @@
           &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;48d53fe5-773e-4a82-a4e7-3e9c6a4278e3&quot;/&gt;
         &lt;/rates&gt;
         &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;fd24ad3e-5390-4892-bd55-42f7b3a5faf8&quot;&gt;
+=======
+      &lt;rootTaskHierarchyElements type=&quot;sto.Task&quot; uuid=&quot;ddfd69b0-aeaa-457e-9565-6c8e2c9788d7&quot;&gt;
+        &lt;isExecutable&gt;true&lt;/isExecutable&gt;
+        &lt;orderIndex&gt;1&lt;/orderIndex&gt;
+        &lt;rates type=&quot;sto.ContinuousRate&quot; uuid=&quot;9b6be823-af97-4f4e-b750-d42f7b5ea72d&quot;&gt;
+          &lt;annotation&gt;Cont&lt;/annotation&gt;
+          &lt;description&gt;Continuous&lt;/description&gt;
+          &lt;taskId&gt;_task0&lt;/taskId&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;d8a18f55-0cb7-4ae8-931f-5ef3e90d8e4c&quot;/&gt;
+        &lt;/rates&gt;
+        &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;51816cee-4f60-420b-b939-f7eafc5d5a29&quot;&gt;
+>>>>>>> Stashed changes
           &lt;annotation&gt;D1&lt;/annotation&gt;
           &lt;colorIndex&gt;2&lt;/colorIndex&gt;
           &lt;description&gt;Discrete 1&lt;/description&gt;
           &lt;rateIdx&gt;1&lt;/rateIdx&gt;
           &lt;taskId&gt;_task0&lt;/taskId&gt;
+<<<<<<< Updated upstream
           &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;66abf64c-508c-40d4-ac35-f3852c2ac5ec&quot;&gt;
             &lt;period&gt;.001&lt;/period&gt;
+=======
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;fad60e5c-fc48-4cac-ba03-8124105bcea7&quot;&gt;
+            &lt;period&gt;.01&lt;/period&gt;
+>>>>>>> Stashed changes
             &lt;rateType&gt;ClassicPeriodicDiscrete&lt;/rateType&gt;
           &lt;/rateSpec&gt;
         &lt;/rates&gt;
@@ -144,10 +221,17 @@
         &lt;identifier&gt;_task0&lt;/identifier&gt;
         &lt;priority&gt;40&lt;/priority&gt;
       &lt;/rootTaskHierarchyElements&gt;
+<<<<<<< Updated upstream
       &lt;taskDependencyGraph type=&quot;sto.SerializedTaskConnectionList&quot; uuid=&quot;ed8f2b39-20fe-41cd-8257-94a874743dd4&quot;&gt;
         &lt;taskIdentifier&gt;_task0&lt;/taskIdentifier&gt;
       &lt;/taskDependencyGraph&gt;
       &lt;taskDependencyGraph type=&quot;sto.SerializedTaskConnectionList&quot; uuid=&quot;4e4db4d1-2fcd-4c62-903e-85b11ae7866d&quot;&gt;
+=======
+      &lt;taskDependencyGraph type=&quot;sto.SerializedTaskConnectionList&quot; uuid=&quot;41e4bceb-0104-4807-a761-5e183592f2c5&quot;&gt;
+        &lt;taskIdentifier&gt;_task0&lt;/taskIdentifier&gt;
+      &lt;/taskDependencyGraph&gt;
+      &lt;taskDependencyGraph type=&quot;sto.SerializedTaskConnectionList&quot; uuid=&quot;54cd3b8e-7cc3-4fc3-be7a-7f4852f11cff&quot;&gt;
+>>>>>>> Stashed changes
         &lt;clockIdentifier&gt;ParameterChangeEvent&lt;/clockIdentifier&gt;
         &lt;taskIdentifier&gt;ModelWideParameterChangeEvent&lt;/taskIdentifier&gt;
       &lt;/taskDependencyGraph&gt;
@@ -156,10 +240,17 @@
     &lt;/taskRegistry&gt;
   &lt;/sto.Registry&gt;
 &lt;/slexec_sto&gt;</timingAndTaskingRegistry>
+<<<<<<< Updated upstream
     <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="6cac569e-6409-48e5-82d7-be12afa6159a"/>
     <codeGenInfo type="ModelRefInfoRepo.CodeGenInformation" uuid="884c35ab-2a70-42e3-b053-dffdd4879895"/>
     <compiledVariantInfos type="ModelRefInfoRepo.CompiledVariantInfoMap" uuid="e65b951b-da2b-4ecb-9bba-a9acbe0ef556"/>
     <configSettingsForConsistencyChecks type="ModelRefInfoRepo.ConfigSettingsForConsistencyChecks" uuid="a71215d9-1387-4797-ba5f-35a3a23e8647">
+=======
+    <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="db4d4814-4bb3-4796-b9a0-d651439164c5"/>
+    <codeGenInfo type="ModelRefInfoRepo.CodeGenInformation" uuid="219b1682-22d9-4759-8fd6-88f3b653f39b"/>
+    <compiledVariantInfos type="ModelRefInfoRepo.CompiledVariantInfoMap" uuid="36e4ebf7-ade2-40b9-ae1f-394174e72e9f"/>
+    <configSettingsForConsistencyChecks type="ModelRefInfoRepo.ConfigSettingsForConsistencyChecks" uuid="282de575-b3dc-4c5a-8d51-bf7b32686adc">
+>>>>>>> Stashed changes
       <consistentOutportInitialization>true</consistentOutportInitialization>
       <denormalBehavior>DENORMAL_TYPE_FTZ</denormalBehavior>
       <fixedStepSize>.001</fixedStepSize>
@@ -170,7 +261,11 @@
       <simSIMDOptimization>1</simSIMDOptimization>
       <solverName>FixedStepDiscrete</solverName>
       <solverType>SOLVER_TYPE_FIXEDSTEP</solverType>
+<<<<<<< Updated upstream
       <hardwareSettings type="ModelRefInfoRepo.HardwareSettings" uuid="d23a9d75-db3a-4504-93a7-25536d633c4d">
+=======
+      <hardwareSettings type="ModelRefInfoRepo.HardwareSettings" uuid="a53612d8-f3cb-47a7-bda8-0f8cd5e8715b">
+>>>>>>> Stashed changes
         <prodBitPerChar>16</prodBitPerChar>
         <prodBitPerDouble>64</prodBitPerDouble>
         <prodBitPerFloat>32</prodBitPerFloat>
@@ -189,12 +284,21 @@
         <prodWordSize>16</prodWordSize>
       </hardwareSettings>
     </configSettingsForConsistencyChecks>
+<<<<<<< Updated upstream
     <controllableInputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="76a77e29-a885-41fe-aa7d-5b5e6633b0fd"/>
     <controllableOutputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="dbbf751c-fae4-4daf-b772-a55e7ff0ccac"/>
     <dataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="cdcb08b5-73b8-408d-b577-9275ee8ab2f8"/>
     <expFcnUnconnectedDataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="d9fbece9-365c-4a2d-8516-9c48bb867146"/>
     <interfaceParameterInfo type="ModelRefInfoRepo.InterfaceParameterInfo" uuid="af3b9111-e351-47c0-ac9b-36563136a008">
       <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="a32abd02-8ddf-44b0-a4bf-f9ba8b70b3eb">
+=======
+    <controllableInputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="d21f8ddd-57fa-4885-a6b1-4b424b9e7692"/>
+    <controllableOutputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="96eaac08-2790-43aa-b0e1-debcd14b0f65"/>
+    <dataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="04307a81-6988-48b2-ad56-4a4dd428c15c"/>
+    <expFcnUnconnectedDataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="e2958818-f600-4ad2-b839-685fc18e76c5"/>
+    <interfaceParameterInfo type="ModelRefInfoRepo.InterfaceParameterInfo" uuid="93a0dc5b-fbad-41ba-8cf5-7f7a98e1b5d1">
+      <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="24f6cb98-feb1-4a49-b49f-8704b17225a7">
+>>>>>>> Stashed changes
         <dimensions>2</dimensions>
         <dimensions>2</dimensions>
         <isUsed>true</isUsed>
@@ -202,7 +306,11 @@
         <numDimensions>2</numDimensions>
         <parameterName>A_d</parameterName>
       </globalVariables>
+<<<<<<< Updated upstream
       <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="50dda727-bb6b-4c29-89a6-c28e8f95c02b">
+=======
+      <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="9e65eae1-21bc-41cf-a344-d07b66105325">
+>>>>>>> Stashed changes
         <dimensions>2</dimensions>
         <dimensions>1</dimensions>
         <isUsed>true</isUsed>
@@ -210,7 +318,11 @@
         <numDimensions>2</numDimensions>
         <parameterName>B_d</parameterName>
       </globalVariables>
+<<<<<<< Updated upstream
       <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="f7130768-40cc-4f71-a48a-89db6547df6e">
+=======
+      <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="7d96b371-779a-4909-9d59-11c9dc3c2dce">
+>>>>>>> Stashed changes
         <dimensions>1</dimensions>
         <dimensions>2</dimensions>
         <isUsed>true</isUsed>
@@ -218,7 +330,11 @@
         <numDimensions>2</numDimensions>
         <parameterName>C_d</parameterName>
       </globalVariables>
+<<<<<<< Updated upstream
       <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="29bdea4c-03be-4434-bf42-5dcd30415931">
+=======
+      <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="24e65fd1-ae8a-47a3-b232-30f7d39548aa">
+>>>>>>> Stashed changes
         <dimensions>1</dimensions>
         <dimensions>3</dimensions>
         <isUsed>true</isUsed>
@@ -226,7 +342,11 @@
         <numDimensions>2</numDimensions>
         <parameterName>K_aug</parameterName>
       </globalVariables>
+<<<<<<< Updated upstream
       <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="b661eb4e-d810-4016-bc47-3ebb46a239cc">
+=======
+      <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="bc8fbe7c-c7ed-4693-a988-ae223b560784">
+>>>>>>> Stashed changes
         <dimensions>2</dimensions>
         <dimensions>1</dimensions>
         <isUsed>true</isUsed>
@@ -234,7 +354,11 @@
         <numDimensions>2</numDimensions>
         <parameterName>L_Pred</parameterName>
       </globalVariables>
+<<<<<<< Updated upstream
       <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="8a42ed83-329e-4e7a-bcc8-b6730e23ea67">
+=======
+      <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="f4ff7cee-2a37-409d-bdf6-2fed7ada9ca7">
+>>>>>>> Stashed changes
         <dimensions>1</dimensions>
         <dimensions>1</dimensions>
         <isUsed>true</isUsed>
@@ -242,7 +366,11 @@
         <numDimensions>2</numDimensions>
         <parameterName>N</parameterName>
       </globalVariables>
+<<<<<<< Updated upstream
       <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="0baf53f5-cd1b-4264-bf55-cb858f09e908">
+=======
+      <globalVariables type="ModelRefInfoRepo.BuiltinParameter" uuid="ab0a3bc7-b4e0-4046-80e6-bec9599f2009">
+>>>>>>> Stashed changes
         <dimensions>1</dimensions>
         <dimensions>1</dimensions>
         <isUsed>true</isUsed>
@@ -251,13 +379,19 @@
         <parameterName>Tcomp</parameterName>
       </globalVariables>
     </interfaceParameterInfo>
+<<<<<<< Updated upstream
     <messageInfo type="ModelRefInfoRepo.MessageInformation" uuid="eedac600-6bd6-44e7-9d53-d76497db253e"/>
     <methodInfo type="ModelRefInfoRepo.MethodExistenceInfo" uuid="9b1124bf-1b7e-44e5-91ba-f24d6cbb8eda">
+=======
+    <messageInfo type="ModelRefInfoRepo.MessageInformation" uuid="74ad85d0-1f46-45c8-9efa-cbba4e0cbe84"/>
+    <methodInfo type="ModelRefInfoRepo.MethodExistenceInfo" uuid="9d462ee4-73ff-4a9f-9037-ecdeb2563f0b">
+>>>>>>> Stashed changes
       <hasSystemInitializeMethod>true</hasSystemInitializeMethod>
       <hasSystemResetMethod>true</hasSystemResetMethod>
       <hasTerminateMethod>true</hasTerminateMethod>
       <hasUpdateMethod>true</hasUpdateMethod>
     </methodInfo>
+<<<<<<< Updated upstream
     <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="40f1a14e-e4cf-47d8-a349-ec76854aea49"/>
     <portGroupsRequireSameRate type="ModelRefInfoRepo.PortGroupsRequireSameRate" uuid="84a573ec-4e1d-4414-9c14-89449201dbc0">
       <DSMPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="bc4138ac-a4a1-4860-9bc9-afea8f809ae9"/>
@@ -268,20 +402,40 @@
     <rateSpecOfGlobalDSMAccessedByDescExpFcnMdlMap type="ModelRefInfoRepo.GlobalDSMRateSpecMap" uuid="ba4d85a6-eabb-45bf-9d72-de10c6b18f2a"/>
     <rootBlockDiagramInterface type="ci.Model" uuid="71550683-6bc7-4f18-bf25-813ec8eeef19">
       <p_RootComponentInterface type="ci.ComponentInterface" uuid="a473345e-6173-4c90-8a4b-2828291e0fbb">
+=======
+    <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="dafa6623-ffff-44c2-8963-4ef1a8695705"/>
+    <portGroupsRequireSameRate type="ModelRefInfoRepo.PortGroupsRequireSameRate" uuid="19045964-5ae5-4e7a-82cb-6aa7a733691a">
+      <DSMPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="19673d6b-010c-4a0f-ae6e-6390c60b09c1"/>
+      <GlobalDSMPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="6405c5cd-6858-4beb-915a-0a169c096cf4"/>
+      <mergedPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="83d01a70-8e2f-43f2-9ba7-defc1700be74"/>
+    </portGroupsRequireSameRate>
+    <rateBasedMdlGlobalDSMRateSpec type="ModelRefInfoRepo.GlobalDSMRateSpecMap" uuid="8d444213-4c97-47aa-9e3b-485491f18bd1"/>
+    <rateSpecOfGlobalDSMAccessedByDescExpFcnMdlMap type="ModelRefInfoRepo.GlobalDSMRateSpecMap" uuid="363afe81-3da7-4bca-a6fe-731830216175"/>
+    <rootBlockDiagramInterface type="ci.Model" uuid="824ed498-5349-4a9c-ac42-7a826aaab109">
+      <p_RootComponentInterface type="ci.ComponentInterface" uuid="08262337-9305-43f0-a755-dd6b7828edfd">
+>>>>>>> Stashed changes
         <p_Name>wednesday_stuff_NL</p_Name>
         <p_Type>ROOT</p_Type>
       </p_RootComponentInterface>
     </rootBlockDiagramInterface>
+<<<<<<< Updated upstream
     <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="eb343f96-c7f7-4cd8-9463-d29657c156c1">
       <compSimulinkFunctionCatalog></compSimulinkFunctionCatalog>
     </simulinkFunctions>
     <sltpContext type="sltp.mm.core.Context" uuid="de80f57a-b842-4232-9cb4-d426c0046a92">
+=======
+    <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="4d404e98-a03d-4c31-a629-b2c374f31a1a">
+      <compSimulinkFunctionCatalog></compSimulinkFunctionCatalog>
+    </simulinkFunctions>
+    <sltpContext type="sltp.mm.core.Context" uuid="fdaa23c6-2c5c-46fe-8b1b-a2495b14fffd">
+>>>>>>> Stashed changes
       <priorityDirection>HighNumberLast</priorityDirection>
       <unusedTaskIds>2</unusedTaskIds>
       <editorState type="sltp.mm.core.EditorState" uuid="c10c48b9-050a-4c2e-9625-e1abca4feaad">
         <isSynchronized>true</isSynchronized>
         <panelState type="sltp.mm.core.EditorPanelState" uuid="5201ec29-d860-4a9c-91ad-6517356a39e8"/>
       </editorState>
+<<<<<<< Updated upstream
       <rootTask type="sltp.mm.core.Task" uuid="c8935586-2643-4704-8fa3-f0aa0436d01f">
         <context type="sltp.mm.core.Context" uuid="de80f57a-b842-4232-9cb4-d426c0046a92"/>
         <explicit>false</explicit>
@@ -291,12 +445,27 @@
           <tasks type="sltp.mm.core.Task" uuid="a7cb6dec-517c-4946-afb9-1bdc26ee7167">
             <baseTask>true</baseTask>
             <context type="sltp.mm.core.Context" uuid="de80f57a-b842-4232-9cb4-d426c0046a92"/>
+=======
+      <rootTask type="sltp.mm.core.Task" uuid="96e6f8ae-0ebd-49a5-8bfc-9c8496efccca">
+        <context type="sltp.mm.core.Context" uuid="fdaa23c6-2c5c-46fe-8b1b-a2495b14fffd"/>
+        <explicit>false</explicit>
+        <name>Default</name>
+        <priority>-2147483648</priority>
+        <subgraph type="sltp.mm.core.Graph" uuid="02a0a5e8-3de3-4785-94f2-425b1c47a8d7">
+          <tasks type="sltp.mm.core.Task" uuid="718d06f6-0f06-4470-8a56-6ec56cc97547">
+            <baseTask>true</baseTask>
+            <context type="sltp.mm.core.Context" uuid="fdaa23c6-2c5c-46fe-8b1b-a2495b14fffd"/>
+>>>>>>> Stashed changes
             <explicit>false</explicit>
             <id>1</id>
             <isTimed>true</isTimed>
             <name>Cont</name>
             <priority>40</priority>
+<<<<<<< Updated upstream
             <rates type="sltp.mm.core.Rate" uuid="a73b1225-3448-4eda-8475-3fb4c3cbe2a0">
+=======
+            <rates type="sltp.mm.core.Rate" uuid="7b3e5341-00a2-43ac-904b-2c45e025add6">
+>>>>>>> Stashed changes
               <annotation>Cont</annotation>
               <color>255</color>
               <hasBlocks>true</hasBlocks>
@@ -306,7 +475,11 @@
               </rateSpec>
               <sti>0</sti>
             </rates>
+<<<<<<< Updated upstream
             <rates type="sltp.mm.core.Rate" uuid="c437055e-dddd-4f55-9118-0f13e2b3c678">
+=======
+            <rates type="sltp.mm.core.Rate" uuid="4f74dd51-4df0-40c7-8137-9c9cb3af7b98">
+>>>>>>> Stashed changes
               <annotation>D1</annotation>
               <color>-436207361</color>
               <hasBlocks>true</hasBlocks>
@@ -319,6 +492,7 @@
         </subgraph>
       </rootTask>
     </sltpContext>
+<<<<<<< Updated upstream
     <stateWriterToOwnerMap type="ModelRefInfoRepo.StateWriterInfo" uuid="b17619f4-32d4-41c0-8fd1-9ba48d094cfe"/>
     <stoClientDataRegistry type="sto.ClientDataRegistry" uuid="f564ffb3-6efa-415c-b986-4e4134547228">
       <dataSets type="sto.ClientClockNamedDataSet" uuid="10cd3eb8-a6b8-4735-845f-bb4ee0105153">
@@ -332,6 +506,21 @@
         <tSet type="ModelRefInfoRepo.SltpTaskData" uuid="ddc888d7-6947-483e-b9aa-6d327a1bec61">
           <dataName>Cont</dataName>
           <linkedSet type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="9a77c869-7c5a-4915-a9e6-429780593583"/>
+=======
+    <stateWriterToOwnerMap type="ModelRefInfoRepo.StateWriterInfo" uuid="7840af72-984d-495d-beb9-a21ea15f4255"/>
+    <stoClientDataRegistry type="sto.ClientDataRegistry" uuid="f52e1425-5f4a-435c-ab88-3c567f8ede34">
+      <dataSets type="sto.ClientClockNamedDataSet" uuid="d6a9f30f-eeb9-497a-aeb1-0b388189a003">
+        <tag>sltpEvents</tag>
+      </dataSets>
+      <dataSets type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="f94bbb5d-efba-46e6-8bd9-fa0797c61af1">
+        <tag>sltpTaskGroups</tag>
+      </dataSets>
+      <dataSets type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="8657d186-e48b-4083-b1e4-abe4920702df">
+        <dSet type="ModelRefInfoRepo.SltpTaskData" uuid="4f6ef3e8-d4f0-4d74-b445-dd07d3c82108"/>
+        <tSet type="ModelRefInfoRepo.SltpTaskData" uuid="4f6ef3e8-d4f0-4d74-b445-dd07d3c82108">
+          <dataName>Cont</dataName>
+          <linkedSet type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="8657d186-e48b-4083-b1e4-abe4920702df"/>
+>>>>>>> Stashed changes
           <id type="sto.TaskHierarchyElementId">
             <id>_task0</id>
           </id>
@@ -339,6 +528,10 @@
         <tag>sltpTasks</tag>
       </dataSets>
     </stoClientDataRegistry>
+<<<<<<< Updated upstream
     <varTsUIDMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="3d540ff0-dffa-4e49-b198-2aa85f6e780f"/>
+=======
+    <varTsUIDMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="053571d5-94a7-4d31-88e5-c813775c0e49"/>
+>>>>>>> Stashed changes
   </ModelRefInfoRepo.ModelRefInfoRoot>
 </MF0>

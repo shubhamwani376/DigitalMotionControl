@@ -7,9 +7,15 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
+<<<<<<< Updated upstream
  * Model version                  : 1.69
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
  * C/C++ source code generated on : Tue Feb 14 12:55:02 2023
+=======
+ * Model version                  : 1.74
+ * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
+ * C/C++ source code generated on : Fri Feb 10 10:10:41 2023
+>>>>>>> Stashed changes
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
