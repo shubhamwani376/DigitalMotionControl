@@ -28,9 +28,9 @@
 <option id="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.INCLUDE_PATH.1515724014" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.INCLUDE_PATH" valueType="includePath">
 <listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include">
 </listOptionValue>
-<listOptionValue builtIn="false" value="E:\ASUS\Desktop\InternshipsandProjects\DigitalMotionControl\HW2">
+<listOptionValue builtIn="false" value="D:\Onedrive_UCLA\OneDrive - UCLA IT Services\UCLA\277\DigitalMotionControl\HW2">
 </listOptionValue>
-<listOptionValue builtIn="false" value="E:\ASUS\Desktop\InternshipsandProjects\DigitalMotionControl\HW2\wednesday_stuff_NL_ert_rtw">
+<listOptionValue builtIn="false" value="D:\Onedrive_UCLA\OneDrive - UCLA IT Services\UCLA\277\DigitalMotionControl\HW2\wednesday_stuff_NL_ert_rtw">
 </listOptionValue>
 <listOptionValue builtIn="false" value="C:\Program Files\MATLAB\R2022b\extern\include">
 </listOptionValue>
@@ -74,17 +74,17 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="C:\ProgramData\MATLAB\SupportPackages\R2022b\toolbox\shared\supportpackages\tic2000\inc">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\libraries\calibration\hrpwm\f2837xd\include">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\libraries\calibration\hrpwm\f2837xd\include">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\driverlib\f2837xd\driverlib">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\driverlib\f2837xd\driverlib">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\driverlib\f2837xd\driverlib\inc">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\driverlib\f2837xd\driverlib\inc">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\device_support\f2837xd\common\include">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\device_support\f2837xd\common\include">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\device_support\f2837xd\headers\include">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\device_support\f2837xd\headers\include">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\device_support\f2837xd\common">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\device_support\f2837xd\common">
 </listOptionValue>
 </option>
 <option id="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.DEFINE.1045084510" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.DEFINE" valueType="definedSymbols">
@@ -246,7 +246,7 @@
 </listOptionValue>
 </option>
 <option id="com.ti.ccstudio.buildDefinitions.C2000_6.4.linkerID.LIBRARY.1472299698" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.4.linkerID.LIBRARY" valueType="libs">
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\libraries\math\IQmath\c28\lib\IQmath_fpu32.lib">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\libraries\math\IQmath\c28\lib\IQmath_fpu32.lib">
 </listOptionValue>
 <listOptionValue builtIn="false" value="C:\ProgramData\MATLAB\SupportPackages\R2022b\toolbox\shared\supportpackages\tic2000\src\c2837xDPeripherals.cmd">
 </listOptionValue>
@@ -322,9 +322,9 @@
 <option id="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.INCLUDE_PATH.899964030" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.INCLUDE_PATH" valueType="includePath">
 <listOptionValue builtIn="false" value="${CG_TOOL_ROOT}/include">
 </listOptionValue>
-<listOptionValue builtIn="false" value="E:\ASUS\Desktop\InternshipsandProjects\DigitalMotionControl\HW2">
+<listOptionValue builtIn="false" value="D:\Onedrive_UCLA\OneDrive - UCLA IT Services\UCLA\277\DigitalMotionControl\HW2">
 </listOptionValue>
-<listOptionValue builtIn="false" value="E:\ASUS\Desktop\InternshipsandProjects\DigitalMotionControl\HW2\wednesday_stuff_NL_ert_rtw">
+<listOptionValue builtIn="false" value="D:\Onedrive_UCLA\OneDrive - UCLA IT Services\UCLA\277\DigitalMotionControl\HW2\wednesday_stuff_NL_ert_rtw">
 </listOptionValue>
 <listOptionValue builtIn="false" value="C:\Program Files\MATLAB\R2022b\extern\include">
 </listOptionValue>
@@ -368,17 +368,17 @@
 </listOptionValue>
 <listOptionValue builtIn="false" value="C:\ProgramData\MATLAB\SupportPackages\R2022b\toolbox\shared\supportpackages\tic2000\inc">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\libraries\calibration\hrpwm\f2837xd\include">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\libraries\calibration\hrpwm\f2837xd\include">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\driverlib\f2837xd\driverlib">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\driverlib\f2837xd\driverlib">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\driverlib\f2837xd\driverlib\inc">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\driverlib\f2837xd\driverlib\inc">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\device_support\f2837xd\common\include">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\device_support\f2837xd\common\include">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\device_support\f2837xd\headers\include">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\device_support\f2837xd\headers\include">
 </listOptionValue>
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\device_support\f2837xd\common">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\device_support\f2837xd\common">
 </listOptionValue>
 </option>
 <option id="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.DEFINE.1616953459" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.4.compilerID.DEFINE" valueType="definedSymbols">
@@ -540,7 +540,7 @@
 </listOptionValue>
 </option>
 <option id="com.ti.ccstudio.buildDefinitions.C2000_6.4.linkerID.LIBRARY.584832647" superClass="com.ti.ccstudio.buildDefinitions.C2000_6.4.linkerID.LIBRARY" valueType="libs">
-<listOptionValue builtIn="false" value="C:\ti\c2000\C2000Ware_4_00_00_00\libraries\math\IQmath\c28\lib\IQmath_fpu32.lib">
+<listOptionValue builtIn="false" value="D:\ti\C2000Ware_4_00_00_00\libraries\math\IQmath\c28\lib\IQmath_fpu32.lib">
 </listOptionValue>
 <listOptionValue builtIn="false" value="C:\ProgramData\MATLAB\SupportPackages\R2022b\toolbox\shared\supportpackages\tic2000\src\c2837xDPeripherals.cmd">
 </listOptionValue>

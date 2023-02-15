@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.64
+ * Model version                  : 1.69
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Feb 10 10:36:36 2023
+ * C/C++ source code generated on : Tue Feb 14 12:55:02 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -218,30 +218,111 @@ real_T rt_TDelayInterpolate(
   return(yout);
 }
 
+real_T look1_pbinlxpw(real_T u0, const real_T bp0[], const real_T table[],
+                      uint32_T prevIndex[], uint32_T maxIndex)
+{
+  real_T frac;
+  real_T yL_0d0;
+  uint32_T bpIdx;
+  uint32_T found;
+  uint32_T iLeft;
+  uint32_T iRght;
+
+  /* Column-major Lookup 1-D
+     Search method: 'binary'
+     Use previous index: 'on'
+     Interpolation method: 'Linear point-slope'
+     Extrapolation method: 'Linear'
+     Use last breakpoint for index at or above upper limit: 'off'
+     Remove protection against out-of-range input in generated code: 'off'
+   */
+  /* Prelookup - Index and Fraction
+     Index Search method: 'binary'
+     Extrapolation method: 'Linear'
+     Use previous index: 'on'
+     Use last breakpoint for index at or above upper limit: 'off'
+     Remove protection against out-of-range input in generated code: 'off'
+   */
+  if (u0 <= bp0[0UL]) {
+    bpIdx = 0UL;
+    frac = (u0 - bp0[0UL]) / (bp0[1UL] - bp0[0UL]);
+  } else if (u0 < bp0[maxIndex]) {
+    /* Binary Search using Previous Index */
+    bpIdx = prevIndex[0UL];
+    iLeft = 0UL;
+    iRght = maxIndex;
+    found = 0UL;
+    while (found == 0UL) {
+      if (u0 < bp0[bpIdx]) {
+        iRght = bpIdx - 1UL;
+        bpIdx = ((bpIdx + iLeft) - 1UL) >> 1UL;
+      } else if (u0 < bp0[bpIdx + 1UL]) {
+        found = 1UL;
+      } else {
+        iLeft = bpIdx + 1UL;
+        bpIdx = ((bpIdx + iRght) + 1UL) >> 1UL;
+      }
+    }
+
+    frac = (u0 - bp0[bpIdx]) / (bp0[bpIdx + 1UL] - bp0[bpIdx]);
+  } else {
+    bpIdx = maxIndex - 1UL;
+    frac = (u0 - bp0[maxIndex - 1UL]) / (bp0[maxIndex] - bp0[maxIndex - 1UL]);
+  }
+
+  prevIndex[0UL] = bpIdx;
+
+  /* Column-major Interpolation 1-D
+     Interpolation method: 'Linear point-slope'
+     Use last breakpoint for index at or above upper limit: 'off'
+     Overflow mode: 'portable wrapping'
+   */
+  yL_0d0 = table[bpIdx];
+  return (table[bpIdx + 1UL] - yL_0d0) * frac + yL_0d0;
+}
+
 /* Model step function */
 void wednesday_stuff_NL_step(void)
 {
   /* local block i/o variables */
   real_T rtb_TransportDelay2;
   real_T rtb_TSamp;
-  real_T u1;
+  real_T rtb_Sum;
   real_T u_unsat;
 
+  /* Lookup_n-D: '<S4>/1-D Lookup Table' incorporates:
+   *  Constant: '<S4>/Constant1'
+   *  Constant: '<S4>/Constant3'
+   *  DigitalClock: '<S4>/Digital Clock'
+   *  Gain: '<S4>/1\ib1'
+   *  Math: '<S4>/Math Function'
+   *  Sum: '<S4>/Add1'
+   */
+  rtb_Sum = look1_pbinlxpw(fmod(((wednesday_stuff_NL_M->Timing.clockTick1) *
+    0.001) + wednesday_stuff_NL_P.Constant3_Value,
+    wednesday_stuff_NL_P.Constant1_Value) * wednesday_stuff_NL_P.uib1_Gain,
+    wednesday_stuff_NL_P.uDLookupTable_bp01Data,
+    wednesday_stuff_NL_P.uDLookupTable_tableData,
+    &wednesday_stuff_NL_DW.m_bpIndex, 2UL);
+
   /* Step: '<Root>/Step' */
-  if (wednesday_stuff_NL_M->Timing.t[0] < wednesday_stuff_NL_P.Step_Time) {
-    /* TransportDelay: '<Root>/Transport Delay2' */
-    rtb_TransportDelay2 = wednesday_stuff_NL_P.Step_Y0;
+  if (((wednesday_stuff_NL_M->Timing.clockTick1) * 0.001) <
+      wednesday_stuff_NL_P.Step_Time) {
+    u_unsat = wednesday_stuff_NL_P.Step_Y0;
   } else {
-    /* TransportDelay: '<Root>/Transport Delay2' */
-    rtb_TransportDelay2 = wednesday_stuff_NL_P.Step_YFinal;
+    u_unsat = wednesday_stuff_NL_P.Step_YFinal;
   }
 
-  /* End of Step: '<Root>/Step' */
-
   /* ZeroOrderHold: '<Root>/Zero-Order Hold2' incorporates:
+   *  Constant: '<S4>/Constant2'
+   *  Gain: '<Root>/Gain1'
+   *  Step: '<Root>/Step'
    *  Sum: '<Root>/Sum2'
+   *  Sum: '<S4>/Add3'
    */
-  wednesday_stuff_NL_B.ZeroOrderHold2 = rtb_TransportDelay2;
+  wednesday_stuff_NL_B.ZeroOrderHold2 = (rtb_Sum -
+    wednesday_stuff_NL_P.Constant2_Value) * wednesday_stuff_NL_P.Gain1_Gain +
+    u_unsat;
 
   /* SignalConversion generated from: '<Root>/Mux1' */
   wednesday_stuff_NL_B.TmpSignalConversionAtTAQSigLogg[0] = 0.0;
@@ -254,7 +335,7 @@ void wednesday_stuff_NL_step(void)
    *  Constant: '<Root>/Constant1'
    */
   {
-    if (wednesday_stuff_NL_P.Constant1_Value) {
+    if (wednesday_stuff_NL_P.Constant1_Value_a) {
       GpioDataRegs.GPASET.bit.GPIO2 = 1U;
     } else {
       GpioDataRegs.GPACLEAR.bit.GPIO2 = 1U;
@@ -297,7 +378,7 @@ void wednesday_stuff_NL_step(void)
               -wednesday_stuff_NL_P.K_aug[1] * wednesday_stuff_NL_DW.xhat[1]) +
              -wednesday_stuff_NL_P.K_aug[2] * wednesday_stuff_NL_DW.xint) +
     wednesday_stuff_NL_P.N * wednesday_stuff_NL_B.ZeroOrderHold2;
-  u1 = fabs(u_unsat);
+  rtb_Sum = fabs(u_unsat);
   if (rtIsNaN(u_unsat)) {
     u_unsat = (rtNaN);
   } else if (u_unsat < 0.0) {
@@ -306,24 +387,24 @@ void wednesday_stuff_NL_step(void)
     u_unsat = (u_unsat > 0.0);
   }
 
-  if ((u1 >= 1.0) || rtIsNaN(u1)) {
-    u1 = 1.0;
+  if ((rtb_Sum >= 1.0) || rtIsNaN(rtb_Sum)) {
+    rtb_Sum = 1.0;
   }
 
-  wednesday_stuff_NL_B.u = u_unsat * u1;
+  wednesday_stuff_NL_B.u = u_unsat * rtb_Sum;
   u_unsat = (wednesday_stuff_NL_P.A_d[0] - wednesday_stuff_NL_P.L_Pred[0] *
              wednesday_stuff_NL_P.C_d[0]) * wednesday_stuff_NL_DW.xhat[0] +
     (wednesday_stuff_NL_P.A_d[2] - wednesday_stuff_NL_P.L_Pred[0] *
      wednesday_stuff_NL_P.C_d[1]) * wednesday_stuff_NL_DW.xhat[1];
-  u1 = (wednesday_stuff_NL_P.A_d[1] - wednesday_stuff_NL_P.C_d[0] *
-        wednesday_stuff_NL_P.L_Pred[1]) * wednesday_stuff_NL_DW.xhat[0] +
+  rtb_Sum = (wednesday_stuff_NL_P.A_d[1] - wednesday_stuff_NL_P.C_d[0] *
+             wednesday_stuff_NL_P.L_Pred[1]) * wednesday_stuff_NL_DW.xhat[0] +
     (wednesday_stuff_NL_P.A_d[3] - wednesday_stuff_NL_P.L_Pred[1] *
      wednesday_stuff_NL_P.C_d[1]) * wednesday_stuff_NL_DW.xhat[1];
   wednesday_stuff_NL_DW.xhat[0] = (wednesday_stuff_NL_P.B_d[0] *
     wednesday_stuff_NL_B.u + u_unsat) + wednesday_stuff_NL_P.L_Pred[0] *
     wednesday_stuff_NL_B.Gain;
   wednesday_stuff_NL_DW.xhat[1] = (wednesday_stuff_NL_P.B_d[1] *
-    wednesday_stuff_NL_B.u + u1) + wednesday_stuff_NL_P.L_Pred[1] *
+    wednesday_stuff_NL_B.u + rtb_Sum) + wednesday_stuff_NL_P.L_Pred[1] *
     wednesday_stuff_NL_B.Gain;
   wednesday_stuff_NL_DW.xint = (wednesday_stuff_NL_DW.xint
     + wednesday_stuff_NL_B.Gain) - wednesday_stuff_NL_B.ZeroOrderHold2;
@@ -356,7 +437,7 @@ void wednesday_stuff_NL_step(void)
   wednesday_stuff_NL_B.Diff = rtb_TSamp - wednesday_stuff_NL_DW.UD_DSTATE;
 
   /* Constant: '<Root>/Constant2' */
-  wednesday_stuff_NL_B.Constant2 = wednesday_stuff_NL_P.Constant2_Value;
+  wednesday_stuff_NL_B.Constant2 = wednesday_stuff_NL_P.Constant2_Value_a;
 
   /* TransportDelay: '<Root>/Transport Delay2' */
   {
@@ -440,7 +521,7 @@ void wednesday_stuff_NL_step(void)
     }
   }
 
-  {                                    /* Sample time: [0.01s, 0.0s] */
+  {                                    /* Sample time: [0.001s, 0.0s] */
     extmodeErrorCode_T errorCode = EXTMODE_SUCCESS;
     extmodeSimulationTime_T currentTime = (extmodeSimulationTime_T)
       ((wednesday_stuff_NL_M->Timing.clockTick1 * 1) + 0)
@@ -465,9 +546,9 @@ void wednesday_stuff_NL_step(void)
     wednesday_stuff_NL_M->Timing.stepSize0;
 
   {
-    /* Update absolute timer for sample time: [0.01s, 0.0s] */
+    /* Update absolute timer for sample time: [0.001s, 0.0s] */
     /* The "clockTick1" counts the number of times the code of this task has
-     * been executed. The resolution of this integer timer is 0.01, which is the step size
+     * been executed. The resolution of this integer timer is 0.001, which is the step size
      * of the task. Size of "clockTick1" ensures timer will not overflow during the
      * application lifespan selected.
      */
@@ -504,13 +585,13 @@ void wednesday_stuff_NL_initialize(void)
   rtsiSetSolverName(&wednesday_stuff_NL_M->solverInfo,"FixedStepDiscrete");
   rtmSetTPtr(wednesday_stuff_NL_M, &wednesday_stuff_NL_M->Timing.tArray[0]);
   rtmSetTFinal(wednesday_stuff_NL_M, -1);
-  wednesday_stuff_NL_M->Timing.stepSize0 = 0.01;
+  wednesday_stuff_NL_M->Timing.stepSize0 = 0.001;
 
   /* External mode info */
-  wednesday_stuff_NL_M->Sizes.checksums[0] = (2575413115U);
-  wednesday_stuff_NL_M->Sizes.checksums[1] = (776136114U);
-  wednesday_stuff_NL_M->Sizes.checksums[2] = (2982024792U);
-  wednesday_stuff_NL_M->Sizes.checksums[3] = (1794366314U);
+  wednesday_stuff_NL_M->Sizes.checksums[0] = (1547582251U);
+  wednesday_stuff_NL_M->Sizes.checksums[1] = (1783989400U);
+  wednesday_stuff_NL_M->Sizes.checksums[2] = (1672398844U);
+  wednesday_stuff_NL_M->Sizes.checksums[3] = (2280610667U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;

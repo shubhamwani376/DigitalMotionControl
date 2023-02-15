@@ -7,9 +7,9 @@
  *
  * Code generated for Simulink model 'wednesday_stuff_NL'.
  *
- * Model version                  : 1.64
+ * Model version                  : 1.69
  * Simulink Coder version         : 9.8 (R2022b) 13-May-2022
- * C/C++ source code generated on : Fri Feb 10 10:36:36 2023
+ * C/C++ source code generated on : Tue Feb 14 12:55:02 2023
  *
  * Target selection: ert.tlc
  * Embedded hardware selection: Texas Instruments->C2000
@@ -163,6 +163,7 @@ typedef struct {
     void *LoggedData;
   } ToWorkspace8_PWORK;                /* '<Root>/To Workspace8' */
 
+  uint32_T m_bpIndex;                  /* '<S4>/1-D Lookup Table' */
   struct {
     int_T Tail;
     int_T Head;
@@ -198,16 +199,37 @@ struct P_wednesday_stuff_NL_T_ {
                               /* Mask Parameter: DiscreteDerivative_ICPrevScaled
                                * Referenced by: '<S1>/UD'
                                */
-  real_T Step_Time;                    /* Expression: 1
+  real_T Constant3_Value;              /* Expression: sps.Delay
+                                        * Referenced by: '<S4>/Constant3'
+                                        */
+  real_T Constant1_Value;              /* Expression: sps.Period
+                                        * Referenced by: '<S4>/Constant1'
+                                        */
+  real_T uib1_Gain;                    /* Expression: sps.Freq
+                                        * Referenced by: '<S4>/1\ib1'
+                                        */
+  real_T uDLookupTable_tableData[3];   /* Expression: [0 2 0]
+                                        * Referenced by: '<S4>/1-D Lookup Table'
+                                        */
+  real_T uDLookupTable_bp01Data[3];    /* Expression: [0 .5 1]
+                                        * Referenced by: '<S4>/1-D Lookup Table'
+                                        */
+  real_T Constant2_Value;              /* Expression: 1
+                                        * Referenced by: '<S4>/Constant2'
+                                        */
+  real_T Gain1_Gain;                   /* Expression: 0.2
+                                        * Referenced by: '<Root>/Gain1'
+                                        */
+  real_T Step_Time;                    /* Expression: 0
                                         * Referenced by: '<Root>/Step'
                                         */
   real_T Step_Y0;                      /* Expression: 0
                                         * Referenced by: '<Root>/Step'
                                         */
-  real_T Step_YFinal;                  /* Expression: 1
+  real_T Step_YFinal;                  /* Expression: 0.2
                                         * Referenced by: '<Root>/Step'
                                         */
-  real_T Constant1_Value;              /* Expression: 1
+  real_T Constant1_Value_a;            /* Expression: 1
                                         * Referenced by: '<Root>/Constant1'
                                         */
   real_T Gain_Gain;                    /* Expression: 3.14159/400
@@ -216,7 +238,7 @@ struct P_wednesday_stuff_NL_T_ {
   real_T TSamp_WtEt;                   /* Computed Parameter: TSamp_WtEt
                                         * Referenced by: '<S1>/TSamp'
                                         */
-  real_T Constant2_Value;              /* Expression: 1000
+  real_T Constant2_Value_a;            /* Expression: 1000
                                         * Referenced by: '<Root>/Constant2'
                                         */
   real_T TransportDelay2_InitOutput;   /* Expression: 0
@@ -318,6 +340,8 @@ extern volatile boolean_T runModel;
  * '<Root>' : 'wednesday_stuff_NL'
  * '<S1>'   : 'wednesday_stuff_NL/Discrete Derivative'
  * '<S2>'   : 'wednesday_stuff_NL/SOFC integral1'
+ * '<S3>'   : 'wednesday_stuff_NL/Triangle Generator'
+ * '<S4>'   : 'wednesday_stuff_NL/Triangle Generator/Model'
  */
 #endif                                 /* RTW_HEADER_wednesday_stuff_NL_h_ */
 

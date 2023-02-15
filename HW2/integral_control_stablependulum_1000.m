@@ -7,8 +7,8 @@ bdclose('all')
 close all;
 clear all;
 
-plant = 'rotor';
-%plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
+%plant = 'rotor';
+plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
 
 pend = 1; %1: single pendulum for this file 2: double pendulum not implemented
 
@@ -18,7 +18,7 @@ SSdesign = 'state_observer_feedback_integral';
 
 
 
-Ts = 0.01;  %digital control sampling time
+Ts = 0.001;  %digital control sampling time
 
 
 %Motor and Pendulum Parameters:
@@ -45,7 +45,7 @@ deadzone = 0.06;    % PWM switcing short circuit protection results in 4% duty c
 Tss= 1/20000;       % 20kHz Encoder sampling rate by FPGA
 encoder_resolution= 2*pi/400;  % Encoder resolution 400 counts/revolutin
 
-Angle_Pendu=180/180*pi;   %pendulum equlibrium position, 0 is vertically down, 180 is up
+Angle_Pendu=0/180*pi;   %pendulum equlibrium position, 0 is vertically down, 180 is up
 K_g =  m*g*l_c;
 K_sin = cos(Angle_Pendu);  %linearization sin(angle)
 Friction_static = 4E-4; %Static friction Nm
@@ -142,7 +142,7 @@ zpk(G_d)
         %L_Pred = place(A_d',C_d',Pole_Pred); %for MIMO, but no identical poles
 %         L_Pred = acker(A_d',C_d',Pole_Pred);  %for SISO only
 %         
-        L_Pred = dlqr(A_d', C_d', eye(2), [1]);
+        L_Pred = dlqr(A_d', C_d', eye(2), [0.5]);
         L_Pred = L_Pred';
         %L_Pred = [0.927055947641751; 212.736236014520];
         %State Feedback Poles:
