@@ -7,8 +7,8 @@ bdclose('all')
 close all;
 clear all;
 
-%plant = 'rotor';
-plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
+plant = 'rotor';
+%plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
 
 pend = 1; %1: single pendulum for this file 2: double pendulum not implemented
 
@@ -203,7 +203,7 @@ zpk(G_d)
                 % Aaug=[A_d zeros(size(B_d)); C_d 1];
                 % Baug=[B_d;0];
                 w0 = 2*pi*1;
-                A_osc = [2*cos(w0*Ts)+1, -2*cos(w0*Ts)-1, -1; 1, 0, 0; 0, 1, 0];
+                A_osc = [2*cos(w0*Ts)+1, -2*cos(w0*Ts)-1, 1; 1, 0, 0; 0, 1, 0];
                 B_osc = [1;0;0];
 
                 Aaug = [A_d zeros(size(B_d, 1), size(A_osc, 2)); B_osc*C_d A_osc];
@@ -223,7 +223,7 @@ zpk(G_d)
                 Q = zeros(5, 5);
                 Q(1, 1) = 1;
                 Q(5, 5) = 1;
-                K_aug = dlqr(Aaug, Baug, 0.1*Q, 50*1);
+                K_aug = dlqr(Aaug, Baug, 0.1*Q, 10*1);
                 K_SF = K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 
@@ -341,8 +341,8 @@ zpk(G_d)
                 switch(pend)
                     case{1}
                
-                       open('Pendulum_SOFC_integral')
-                       sim('Pendulum_SOFC_integral')
+                       open('Pendulum_SOFC_integral_oscillator')
+                       sim('Pendulum_SOFC_integral_oscillator')
                     case{2}
                        % open('DoublePendulum_SOFC_integral')
                        % sim('DoublePendulum_SOFC_integral')
