@@ -200,9 +200,14 @@ zpk(G_d)
             case{'state_observer_feedback_integral'}
                 %State Observer Feedback control with integral action
                 
-                Aaug=[A_d zeros(size(B_d)); C_d 1];
-                Baug=[B_d;0];
-                
+                % Aaug=[A_d zeros(size(B_d)); C_d 1];
+                % Baug=[B_d;0];
+                w0 = 2*pi*1;
+                A_osc = [2*cos(w0*Ts)+1, -2*cos(w0*Ts)-1, -1; 1, 0, 0; 0, 1, 0];
+                B_osc = [1;0;0];
+
+                Aaug = [A_d zeros(size(B_d, 1), size(A_osc, 2)); B_osc*C_d A_osc];
+                Baug = [B_d; zeros(size(B_osc))];
 
                
 %                 gamma = 0.9;    %0<gamma<1 to select integrator pole faster than SF pole
@@ -215,7 +220,10 @@ zpk(G_d)
 %                 K_SF=K_aug(1:size(A_d,1));
 %                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 
-                K_aug = dlqr(Aaug, Baug, 0.1*[1, 0, 0; 0, 0, 0; 0, 0, 1], 50*1);
+                Q = zeros(5, 5);
+                Q(1, 1) = 1;
+                Q(5, 5) = 1;
+                K_aug = dlqr(Aaug, Baug, 0.1*Q, 50*1);
                 K_SF = K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 
@@ -224,9 +232,9 @@ zpk(G_d)
                 
                 
 
-                AA= [A_d-B_d*K_SF, -B_d*K_int,  B_d*K_SF; C_d, 1, zeros(size(C_d)); zeros(size(A_d)), zeros(size(B_d)), A_d-L_Pred*C_d];
-                BB= [B_d*N, B_d, Bw;-1., 0, 0; zeros(size(B_d)), B_d, Bw];
-                CC= [C_d, 0, zeros(size(C_d)); -K_SF, -K_int, K_SF; -C_d, 0, zeros(size(C_d))];
+                AA= [A_d-B_d*K_SF, -B_d*K_int,  B_d*K_SF; B_osc*C_d, A_osc, zeros(size(A_osc, 1), size(C_d, 2)); zeros(size(A_d)), zeros(size(B_d, 1), size(A_osc, 2)), A_d-L_Pred*C_d];
+                BB= [B_d*N, B_d, Bw;-B_osc, zeros(size(B_osc)), zeros(size(B_osc)); zeros(size(B_d)), B_d, Bw];
+                CC= [C_d, zeros(1, size(A_osc, 2)), zeros(size(C_d)); -K_SF, -K_int, K_SF; -C_d, zeros(1, size(A_osc, 2)), zeros(size(C_d))];
                 DD= [0 0 0; N 0 0;1, 0 0];
                 
                 Loop_SF =ss(Aaug,Baug,K_aug,0,Ts)
