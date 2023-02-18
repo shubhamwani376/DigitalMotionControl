@@ -220,10 +220,10 @@ zpk(G_d)
 %                 K_SF=K_aug(1:size(A_d,1));
 %                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 
-                Q = zeros(5, 5);
+                Q = ones(5, 5);
                 Q(1, 1) = 1;
                 Q(5, 5) = 1;
-                K_aug = dlqr(Aaug, Baug, 0.1*Q, 10*1);
+                K_aug = dlqr(Aaug, Baug, 0.001*Q, 1000000*1);
                 K_SF = K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 
