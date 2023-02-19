@@ -7,8 +7,8 @@ bdclose('all')
 close all;
 clear all;
 
-plant = 'rotor';
-%plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
+%plant = 'rotor';
+plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
 
 pend = 1; %1: single pendulum for this file 2: double pendulum not implemented
 
@@ -118,7 +118,7 @@ zpk(G_d)
                % To be filled for double pendulum  
         end
         
-        L_Pred = dlqr(A_d', C_d', 0.08*eye(2), [0.2]);
+        L_Pred = dlqr(A_d', C_d', 0.08*eye(2), [0.3]);
         L_Pred = L_Pred';
         
         
@@ -162,7 +162,7 @@ zpk(G_d)
                 Q(1, 1) = 1;
                 Q(5, 5) = 1;
                 %K_aug = dlqr(Aaug, Baug, 0.25*Q, 1500000*1);
-                K_aug = dlqr(Aaug, Baug, 0.15*Q, 0.000085*1);
+                K_aug = dlqr(Aaug, Baug, Q, 0.85*1);
                 K_SF = K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 

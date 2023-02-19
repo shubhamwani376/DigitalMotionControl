@@ -7,8 +7,8 @@ bdclose('all')
 close all;
 clear all;
 
-plant = 'rotor';
-%plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
+%plant = 'rotor';
+plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
 
 pend = 1; %1: single pendulum for this file 2: double pendulum not implemented
 

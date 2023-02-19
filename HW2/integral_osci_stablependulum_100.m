@@ -7,8 +7,8 @@ bdclose('all')
 close all;
 clear all;
 
-plant = 'rotor';
-%plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
+%plant = 'rotor';
+plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
 
 pend = 1; %1: single pendulum for this file 2: double pendulum not implemented
 
@@ -39,13 +39,13 @@ V_s = 10.5;    %(V)Supply voltage of the motor drive (H-bridge)
 % output (rad) - Angle of pendulum
 
 %Parameters in the virtual plant simulation:
-Tcomp=0.0005*Ts*14;  %controller computation delay (less than one sampling interval)
-saturation =1.0;    %PWM duty cycle is between - and 100% and polarity
+Tcomp = 0.0005*Ts*14;  %controller computation delay (less than one sampling interval)
+saturation = 1.0;    %PWM duty cycle is between - and 100% and polarity
 deadzone = 0.06;    % PWM switcing short circuit protection results in 4% duty cycle deadzone
 Tss= 1/20000;       % 20kHz Encoder sampling rate by FPGA
 encoder_resolution= 2*pi/400;  % Encoder resolution 400 counts/revolutin
 
-Angle_Pendu=0/180*pi;   %pendulum equlibrium position, 0 is vertically down, 180 is up
+Angle_Pendu = 0/180*pi;   %pendulum equlibrium position, 0 is vertically down, 180 is up
 K_g =  m*g*l_c;
 K_sin = cos(Angle_Pendu);  %linearization sin(angle)
 Friction_static = 4E-4; %Static friction Nm
@@ -162,7 +162,7 @@ zpk(G_d)
                 Q(1, 1) = 1;
                 Q(5, 5) = 1;
                 %K_aug = dlqr(Aaug, Baug, 0.25*Q, 1500000*1);
-                K_aug = dlqr(Aaug, Baug, 0.24*Q, 18500*1);
+                K_aug = dlqr(Aaug, Baug, 0.24*Q, 18540*1);
                 K_SF = K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 
@@ -176,7 +176,7 @@ zpk(G_d)
                 CC= [C_d, zeros(1, size(A_osc, 2)), zeros(size(C_d)); -K_SF, -K_int, K_SF; -C_d, zeros(1, size(A_osc, 2)), zeros(size(C_d))];
                 DD= [0 0 0; N 0 0;1, 0 0];
                 
-                Loop_SF =ss(Aaug,Baug,K_aug,0,Ts)
+                Loop_SF = ss(Aaug,Baug,K_aug,0,Ts)
                 
         end  %for statespace design
         
