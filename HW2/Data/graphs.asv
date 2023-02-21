@@ -1,0 +1,26 @@
+clear all
+close all
+load('pendulum_osc_tri_1000.mat')
+position  = plant_output.extractTimetable.Gain;
+position = nonzeros(position);
+
+input = tri_input.extractTimetable;
+input = input.Variables;
+input = nonzeros(input);
+
+%%
+plot(0:0.001:10,position(1:10001))
+hold on
+grid on
+plot(0:0.001:10,input(1:10001))
+
+
+
+
+
+
+
+
+
+
+
