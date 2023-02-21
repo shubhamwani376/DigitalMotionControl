@@ -130,46 +130,46 @@ zpk(G_d)
         
         % Calculate Observer damping ratio and natural frequency:
         
-%         Zeta=7.5;
-%         Wn = 20*2*pi;        % 100*2*pi
-%         s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
-%         Pole_Pred=exp(s_pole*Ts);
-%         if pend ~= 1; 
-%             
-%         % To be filled for double pendulum 
-%         end       
+        Zeta=7.5;
+        Wn = 20*2*pi;        % 100*2*pi
+        s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
+        Pole_Pred=exp(s_pole*Ts);
+        if pend ~= 1; 
+            
+        % To be filled for double pendulum 
+        end       
         %Pole_Pred = [0,0]; [0.8+1j*0.1 0.8-1j*0.1];
         %L_Pred = place(A_d',C_d',Pole_Pred); %for MIMO, but no identical poles
-%         L_Pred = acker(A_d',C_d',Pole_Pred);  %for SISO only
-%         
-        L_Pred = dlqr(A_d', C_d', eye(2), [0.5]);
-        L_Pred = L_Pred';
+        L_Pred = acker(A_d',C_d',Pole_Pred);  %for SISO only
+        
+%         L_Pred = dlqr(A_d', C_d', eye(2), [0.5]);
+%         L_Pred = L_Pred';
         %L_Pred = [0.927055947641751; 212.736236014520];
         %State Feedback Poles:
-%         Tr = 0.05;  % Rise time 0.05
-%         Mp = 15/100 ;  % Maximum percent overshoot 15%
+        Tr = 0.05;  % Rise time 0.05
+        Mp = 15/100 ;  % Maximum percent overshoot 15%
         %Tp =       % Peak time
         %Ts =       % Settling time (2%)
         %Wb=        % Closed loop bandwidth
         %PM=        % Phase Margin (degrees)
         
         % Calculate closed loop damping ratio and natural frequency:
-%         Wn = 1.5/Tr; %rad/sec
-%         tmp = (log(Mp)/pi)^2;
-%         Zeta = 1.2*sqrt(tmp/(1+tmp));
+        Wn = 1.5/Tr; %rad/sec
+        tmp = (log(Mp)/pi)^2;
+        Zeta = 1.2*sqrt(tmp/(1+tmp));
         %Wd=sqrt(1-Zeta^2)*Wn = pi/Tp;
         %Sig=Zeta*Wn=4/Ts;
         %Wn=Wb % rad/sec;
         %Zeta= PM/100;
       
-%         s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
-%         Pole_SF = exp(s_pole*Ts);
-%         
-%         if pend ~= 1; 
-%           
-%         % To be filled for double pendulum 
-% 
-%         end
+        s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
+        Pole_SF = exp(s_pole*Ts);
+        
+        if pend ~= 1; 
+          
+        % To be filled for double pendulum 
+
+        end
         %Pole_SF = [0.8,0.9] %[0, 0.1], %[0.8,0.9]; %[0.98,0.96];
         
         
@@ -210,22 +210,22 @@ zpk(G_d)
                 Baug = [B_d; zeros(size(B_osc))];
 
                
-%                 gamma = 0.9;    %0<gamma<1 to select integrator pole faster than SF pole
-%                 Pole_int = gamma*max(abs(Pole_SF));
-                %gamma = 1   %0<gamma<1 to select integrator pole between SF pole and 1
-                %Pole_int = (1-gamma)+gamma*max(abs(Pole_SF));
+                gamma = 0.9;    %0<gamma<1 to select integrator pole faster than SF pole
+                Pole_int = gamma*max(abs(Pole_SF));
+%                 gamma = 1   %0<gamma<1 to select integrator pole between SF pole and 1
+%                 Pole_int = (1-gamma)+gamma*max(abs(Pole_SF));
 
-%                 Pole_SF_int= [Pole_SF, Pole_int];
-%                 K_aug=acker(Aaug,Baug,Pole_SF_int);
-%                 K_SF=K_aug(1:size(A_d,1));
-%                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
-                
-                Q = eye(5, 5);
-                Q(1, 1) = 1;
-                Q(5, 5) = 0.5;
-                K_aug = dlqr(Aaug, Baug, 0.000001*Q, 1000000*1);
-                K_SF = K_aug(1:size(A_d,1));
+                Pole_SF_int= [Pole_SF, Pole_int, 1i*w0, -1i*w0];
+                K_aug=acker(Aaug,Baug,Pole_SF_int);
+                K_SF=K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
+                
+%                 Q = ones(5, 5);
+%                 Q(1, 1) = 1;
+%                 Q(5, 5) = 0.5;
+%                 K_aug = dlqr(Aaug, Baug, 0.000001*Q, 1000000*1);
+%                 K_SF = K_aug(1:size(A_d,1));
+%                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 
                 TF_yrf=ss(A_d-B_d*K_SF,B_d,C_d,[0],Ts);
                 N=1/freqresp(TF_yrf,[0]);  % With integra action, N does not affect steady state, but on transient response
