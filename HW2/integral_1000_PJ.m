@@ -302,16 +302,16 @@ zpk(G_d)
 %         grid on
 %         [Gm,Pm,Wcp,Wcg] = margin(Loop)
 %         [Gm_SF,Pm_SF,Wcp_SF,Wcg_SF] = margin(Loop_SF)
-%         Sensitivity= 1/(1+Loop);
-%          Sensitivity_SF= 1/(1+Loop_SF);
-%         zpk(Sensitivity)
-%         figure;
-%          bodemag(Sensitivity);
-%          hold on
-%          bodemag(Sensitivity_SF);
-%          hold off
-%        grid on;
-%          legend;
+        Sensitivity= 1/(1+Loop);
+         Sensitivity_SF= 1/(1+Loop_SF);
+        zpk(Sensitivity)
+        figure;
+         bodemag(Sensitivity);
+         hold on
+         bodemag(Sensitivity_SF);
+         hold off
+       grid on;
+         legend;
         % Find the Sensitivity_peak and frequency Wpeak
         % S_peak = 10^(dB/20)
         % VGM = S_peak/(S_peak - 1)

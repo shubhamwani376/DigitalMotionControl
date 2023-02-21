@@ -143,7 +143,7 @@ zpk(G_d)
         L_Pred = acker(A_d',C_d',Pole_Pred);  %for SISO only
         
 %         L_Pred = dlqr(A_d', C_d', eye(2), [0.5]);
-%         L_Pred = L_Pred';
+        L_Pred = L_Pred';
         %L_Pred = [0.927055947641751; 212.736236014520];
         %State Feedback Poles:
         Tr = 0.05;  % Rise time 0.05
@@ -203,6 +203,13 @@ zpk(G_d)
                 % Aaug=[A_d zeros(size(B_d)); C_d 1];
                 % Baug=[B_d;0];
                 w0 = 2*pi*1;
+                A_integral = [A_d zeros((B_d)); C_d 1];
+                B_integral = [B_d;0];
+                A_osc = [0 1; -1 2*cos(w0*Ts)];
+                B_osc = [0;1];
+
+
+
                 A_osc = [2*cos(w0*Ts)+1, -2*cos(w0*Ts)-1, 1; 1, 0, 0; 0, 1, 0];
                 B_osc = [1;0;0];
 
@@ -211,11 +218,11 @@ zpk(G_d)
 
                
                 gamma = 0.9;    %0<gamma<1 to select integrator pole faster than SF pole
-                Pole_int = gamma*max(abs(Pole_SF));
+                Pole_int = [0.1*max(abs(Pole_SF)), 0.1*max(abs(Pole_SF)), 0.3*max(abs(Pole_SF))];
 %                 gamma = 1   %0<gamma<1 to select integrator pole between SF pole and 1
 %                 Pole_int = (1-gamma)+gamma*max(abs(Pole_SF));
 
-                Pole_SF_int= [Pole_SF, Pole_int, 1i*w0, -1i*w0];
+                Pole_SF_int= [Pole_SF, Pole_int];
                 K_aug=acker(Aaug,Baug,Pole_SF_int);
                 K_SF=K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
@@ -230,8 +237,6 @@ zpk(G_d)
                 TF_yrf=ss(A_d-B_d*K_SF,B_d,C_d,[0],Ts);
                 N=1/freqresp(TF_yrf,[0]);  % With integra action, N does not affect steady state, but on transient response
                 
-                
-
                 AA= [A_d-B_d*K_SF, -B_d*K_int,  B_d*K_SF; B_osc*C_d, A_osc, zeros(size(A_osc, 1), size(C_d, 2)); zeros(size(A_d)), zeros(size(B_d, 1), size(A_osc, 2)), A_d-L_Pred*C_d];
                 BB= [B_d*N, B_d, Bw;-B_osc, zeros(size(B_osc)), zeros(size(B_osc)); zeros(size(B_d)), B_d, Bw];
                 CC= [C_d, zeros(1, size(A_osc, 2)), zeros(size(C_d)); -K_SF, -K_int, K_SF; -C_d, zeros(1, size(A_osc, 2)), zeros(size(C_d))];
@@ -302,9 +307,9 @@ zpk(G_d)
         Loop=balred(Loop,state_order);
         zpk(Loop)
         
-%          figure
-%         nyquist(Loop, Loop_SF);
-%          legend('Loop', 'Loop_{SF}');
+         figure
+        nyquist(Loop, Loop_SF);
+         legend('Loop', 'Loop_{SF}');
 %         figure
 %         bode(Loop, Loop_SF);
 %          legend('Loop', 'Loop_{SF}');
