@@ -162,7 +162,7 @@ zpk(G_d)
                 Q(1, 1) = 1;
                 Q(5, 5) = 1;
                 %K_aug = dlqr(Aaug, Baug, 0.25*Q, 1500000*1);
-                K_aug = dlqr(Aaug, Baug, 0.24*Q, 18540*1);
+                K_aug = dlqr(Aaug, Baug, 0.0001*Q, 1000*1);
                 K_SF = K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 

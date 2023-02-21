@@ -222,8 +222,8 @@ zpk(G_d)
                 
                 Q = ones(5, 5);
                 Q(1, 1) = 1;
-                Q(5, 5) = 1;
-                K_aug = dlqr(Aaug, Baug, 0.001*Q, 1000000*1);
+                Q(5, 5) = 0.5;
+                K_aug = dlqr(Aaug, Baug, 0.000001*Q, 1000000*1);
                 K_SF = K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
                 
