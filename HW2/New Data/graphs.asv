@@ -1,0 +1,29 @@
+clear all
+close all
+load('lqg_exp_square_1000.mat')
+position  = plant_output_square.extractTimetable.Gain;
+%position = nonzeros(position);
+
+input = square_input.extractTimetable;
+input = input.Variables;
+input = nonzeros(input);
+
+%%
+plot(0:0.001:5,position(1:5001), LineWidth=2)
+hold on
+grid on
+plot(0:0.001:5,input(1:5001), LineWidth=1)
+xlabel('Time (sec)')
+ylabel('Position (rad)')
+legend('Motor Position', 'Reference')
+title('LQG 1000Hz')
+
+
+
+
+
+
+
+
+
+
