@@ -213,13 +213,13 @@ zpk(G_d)
                 K_aug=acker(Aaug,Baug,Pole_SF_int);
                 K_SF=K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
-                
+                %K_int = 0;
 %                 K_aug = dlqr(Aaug, Baug, 0.1*[1, 0, 0; 0, 0, 0; 0, 0, 1], 50*1);
 %                 K_SF = K_aug(1:size(A_d,1));
 %                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
 
                 TF_yrf=ss(A_d-B_d*K_SF,B_d,C_d,[0],Ts);
-                N=1/freqresp(TF_yrf,[0]);  % With integra action, N does not affect steady state, but on transient response
+                N=1/freqresp(TF_yrf,[0]);  % With integral action, N does not affect steady state, but on transient response
                 
                 
 

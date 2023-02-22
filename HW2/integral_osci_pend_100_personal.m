@@ -1,7 +1,6 @@
 % Motor-Pendulum Position Control Modeling, Design, Analysis, Simulation, Verification by Virtual Experiment
 % Author: Tsu-Chin Tsao, June 2022
 
-
 clc;
 bdclose('all')
 close all;
@@ -18,7 +17,7 @@ SSdesign = 'state_observer_feedback_integral';
 
 
 
-Ts = 0.001;  %digital control sampling time
+Ts = 0.01;  %digital control sampling time
 
 
 %Motor and Pendulum Parameters:
@@ -130,8 +129,8 @@ zpk(G_d)
         
         % Calculate Observer damping ratio and natural frequency:
         
-        Zeta=7.5;
-        Wn = 20*2*pi;        % 100*2*pi
+        Zeta=1;
+        Wn = 100*2*pi;        % 100*2*pi
         s_pole= [(-Zeta+sqrt(Zeta^2-1))*Wn,  (-Zeta-sqrt(Zeta^2-1))*Wn];
         Pole_Pred=exp(s_pole*Ts);
         if pend ~= 1; 
@@ -141,8 +140,6 @@ zpk(G_d)
         %Pole_Pred = [0,0]; [0.8+1j*0.1 0.8-1j*0.1];
         %L_Pred = place(A_d',C_d',Pole_Pred); %for MIMO, but no identical poles
         L_Pred = acker(A_d',C_d',Pole_Pred);  %for SISO only
-        
-%         L_Pred = dlqr(A_d', C_d', eye(2), [0.5]);
         L_Pred = L_Pred';
         %L_Pred = [0.927055947641751; 212.736236014520];
         %State Feedback Poles:
@@ -154,9 +151,9 @@ zpk(G_d)
         %PM=        % Phase Margin (degrees)
         
         % Calculate closed loop damping ratio and natural frequency:
-        Wn = 1.5/Tr; %rad/sec
+        Wn = 1.8/Tr; %rad/sec
         tmp = (log(Mp)/pi)^2;
-        Zeta = 1.2*sqrt(tmp/(1+tmp));
+        Zeta = sqrt(tmp/(1+tmp));
         %Wd=sqrt(1-Zeta^2)*Wn = pi/Tp;
         %Sig=Zeta*Wn=4/Ts;
         %Wn=Wb % rad/sec;
@@ -203,24 +200,35 @@ zpk(G_d)
                 % Aaug=[A_d zeros(size(B_d)); C_d 1];
                 % Baug=[B_d;0];
                 w0 = 2*pi*1;
+%                 A_integral = [A_d zeros(size(B_d)); C_d 1];
+%                 B_integral = [B_d;0];
+%                 A_osc = [0 1; -1 2*cos(w0*Ts)];
+%                 B_osc = [0;1];
+
+                
+
                 A_osc = [2*cos(w0*Ts)+1, -2*cos(w0*Ts)-1, 1; 1, 0, 0; 0, 1, 0];
                 B_osc = [1;0;0];
 
                 Aaug = [A_d zeros(size(B_d, 1), size(A_osc, 2)); B_osc*C_d A_osc];
-                Baug = [B_d; zeros(size(B_osc))];
+                Baug = [B_d; B_osc];
 
                
                 gamma = 0.9;    %0<gamma<1 to select integrator pole faster than SF pole
-                Pole_int = [0.1*max(abs(Pole_SF)), 0.1*max(abs(Pole_SF)), *max(abs(Pole_SF))];
+                %Pole_int = [0*max(abs(Pole_SF)), 0*max(abs(Pole_SF)), 0*max(abs(Pole_SF))];
+                Pole_int = [1.0000 + 0.0063i 1.0000 - 0.0063i 0.9*max(abs(Pole_SF))];
 %                 gamma = 1   %0<gamma<1 to select integrator pole between SF pole and 1
 %                 Pole_int = (1-gamma)+gamma*max(abs(Pole_SF));
 
                 Pole_SF_int= [Pole_SF, Pole_int];
                 K_aug=acker(Aaug,Baug,Pole_SF_int);
+                %K_aug=acker(A_d,B_d,Pole_SF);
+                %K_aug = [K_aug 0 0 0];
                 K_SF=K_aug(1:size(A_d,1));
                 K_int = K_aug(size(A_d,1)+1:size(K_aug,2));
-                
-%                 Q = ones(5, 5);
+                %K_int = [0 0 0];
+
+%                 Q = zeros(5, 5);
 %                 Q(1, 1) = 1;
 %                 Q(5, 5) = 0.5;
 %                 K_aug = dlqr(Aaug, Baug, 0.000001*Q, 1000000*1);
@@ -299,10 +307,10 @@ zpk(G_d)
         end
         Loop=balred(Loop,state_order);
         zpk(Loop)
-        
-         figure
-        nyquist(Loop, Loop_SF);
-         legend('Loop', 'Loop_{SF}');
+%         
+%          figure
+%         nyquist(Loop, Loop_SF);
+%          legend('Loop', 'Loop_{SF}');
 %         figure
 %         bode(Loop, Loop_SF);
 %          legend('Loop', 'Loop_{SF}');

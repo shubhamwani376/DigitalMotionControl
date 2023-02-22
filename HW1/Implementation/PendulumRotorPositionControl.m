@@ -8,7 +8,7 @@ close ALL;
 clear ALL;
 
 plant = 'rotor';
-%plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
+plant = 'pendulum';   %Plant model is linearized at specified equlibrium angle
 
 pend = 1; %1: single pendulum for this file 2: double pendulum not implemented
 
@@ -45,7 +45,7 @@ deadzone = 0.06;    % PWM switcing short circuit protection results in 4% duty c
 Tss= 1/20000;       % 20kHz Encoder sampling rate by FPGA
 encoder_resolution= 2*pi/400;  % Encoder resolution 400 counts/revolutin
 
-Angle_Pendu=180/180*pi;   %pendulum equlibrium position, 0 is vertically down, 180 is up
+Angle_Pendu=0/180*pi;   %pendulum equlibrium position, 0 is vertically down, 180 is up
 K_g =  m*g*l_c;
 K_sin = cos(Angle_Pendu);  %linearization sin(angle)
 Friction_static = 4E-4; %Static friction Nm
