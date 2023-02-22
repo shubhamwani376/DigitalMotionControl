@@ -11,10 +11,10 @@ input = input.Variables;
 %input = nonzeros(input);
 
 %%
-plot(0:0.001:5,position(11790:16790), LineWidth=2)
+plot(0:0.01:5,position(2200:2700), LineWidth=2)
 hold on
 grid on
-plot(0:0.001:5,input(11790:16790), LineWidth=1)
+plot(0:0.01:5,input(2200:2700), LineWidth=1)
 xlabel('Time (sec)')
 ylabel('Position (rad)')
 legend('Motor Position', 'Reference')
