@@ -216,8 +216,8 @@ zpk(G_d)
                
                 gamma = 0.9;    %0<gamma<1 to select integrator pole faster than SF pole
                 %Pole_int = [0*max(abs(Pole_SF)), 0*max(abs(Pole_SF)), 0*max(abs(Pole_SF))];
-                Pole_int = [1.0000 + 0.0063i 1.0000 - 0.0063i 0.9*max(abs(Pole_SF))];
-%                 gamma = 1   %0<gamma<1 to select integrator pole between SF pole and 1
+                Pole_int = [1.0000 + 0.0063i 1.0000 - 0.0063i 0.55*max(abs(Pole_SF))];
+%                 gamma = 1   %0<gamma<1 to select integrator pol between SF pole and 1
 %                 Pole_int = (1-gamma)+gamma*max(abs(Pole_SF));
 
                 Pole_SF_int= [Pole_SF, Pole_int];
