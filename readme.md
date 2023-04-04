@@ -12,15 +12,15 @@ This project implements the following features:
 6. Pendulum 1 is observed but not controlled, whereas Pendulum 2 is unobserved but controlled.
 
 ## Images
-![Schematic](https://github.com/shubhamwani376/MPC_Quadcopter/blob/main/Quadrotor.gif)
-![Hardware](https://github.com/shubhamwani376/MPC_Quadcopter/blob/main/Quadrotor.gif)
+![Schematic](https://github.com/shubhamwani376/DigitalMotionControl/blob/main/Reference/Schematic.png)
+![Hardware](https://github.com/shubhamwani376/DigitalMotionControl/blob/main/Reference/Hardware.png)
 
 ## Dependencies
 ```
-Hardware: TI C2000, 2 DC motor with encoder and rotor, motor driver, torsional clamp
+Hardware: TI C2000, 2 DC motor with encoder and rotor, motor driver, torsional spring
 Software: Follow Reference folder. Eg. TI CCS, MATLAB embedded toolbox, C++ compiler, etc.
 MATLAB, Simulink.
 ```
 ## Reference
 Class notes MAE277 @ UCLA, Winter 2023
-Relevant files added to folder [Reference](https://github.com/shubhamwani376/MPC_Quadcopter/tree/main/Reference)
+Relevant files added to folder [Reference](https://github.com/shubhamwani376/DigitalMotionControl/tree/main/Reference)
